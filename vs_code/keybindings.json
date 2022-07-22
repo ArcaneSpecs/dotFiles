@@ -1,0 +1,85 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    // Toggle between terminal and editor focus
+    {
+        "key": "F1",
+        "command": "workbench.action.terminal.focus",
+        "when": "editorFocus"
+    },
+    // {
+    //     "key": "F1",
+    //     "command": "workbench.action.focusActiveEditorGroup",
+    //     "when": "activePanel == 'workbench.panel.markers'"
+    // },
+    {
+        "key": "F1",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+alt+b",
+        "command": "cmake.build",
+        "when": "cmake:enableFullFeatureSet"
+    },
+    {
+        "key": "f7",
+        "command": "-cmake.build",
+        "when": "cmake:enableFullFeatureSet"
+    },
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "alt+g",
+        "command": "editor.action.revealDefinition"
+    },
+    // uncomment for c/c++
+    // {
+    //     "key": "alt+g",
+    //     "command": "editor.action.revealDeclaration",
+    //     "when": "resourceExtname != .h"
+    // },
+    {
+        "key": "ctrl+shift+l",
+        "command": "editor.emmet.action.matchTag"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "editor.action.jumpToBracket",
+        "when": "editorTextFocus && (\"resourceExtname != .html\" ||  \"resourceExtname != .xhtml\")"
+    },
+    {
+        "key": "ctrl+shift+oem_5",
+        "command": "-editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+f5",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "-workbench.view.debug"
+    },
+    {
+        "key": "shift+alt+d",
+        "command": "workbench.action.splitEditorDown"
+    }
+]

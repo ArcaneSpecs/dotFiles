@@ -1,0 +1,189 @@
+{
+    "workbench.sideBar.location": "left",
+    "window.menuBarVisibility": "toggle",
+    "workbench.colorTheme": "Darcula",
+    // "workbench.colorTheme": "Darcula Theme from IntelliJ",
+    "workbench.colorCustomizations": {
+        "editorBracketHighlight.foreground1": "#ffa411",
+        "editorBracketPairGuide.background1": "#c4e62d",
+        "activityBarBadge.background": "#2979FF",
+        "activityBar.activeBorder": "#2979FF",
+        "list.activeSelectionForeground": "#2979FF",
+        "list.inactiveSelectionForeground": "#2979FF",
+        "list.highlightForeground": "#2979FF",
+        "scrollbarSlider.activeBackground": "#2979FF50",
+        "editorSuggestWidget.highlightForeground": "#2979FF",
+        "textLink.foreground": "#2979FF",
+        "progressBar.background": "#2979FF",
+        "pickerGroup.foreground": "#2979FF",
+        "tab.activeBorder": "#2979FF",
+        "notificationLink.foreground": "#2979FF",
+        "editorWidget.resizeBorder": "#2979FF",
+        "editorWidget.border": "#2979FF",
+        "settings.modifiedItemIndicator": "#2979FF",
+        "settings.headerForeground": "#2979FF",
+        "panelTitle.activeBorder": "#2979FF",
+        "breadcrumb.activeSelectionForeground": "#2979FF",
+        "menu.selectionForeground": "#2979FF",
+        "menubar.selectionForeground": "#2979FF",
+        "editor.findMatchBorder": "#2979FF",
+        "selection.background": "#2979FF40",
+        "statusBarItem.remoteBackground": "#1e1e1e",
+        "statusBar.background": "#1e1e1e",
+        "statusBar.debuggingBackground": "#05ac29",
+        "statusBar.foreground": "#bfbfbf",
+        "titleBar.activeForeground": "#bfbfbf"
+    },
+    "materialTheme.accent": "Blue",
+    "editor.minimap.scale": 1,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "php.executablePath": "C:\\devel\\DevelopmentEnvironments\\PHP\\php.exe",
+    "php.validate.executablePath": "C:\\devel\\DevelopmentEnvironments\\PHP\\php.exe",
+    "git.confirmSync": false,
+    "java.home": "C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.8.10-hotspot\\",
+    "java.help.firstView": "gettingStarted",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.semanticHighlighting.enabled": true,
+    "search.searchOnType": false,
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMapByFileExtension": {
+        ".vb": "cd $dir && vbc /nologo $fileName && $dir$fileNameWithoutExt",
+        ".vbs": "cscript //Nologo",
+        ".scala": "scala",
+        ".jl": "julia",
+        ".cr": "crystal",
+        ".ml": "ocaml",
+        ".exs": "elixir",
+        ".hx": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        ".rkt": "racket",
+        ".scm": "csi -script",
+        ".ahk": "autohotkey",
+        ".au3": "autoit3",
+        ".kt": "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar",
+        ".kts": "kotlinc -script",
+        ".dart": "dart",
+        ".pas": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        ".pp": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        ".d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        ".hs": "runhaskell",
+        ".nim": "nim compile --verbosity:0 --hints:off --run",
+        ".csproj": "dotnet run --project",
+        ".fsproj": "dotnet run --project",
+        ".lisp": "sbcl --script",
+        ".kit": "kitc --run",
+        ".v": "v run",
+        ".vsh": "v run",
+        ".sass": "sass --style expanded",
+        ".cu": "cd $dir && nvcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "sqltools.useNodeRuntime": true
+    },
+    "sqltools.connections": [
+        {
+            "name": "SQLite",
+            "driver": "SQLite",
+            "database": "testiDB.db", // if you use relative paths, the base folder is the currently open folder (or workspace).
+            "connectionTimeout": 15
+        }
+    ],
+    "sqltools.useNodeRuntime": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.renderWhitespace": "all",
+    "winopacity.opacity": 255,
+    "editor.cursorSmoothCaretAnimation": false,
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.formatting": "vcFormat",
+    "cmake.mingwSearchDirs": [
+        "C:\\devel\\DevelopmentEnvironments\\MinGW64\\mingw64\\bin"
+    ],
+    "editor.fontFamily": "Fira Code Retina",
+    // "editor.fontFamily": "JetBrains Mono",
+    // "editor.fontFamily": "Fira Code Retina", // font: https://github.com/tonsky/FiraCode
+    // "editor.fontWeight": "bold",
+    "terminal.integrated.fontFamily": "Fira Code Retina",
+    "terminal.integrated.cursorStyle": "block",
+    "terminal.integrated.fontWeight": "bold",
+    "workbench.iconTheme": "vscode-icons",
+    "liveshare.nameTagVisibility": "Never",
+    // "terminal.integrated.fontLigatures": true
+    "editor.fontLigatures": true,
+    "editor.accessibilitySupport": "off",
+    "liveServer.settings.CustomBrowser": "firefox",
+    "cmake.configureOnOpen": false,
+    // Wordwrap for output window
+    "[Log]": {
+        "editor.wordWrap": "bounded" // "off", "bounded", "wordWrapColumn"
+    },
+    "terminal.explorerKind": "external",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-b>": false
+    },
+    "breadcrumbs.enabled": false,
+    // "terminal.integrated.fontFamily": "Fira Code Retina",
+    "files.associations": {
+        "*.txt": "log"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.defaultInterpreterPath": "C:\\Users\\patu\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "window.zoomLevel": 1,
+    "python.autoComplete.extraPaths": [
+    "C:\\devel\\DevelopmentEnvironments\\discordAPI"
+    ],
+    "python.analysis.extraPaths": [
+        "C:\\devel\\DevelopmentEnvironments\\discordAPI"
+    ],
+    "security.workspace.trust.untrustedFiles": "open",
+    // "terminal.integrated.fontLigatures": true
+        "vsicons.dontShowNewVersionMessage": true,
+    "editor.mouseWheelZoom": true,
+    "editor.find.autoFindInSelection": "always",
+    "workbench.activityBar.visible": false,
+    "editor.minimap.enabled": false
+}
