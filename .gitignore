@@ -1,0 +1,6 @@
+
+# Ignore plugins downloaded by neovim
+nvim/plugin/*
+
+
+
