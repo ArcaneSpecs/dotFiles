@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp -r awesome/ ~/.config/
+cp -r .config/ ~/
 cp .xinitrc ~/.xinitrc
 cp .Xresources ~/.Xresources
 
