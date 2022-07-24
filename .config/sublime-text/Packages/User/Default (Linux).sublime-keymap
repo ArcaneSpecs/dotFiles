@@ -1,0 +1,10 @@
+[
+	{ "keys": ["ctrl+'"], "command": "toggle_comment", "args": { "block": false } },
+	{ "keys": ["ctrl+shift+'"], "command": "toggle_comment", "args": { "block": true } },
+	{ "keys": ["ctrl+b"], "command": "toggle_side_bar" },
+
+	// Lines	
+	{ "keys": ["ctrl+d"], "command": "duplicate_line" },
+	{ "keys": ["ctrl+shift+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+
+]

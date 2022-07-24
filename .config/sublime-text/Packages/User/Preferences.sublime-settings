@@ -1,0 +1,8 @@
+{
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"auto_complete": true,
+	"font_size": 15,
+}
