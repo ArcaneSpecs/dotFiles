@@ -33,14 +33,26 @@ vim.g.maplocalleader = " "
 -- map<C-C> <C-w>c
 
 
+-- DAP keybinds
+
+keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
+keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
+keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
+keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
+keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
+
+keymap("n", "<F4>", ":lua require'dapui'.toggle()<CR>", opts)
+
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 

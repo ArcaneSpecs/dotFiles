@@ -64,6 +64,11 @@ return packer.startup(function(use)
 	use("lunarvim/darkplus.nvim")
     use("Mofiqul/dracula.nvim")
     use("mfussenegger/nvim-dap")
+    --use("terrortylor/nvim-comment")
+    use("leoluz/nvim-dap-go")
+    use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim")
 
 
 	-- cmp plugins

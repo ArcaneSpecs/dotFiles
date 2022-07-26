@@ -1,6 +1,7 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
-  return
+    print("nvim-tree not loaded!")
+    return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
