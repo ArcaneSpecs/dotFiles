@@ -1,4 +1,0 @@
-{
-    // Executable to run to lint code.
-    "jshint_bin": "jshint"
-}

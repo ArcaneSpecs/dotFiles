@@ -6,30 +6,51 @@ end
 
 require("nvim-dap-virtual-text").setup()
 
-dap.adapters.python = {
-    type = 'executable',
-    command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python',
-    args = { '-m', 'debugpy.adapter' }
-}
+--[
+--dap.adapters.python = {
+    --type = 'executable',
+    --command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python',
+    --args = { '-m', 'debugpy.adapter' }
+--}
 
-
-dap.configurations.python = {
-    {
-        type = 'python';
-        request = 'launch';
-        name = "Launch file";
-        program = "${file}";
-        pythonPath = function()
-            return '/usr/bin/python'
-        end;
-    },
-}
+--dap.configurations.python = {
+    --{
+        --type = 'python';
+        --request = 'launch';
+        --name = "Launch file";
+        --program = "${file}";
+        --pythonPath = function()
+            --return '/usr/bin/python'
+        --end;
+    --},
+--}
 
 -- /usr/lib/python3.10/site-packages/debugpy/adapter
 
+-- Check what platform we are on
+-- print(vim.loop.os_uname().sysname)
+local operating_system = vim.loop.os_uname().sysname
+local lldb_path = '/usr/bin/lldb-vscode'
+
+if (operating_system == "Windows_NT") then
+    -- print("Windows!")
+    -- lldb_path = 'C:/devel/DevelopmentEnvironments/LLVM/bin/lldb.exe'
+    lldb_path = 'C:/devel/DevelopmentEnvironments/LLVM/bin/lldb-vscode.exe'
+    -- lldb_path = 'C:/Users/patu/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/lldb/bin/lldb.exe'
+end
+
+dap.adapters.cppdbg = {
+    id = 'cppvsdbg',
+    type = 'executable',
+    command = 'C:/Users/patu/.vscode/extensions/ms-vscode.cpptools-1.14.3-win32-x64/debugAdapters/bin/OpenDebugAD7.exe',
+    options = {
+        detached = false
+    }
+}
+
 dap.adapters.lldb = {
     type = 'executable',
-    command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+    command = lldb_path, -- adjust as needed, must be absolute path
     name = 'lldb'
 }
 
@@ -37,12 +58,14 @@ dap.configurations.cpp = {
     {
         name = 'Launch',
         type = 'lldb',
+        -- type = 'cppdbg',
         request = 'launch',
         program = function()
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
+        -- cwd = '${workspaceFolder}',
+        cwd = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor',
+        stopOnEntry = true,
         args = {},
 
         -- 💀

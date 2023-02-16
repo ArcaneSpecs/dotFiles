@@ -1,3 +1,5 @@
+vim.api.nvim_exec ('language en_US', true)
+
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
@@ -21,13 +23,14 @@ require "user.whichkey"
 require "user.autocommands"
 -- require "nvim-comment"
 require "user.nvim-dap"
-
+require "user.harpoon"
 
 -- print("NVIM init called!")
-
 
 if vim.g.neovide then
     vim.g.neovide_cursor_trail_legnth = 0
     vim.g.neovide_cursor_animation_length = 0
     vim.o.guifont = "Jetbrains Mono"
 end
+
+

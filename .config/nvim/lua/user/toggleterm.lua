@@ -7,7 +7,7 @@ toggleterm.setup({
 	size = 20,
 	open_mapping = [[<c-\>]],
 	hide_numbers = true,
-	shade_filetypes = {},
+	shade_filetypes = { "cpp", "h", "lua" },
 	shade_terminals = true,
 	shading_factor = 2,
 	start_in_insert = true,
@@ -17,13 +17,19 @@ toggleterm.setup({
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
-		border = "curved",
+		border = "double",
 		winblend = 0,
 		highlights = {
 			border = "Normal",
 			background = "Normal",
 		},
 	},
+    winbar = {
+        enabled = false,
+        name_formatter = function(term)
+            return term.name
+        end
+    }
 })
 
 function _G.set_terminal_keymaps()

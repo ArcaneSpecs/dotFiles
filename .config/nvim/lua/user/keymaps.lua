@@ -33,7 +33,17 @@ vim.g.maplocalleader = " "
 -- map<C-C> <C-w>c
 
 
+-- Terminal toggle
+keymap("n", "<C-g>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
+
+-- Alternate cpp and header files
+-- keymap("n", "<A-o>", ":e %<.cpp<CR>", opts)
+keymap("n", "<A-o>", ":lua require'my_functions'.swap_to_header_or_source_file()<CR>", opts)
+-- keym:ap("n", ) 
+
+
 -- DAP keybinds
+keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts)
 
 keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
@@ -61,8 +71,8 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 
 -- Better keys for jumping around (on finnish keyboard) 
 --keymap("n", "<'>[", "<'>w", opts)
