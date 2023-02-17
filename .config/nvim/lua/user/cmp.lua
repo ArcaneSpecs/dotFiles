@@ -114,6 +114,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "ultisnips" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

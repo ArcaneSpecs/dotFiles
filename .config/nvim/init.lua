@@ -1,4 +1,4 @@
-vim.api.nvim_exec ('language en_US', true)
+vim.api.nvim_exec('language en_US', true)
 
 require "user.options"
 require "user.keymaps"
@@ -24,6 +24,8 @@ require "user.autocommands"
 -- require "nvim-comment"
 require "user.nvim-dap"
 require "user.harpoon"
+require "user.vimspector"
+require "user.undotree"
 
 -- print("NVIM init called!")
 

@@ -5,9 +5,20 @@ end
 
 vimspector.setup({
 
-
 })
 
+vimspector.configurations.cpp = {
+    {
+        name = 'Launch',
+        type = 'llbd',
+        request = 'launch',
+        program = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe',
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        protocol = 'inspector'
+    },
+}
+vimspector.enable_for_current_project()
 
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }

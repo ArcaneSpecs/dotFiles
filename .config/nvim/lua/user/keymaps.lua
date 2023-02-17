@@ -1,10 +1,11 @@
+require "utils.my_functions"
+
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
-
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -19,28 +20,19 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
--- Better window navigation
--- keymap("n", "<C-h>", "<leader>h", opts)
--- keymap("n", "<C-j>", "<leader>j", opts)
--- keymap("n", "<C-k>", "<leader>k", opts)
--- keymap("n", "<C-l>", "<leader>l", opts)
-
--- map<C-h> <C-w>h
--- map<C-j> <C-w>j
--- map<C-k> <C-w>k
--- map<C-l> <C-w>l
--- map<C-C> <C-w>c
-
 
 -- Terminal toggle
-keymap("n", "<C-g>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
+keymap("n", "<C-t>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
 
 -- Alternate cpp and header files
--- keymap("n", "<A-o>", ":e %<.cpp<CR>", opts)
-keymap("n", "<A-o>", ":lua require'my_functions'.swap_to_header_or_source_file()<CR>", opts)
--- keym:ap("n", ) 
+keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
 
+-- Build and run Wyvern Engine (TODO: specify project build)
+keymap("n", "<C-F5>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", opts)
+keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>", opts)
+
+-- Undo
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts);
 
 -- DAP keybinds
 keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts)

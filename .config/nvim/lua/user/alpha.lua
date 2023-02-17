@@ -23,7 +23,7 @@ dashboard.section.header.val = [[
 ]]
 
 local config_path = vim.fn.stdpath('config')
-print(string.format("path is: %s", config_path))
+-- print(string.format("Config path is: %s", config_path))
 
 dashboard.section.buttons.val = {
 	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
