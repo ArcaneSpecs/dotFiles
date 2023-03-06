@@ -69,8 +69,11 @@ return packer.startup(function(use)
     use "EdenEast/nightfox.nvim"
     use("joshdick/onedark.vim")
     use("vimcolorschemes/vimcolorschemes")
+    use("sainnhe/gruvbox-material")
 -- git@github.com:vimcolorschemes/vimcolorschemes.git
 
+    -- GitHub Copilot
+    use("github/copilot.vim")
     -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -91,13 +94,16 @@ return packer.startup(function(use)
             -- Snippets
             {'L3MON4D3/LuaSnip'},
             {'rafamadriz/friendly-snippets'},
-            {'SirVer/ultisnips'},
+            --[[ {'SirVer/ultisnips'}, ]]
         }
     }
-
+    -- Inline hints
+    use('simrat39/inlay-hints.nvim')
+    
     use('lervag/vimtex')
     --[[ use('') ]]
     use('mbbill/undotree')
+    use('kdheepak/lazygit.nvim')
 
     -- DAP
     use("mfussenegger/nvim-dap")

@@ -1,10 +1,12 @@
 vim.api.nvim_exec('language en_US', true)
 
+
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
 require "user.colorscheme"
-require "user.cmp"
+require "user.copilot"
+-- require "user.cmp"
 require "user.lsp"
 require "user.telescope"
 require "user.treesitter"
@@ -26,6 +28,7 @@ require "user.nvim-dap"
 require "user.harpoon"
 require "user.vimspector"
 require "user.undotree"
+require "user.lazygit"
 
 -- print("NVIM init called!")
 

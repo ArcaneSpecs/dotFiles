@@ -35,7 +35,7 @@ keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts);
 
 -- DAP keybinds
-keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts)
+--[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
 
 keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)

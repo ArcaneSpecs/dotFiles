@@ -9,8 +9,9 @@
 workspaceFolder = 'C:/devel/TIES471/GameEngine'
 
 function run_wyvern_engine()
-    print('Running at: ' .. workspaceFolder)
+    --[[ print('Running at: ' .. workspaceFolder) ]]
     os.execute('cd ' .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe')
+    --[[ os.execute('cd ' .. 'C:/devel/TIES471/VulkanExample/build/bin && '.. 'C:/devel/TIES471/VulkanExample/build/bin/WyvernEngine.exe') ]]
 end
 
 function build_wyvern_engine()
