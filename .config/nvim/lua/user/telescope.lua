@@ -7,11 +7,36 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-
+--  󰜏    󱘟 󱘞 󰭎    
+-- 󰧂 󱞪 󱞩 󱞶 󰵉 󰵌 󰵑 󰵕 󱡁  
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
-                                                
+    path_display = { "truncate" },
+    file_ignore_patterns = {
+            "External",
+            "%.wav",
+            "%.ogg",
+            "%.mp3",
+            "%.mp4",
+            "%.png",
+            "%.jpg",
+            "%.jpeg",
+            "%.gif",
+            "%.bin",
+            "%.zip",
+            "%.fbx",
+            "%.blend",
+            "%.blend1",
+            "%.kra",
+            "%.kra~",
+            "%.spv",
+            "%.ttf",
+            "%.glb",
+            "%.tga",
+            "%.hdr",
+            "%.hdri",
+
+        },                
     mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,

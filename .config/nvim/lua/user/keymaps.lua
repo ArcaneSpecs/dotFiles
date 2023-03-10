@@ -31,8 +31,15 @@ keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_
 keymap("n", "<C-F5>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", opts)
 keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>", opts)
 
--- Undo
+-- Undotree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts);
+
+-- Navigate git hunks
+keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts);
+keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts);
+
+
+
 
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
