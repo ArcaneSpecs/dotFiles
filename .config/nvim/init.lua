@@ -1,4 +1,4 @@
-vim.api.nvim_exec('language en_US', true)
+--vim.api.nvim_exec('language en_US', true)
 --[[ vim.opt.foldmethod = "expr" ]]
 --[[ vim.opt.foldexpr = "nvim_treesitter#foldexpr()" ]]
 
