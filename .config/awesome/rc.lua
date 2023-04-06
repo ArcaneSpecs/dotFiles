@@ -124,7 +124,7 @@ local browser1          = "librewolf"
 local browser2          = "firefox"
 local browser3          = "chromium -no-default-browser-check"
 local editor            = os.getenv("EDITOR") or "vim"
-local editorgui         = "code"
+local editorgui         = "neovide"
 local filemanager       = "pcmanfm"
 local mailclient        = "evolution"
 local mediaplayer       = "spotify"
@@ -148,8 +148,8 @@ awful.layout.layouts = {
     awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
@@ -159,8 +159,8 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.se,
     --lain.layout.cascade,
     --lain.layout.cascade.tile,
-    --lain.layout.centerwork,
-    --lain.layout.centerwork.horizontal,
+    lain.layout.centerwork,
+    lain.layout.centerwork.horizontal,
     --lain.layout.termfair,
     --lain.layout.termfair.center,
 }
@@ -355,16 +355,23 @@ globalkeys = my_table.join(
         {description = "conky-toggle", group = "super"}),
     awful.key({ modkey, modkey1 }, "c", function () awful.util.spawn( "killall conky" ) end,
         {description = "conky killall", group = "super"}),
-    awful.key({ modkey }, "e", function () awful.util.spawn(editorgui) end,
+
+    --[[
+    awful.key({ modkey }, "e", 
+        function () 
+            awful.util.spawn(editorgui) 
+        end,
         {description = "run gui editor", group = "super"}),
+    ]]--
+    
     --awful.key({ modkey }, "h", function () awful.util.spawn( "urxvt -T 'htop task manager' -e htop" ) end,
         --{description = "htop", group = "super"}),
-    awful.key({ modkey }, "r", function () awful.util.spawn( "rofi-theme-selector" ) end,
-        {description = "rofi theme selector", group = "super"}),
-    awful.key({ modkey }, "t", function () awful.util.spawn( terminal ) end,
-        {description = "terminal", group = "super"}),
-    awful.key({ modkey }, "v", function () awful.util.spawn( "pavucontrol" ) end,
-        {description = "pulseaudio control", group = "super"}),
+    --awful.key({ modkey }, "r", function () awful.util.spawn( "rofi-theme-selector" ) end,
+    --    {description = "rofi theme selector", group = "super"}),
+    --awful.key({ modkey }, "t", function () awful.util.spawn( terminal ) end,
+    --    {description = "terminal", group = "super"}),
+    --awful.key({ modkey }, "v", function () awful.util.spawn( "pavucontrol" ) end,
+    --    {description = "pulseaudio control", group = "super"}),
     --awful.key({ modkey }, "u", function () awful.screen.focused().mypromptbox:run() end,
           --{description = "run prompt", group = "super"}),
     awful.key({ modkey }, "x",  function () awful.util.spawn( "archlinux-logout" ) end,
@@ -662,9 +669,9 @@ globalkeys = my_table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey,           }, "g", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey,  "Shift"  }, "space", function () awful.layout.inc(-1)                end,
               {description = "select next", group = "layout"}),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(1)                end,
               {description = "select next", group = "layout"}),
     --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
              -- {description = "select previous", group = "layout"}),
@@ -778,7 +785,7 @@ globalkeys = my_table.join(
             end
             naughty.notify(common)
         end,
-        {description = "mpc on/off", group = "widgets"}),
+        {description = "mpc on/off", group = "widgets"})
 
     -- Copy primary to clipboard (terminals to gtk)
     --awful.key({ modkey }, "c", function () awful.spawn.with_shell("xsel | xsel -i -b") end,
@@ -794,6 +801,7 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "super"})
     --]]
+    --[[
 
     awful.key({ altkey }, "x",
               function ()
@@ -805,10 +813,19 @@ globalkeys = my_table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"})
-    --]]
+    ]]--
 )
 
 clientkeys = my_table.join(
+
+    awful.key({ modkey }, "e", 
+        function (c) 
+            awful.util.spawn(editorgui)
+            c.maximized_horizontal = false
+            c.maximized_vertical = false
+        end,
+        {description = "run gui editor", group = "super"}),
+
     -- Toggle titlebars
     awful.key({ altkey, "Control" }, ",", function (c) awful.titlebar.toggle(c) end,
             {description = "Toggles titlebar on window", group = "client"}),
@@ -1061,6 +1078,10 @@ awful.rules.rules = {
         instance = {
           "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
+          "StopWatch v2.0",
+          "sw",
+          "stopWatch",
+          "StopWatch"
         },
         class = {
           "Arandr",
@@ -1083,7 +1104,12 @@ awful.rules.rules = {
           "pinentry",
           "veromix",
           "xtightvncviewer",
-          "Xfce4-terminal"},
+          "Xfce4-terminal",
+          "StopWatch v2.0",
+          "sw",
+          "stopWatch",
+          "StopWatch"
+        },
 
         name = {
           "Event Tester",  -- xev.
