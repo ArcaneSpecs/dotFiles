@@ -31,7 +31,7 @@ require "user.harpoon"
 require "user.vimspector"
 require "user.undotree"
 require "user.lazygit"
-require "user.glslview"
+--[[ require "user.glslview" ]]
 
 -- print("NVIM init called!")
 
