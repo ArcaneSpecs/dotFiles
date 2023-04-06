@@ -1,4 +1,6 @@
 vim.api.nvim_exec('language en_US', true)
+--[[ vim.opt.foldmethod = "expr" ]]
+--[[ vim.opt.foldexpr = "nvim_treesitter#foldexpr()" ]]
 
 
 require "user.options"
@@ -29,6 +31,7 @@ require "user.harpoon"
 require "user.vimspector"
 require "user.undotree"
 require "user.lazygit"
+require "user.glslview"
 
 -- print("NVIM init called!")
 

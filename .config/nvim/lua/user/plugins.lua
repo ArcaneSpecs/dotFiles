@@ -104,6 +104,9 @@ return packer.startup(function(use)
     --[[ use('') ]]
     use('mbbill/undotree')
     use('kdheepak/lazygit.nvim')
+    use('preservim/tagbar')
+
+ use { 'timtro/glslView-nvim', ft = 'glsl' }
 
     -- DAP
     use("mfussenegger/nvim-dap")

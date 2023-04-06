@@ -1,5 +1,5 @@
-require "utils.my_functions"
 
+require "utils.my_functions"
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
@@ -23,6 +23,9 @@ vim.g.maplocalleader = " "
 
 -- Terminal toggle
 keymap("n", "<C-t>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
+
+-- Tagbar
+keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
 
 -- Alternate cpp and header files
 keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
@@ -64,14 +67,28 @@ keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- Resize fast with arrows
+keymap("n", "<C-A-Up>", ":resize +10<CR>", opts)
+keymap("n", "<C-A-Down>", ":resize -10<CR>", opts)
+keymap("n", "<C-A-Left>", ":vertical resize -10<CR>", opts)
+keymap("n", "<C-A-Right>", ":vertical resize +10<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Close all buffers
+keymap("n", "<leader>y", ":%bd|e#<CR>", opts);
+
 -- Move text up and down
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+keymap("n", "<A-k>", "<Esc>:m -2<CR>", opts)
+keymap("n", "<A-j>", "<Esc>:m +1<CR>", opts)
+
+
+-- Move current line / block with Alt-j/k ala vscode.
+--[[ ["<A-j>"] = "<Esc>:m .+1<CR>==gi", ]]
+-- Move current line / block with Alt-j/k ala vscode.
+--[[ ["<A-k>"] = "<Esc>:m .-2<CR>==gi", ]]
 
 -- Better keys for jumping around (on finnish keyboard) 
 --keymap("n", "<'>[", "<'>w", opts)
