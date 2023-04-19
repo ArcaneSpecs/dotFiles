@@ -7,6 +7,14 @@ function run {
   fi
 }
 
+# Faster key repeat
+run xset r rate 200 80
+# Turn off screen sleeping
+run xset s off
+
+run xset m 1 0
+run autorandr --change work
+
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 #run xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal
 #run xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
@@ -34,3 +42,4 @@ run nitrogen --restore
 #run ckb-next -b
 #run discord
 #run telegram-desktop
+eval $(ssh-agent)
