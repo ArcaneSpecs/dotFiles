@@ -42,15 +42,15 @@ lsp.configure('lua_ls', {
     }
 })
 
-lsp.configure(
-    'glsls', {
-        settings = {
-            filetypes = {
-                'glsl', 'frag', 'vert', 'geom', 'comp', 'tesc', 'tese'
-            }
-        }
-    }
-)
+-- lsp.configure(
+--     'glsls', {
+--         settings = {
+--             filetypes = {
+--                 'glsl', 'frag', 'vert', 'geom', 'comp', 'tesc', 'tese'
+--             }
+--         }
+--     }
+-- )
 
 local check_backspace = function()
     local col = vim.fn.col "." - 1
