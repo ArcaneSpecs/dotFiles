@@ -36,6 +36,7 @@ telescope.setup {
             "%.kra~",
             "%.spv",
             "%.ttf",
+            "%.otf",
             "%.tga",
             "%.hdr",
             "%.hdri",

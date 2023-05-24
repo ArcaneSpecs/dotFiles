@@ -76,6 +76,8 @@ keymap("n", "<C-A-Right>", ":vertical resize +10<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Close all buffers
+keymap("n", "<leader>C", ":bufdo bwipeout<CR>", opts)
 
 -- Close all buffers
 keymap("n", "<leader>y", ":%bd|e#<CR>", opts);

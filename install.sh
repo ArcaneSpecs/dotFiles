@@ -8,7 +8,7 @@
 # sh <(curl -L https://nixos.org/nix/install) --daemon
 
 # Install git, make, gcc, g++, cmake
-nix-env -iA nixpkgs.git nixpkgs.neovim nixpkgs.cmake nixpkgs.gcc
+# nix-env -iA nixpkgs.git nixpkgs.neovim nixpkgs.cmake nixpkgs.gcc
 
 # Install neovim from git
 # git clone --depth 1 --recursive git@github.com:neovim/neovim.git github/neovim
