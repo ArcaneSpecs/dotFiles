@@ -8,21 +8,21 @@ require("nvim-dap-virtual-text").setup()
 
 --[
 --dap.adapters.python = {
-    --type = 'executable',
-    --command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python',
-    --args = { '-m', 'debugpy.adapter' }
+--type = 'executable',
+--command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python',
+--args = { '-m', 'debugpy.adapter' }
 --}
 
 --dap.configurations.python = {
-    --{
-        --type = 'python';
-        --request = 'launch';
-        --name = "Launch file";
-        --program = "${file}";
-        --pythonPath = function()
-            --return '/usr/bin/python'
-        --end;
-    --},
+--{
+--type = 'python';
+--request = 'launch';
+--name = "Launch file";
+--program = "${file}";
+--pythonPath = function()
+--return '/usr/bin/python'
+--end;
+--},
 --}
 
 -- /usr/lib/python3.10/site-packages/debugpy/adapter
@@ -31,6 +31,7 @@ require("nvim-dap-virtual-text").setup()
 -- print(vim.loop.os_uname().sysname)
 local operating_system = vim.loop.os_uname().sysname
 local lldb_path = '/usr/bin/lldb-vscode'
+--[[ local lldb_path = '/usr/bin/lldb' ]]
 
 if (operating_system == "Windows_NT") then
     -- print("Windows!")
@@ -55,7 +56,12 @@ dap.adapters.lldb = {
 }
 
 --[[ local cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb" ]]
-local cmd = "C:/Users/patu/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
+--[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
+local cmd = "/usr/bin/lldb"
+if (operating_system == "Windows_NT") then
+    cmd = "C:/Users/patu/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
+end
+
 dap.adapters.codelldb = function(on_adapter)
     -- This asks the system for a free port
     local tcp = vim.loop.new_tcp()
@@ -68,24 +74,24 @@ dap.adapters.codelldb = function(on_adapter)
     local stdout = vim.loop.new_pipe(false)
     local stderr = vim.loop.new_pipe(false)
     local opts = {
-        stdio = {nil, stdout, stderr},
-        args = {"--port", tostring(port)}
+        stdio = { nil, stdout, stderr },
+        args = { "--port", tostring(port) }
     }
     local handle
     local pid_or_err
     handle, pid_or_err =
         vim.loop.spawn(
-        cmd,
-        opts,
-        function(code)
-            stdout:close()
-            stderr:close()
-            handle:close()
-            if code ~= 0 then
-                print("codelldb exited with code", code)
+            cmd,
+            opts,
+            function(code)
+                stdout:close()
+                stderr:close()
+                handle:close()
+                if code ~= 0 then
+                    print("codelldb exited with code", code)
+                end
             end
-        end
-    )
+        )
     if not handle then
         vim.notify("Error running codelldb: " .. tostring(pid_or_err), vim.log.levels.ERROR)
         stdout:close()
@@ -121,32 +127,64 @@ dap.adapters.codelldb = function(on_adapter)
     )
 end
 
+tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
+if (operating_system == "Windows_NT") then
+    tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
+end
+
 dap.configurations.cpp = {
+    --[[ { ]]
+    --[[     name = 'Launch codelldb', ]]
+    --[[     type = 'codelldb', ]]
+    --[[     -- type = 'cppdbg', ]]
+    --[[     request = 'launch', ]]
+    --[[     program = function() ]]
+    --[[         if (operating_system == "Windows_NT") then ]]
+    --[[             return vim.fn.input('Path to executable: ', ]]
+    --[[                 vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file') ]]
+    --[[         else ]]
+    --[[             return vim.fn.input('Path to executable: ', ]]
+    --[[                 vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file') ]]
+    --[[         end ]]
+    --[[     end, ]]
+    --[[     -- cwd = '${workspaceFolder}', ]]
+    --[[     cwd = tempcwd, ]]
+    --[[     stopOnEntry = true, ]]
+    --[[     args = {}, ]]
+    --[[     preLaunchTask = 'Build', ]]
+    --[[]]
+    --[[     -- 💀 ]]
+    --[[     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting: ]]
+    --[[     -- ]]
+    --[[     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope ]]
+    --[[     -- ]]
+    --[[     -- Otherwise you might get the following error: ]]
+    --[[     -- ]]
+    --[[     --    Error on launch: Failed to attach to the target process ]]
+    --[[     -- ]]
+    --[[     -- But you should be aware of the implications: ]]
+    --[[     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html ]]
+    --[[     -- runInTerminal = false, ]]
+    --[[ }, ]]
     {
-        name = 'Launch',
-        type = 'codelldb',
+        name = 'Launch lldb',
+        type = 'lldb',
         -- type = 'cppdbg',
         request = 'launch',
         program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file')
+            if (operating_system == "Windows_NT") then
+                return vim.fn.input('Path to executable: ',
+                    vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file')
+            else
+                return vim.fn.input('Path to executable: ',
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file')
+            end
         end,
         -- cwd = '${workspaceFolder}',
-        cwd = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor',
+        cwd = tempcwd,
         stopOnEntry = true,
         args = {},
-
-        -- 💀
-        -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-        --
-        --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-        --
-        -- Otherwise you might get the following error:
-        --
-        --    Error on launch: Failed to attach to the target process
-        --
-        -- But you should be aware of the implications:
-        -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-        -- runInTerminal = false,
+        preLaunchTask = 'Build',
     },
 }
 
@@ -204,13 +242,14 @@ dapui.setup {
             elements = {
                 'repl',
                 'console',
+                'watches'
             },
             size = 10,
             position = 'bottom',
         },
         {
             elements = {
-                'watches'
+                --[[ 'watches' ]]
             },
             size = 20,
             position = 'right'

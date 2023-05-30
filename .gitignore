@@ -2,8 +2,6 @@
 # Ignore plugins downloaded by neovim
 nvim/plugin/*
 
-
-
 # Compiled Lua sources
 luac.out
 
@@ -47,4 +45,6 @@ luac.out
 
 
 .config/nvim/lua/user/plugin/packer_compiled.lua
+.config/copilot
+.config/github_copilot
 

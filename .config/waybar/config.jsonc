@@ -1,120 +1,108 @@
 {
     "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "passtrough": false,
-    "gtk-layer-shell": true,
-    "height": 0,
-    "modules-left": [
-        "clock",
-        "cpu",
-        "memory",
-        // "custom/weather",
-        "wlr/workspaces"
-    ],
-    "modules-center": ["hyprland/window"],
-    "modules-right": [
-        "tray",
-        // "custom/updates",
-        // "custom/language",
-        "pulseaudio",
-        "pulseaudio#microphone"
-    ],
+    "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
+    // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
 
-    "hyprland/window": {
-        "format": "{}"
-    },
     "wlr/workspaces": {
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "all-outputs": true,
         "on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            // "1": "",
-            // "2": "",
-            // "3": "",
-            // "4": "",
-            // "5": "",
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "urgent": "",
-            "active": "",
-            "default": ""
-          }
+        "on-scroll-up": "hyprctl dispatch worksace e-1",
+        "on-scroll-down": "hyprctl dispatch worksace e+1",
+        "sort-by-number": true,
+
     },
-    "cpu": {
-        "interval": 10,
-        // "format": " {}%",
-        // "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% <U+F2DB>",
-        "format": " {usage}%",
-        // "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-        "max-length": 10,
-        "on-click": "",
-    },
-    "memory": {
-        "interval": 30,
-        "format": " {}%",
-        "format-alt":" {used:0.1f}G",
-        "max-length": 10
-    },
-    // "custom/updates": {
-    //     "exec": "(yay -Qua) | wc -l",
-    //     "interval": 7200,
-    //     "format": " {}"
-    // },
-    // "custom/language": {
-    //     "exec": "cat /tmp/kb_layout",
-    //     "interval": 3,
-    //     "format": " {}",
-    //     "tooltip": false
-    // },
-    // "custom/weather" : {
-    //     "tooltip" : true,
-    //     "format" : "{}",
-    //     "restart-interval" : 300,
-    //     "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-    //     "return-type" : "json"
-    // },
-    "tray": {
-        "icon-size": 13,
-        "tooltip": false,
-        "spacing": 10
-    },
-    "clock": {
-        "format": "{: %R   %d/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "tooltip": false,
-        "format-muted": " Muted",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+
+    "mpd": {
+    	"tooltip": false,
+	"format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+	"format-disconnected": "ﳌ",
+	"format-stopped": "",
+	"state-icons": {
+		"playing": "",
+        	"paused": ""
         }
     },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
+
+    "pulseaudio": {
+	"tooltip": false,
+	"scroll-step": 5,
+	"format": "{icon} {volume}%",
+	"format-icons": {
+		"default": ["奄", "奔", "墳"]
+	},
+	"on-click": "pavucontrol"
+     },
+     "network": {
+	"tooltip": false,
+	"format-wifi": " {essid}",
+	"format-ethernet": " {ipaddr}",
+	"on-click": "wezterm nmtui"
+     },
+     "cpu": {
+     	"interval": 10,
+     	"format": " {usage}%",
+     	"max-length": 10
+     },
+     "memory": {
+	"tooltip": true,
+	"format": " {}%"
+     },
+     "hyprland/window": {
+        "format": "👉 {}",
+	"separate-outputs": true
+     },
+     "battery": {
+        "format": "{capacity}% {icon}",
+	"interval": "20",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            "warning": 50,
+            "critical": 25,
+        },
+     },
+     "clock": {
+        "format": "{: %R   %d/%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+     },
+     "tray": {
+         "spacing": 10,
+     },
+     "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "Π",
+            "deactivated": "Σ",
+        },
         "tooltip": false,
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
+     },
+    "backlight": {
+    	"device": "intel_backlight",
+    	"format": "{percent}% {icon}",
+    	"format-icons": ["", ""],
+    	"on-scroll-up": "~/.config/waybar/increase_brightness.sh",
+    	"on-scroll-down": "~/.config/waybar/decrease_brightness.sh",
+    },
+    "bluetooth": {
+    	"format": " {status}",
+	"format-disabled": "",
+	"format-connected": " {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"on-click": "blueman-manager"
+    },
+    "custom/waybar-media": {
+        "format": "{icon} {}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10,
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec": "$HOME/.config/waybar/mediaplayer.py"
     }
 }

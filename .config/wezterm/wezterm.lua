@@ -6,7 +6,10 @@ end
 
 local config = {
     -- This is where you actually apply your config choices
-    font = wezterm.font 'JetBrains Mono',
+    --[[ font = wezterm.font 'JetBrains Mono', ]]
+    --[[ font = wezterm.font 'MesloLGL NF', ]]
+    --[[ font = wezterm.font 'MesloLGM NF', ]]
+    font = wezterm.font 'MesloLGS NF',
     font_size = 12,
     --[[ color_scheme = 'OneHalfDark', ]]
     --[[ color_scheme = 'OneDarkLight', ]]

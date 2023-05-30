@@ -6,22 +6,36 @@
 -- or any other location that nvim searches for lua scripts
 ----------------------------------------------------------------------------
 
-workspaceFolder = 'C:/devel/TIES471/GameEngine'
+workspaceFolder = '/home/patu/simpleWyvern'
+
+-- Build command
+global_cmd = 'make'
+-- Run command
+wyvernEditor = 'cd ' .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor'
+
+local operating_system = vim.loop.os_uname().sysname
+
+if (operating_system == "WINDOWS_NT") then
+    global_cmd = 'devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build'
+    wyvernEditor = 'cd ' .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe'
+    workspaceFolder = 'C:/devel/TIES471/GameEngine'
+end
 
 function run_wyvern_engine()
-    --[[ print('Running at: ' .. workspaceFolder) ]]
-    os.execute('cd ' .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe')
+    print('Running at: ' .. workspaceFolder)
+    os.execute(wyvernEditor)
     --[[ os.execute('cd ' .. 'C:/devel/TIES471/VulkanExample/build/bin && '.. 'C:/devel/TIES471/VulkanExample/build/bin/WyvernEngine.exe') ]]
 end
 
 function build_wyvern_engine()
-    print('Running build at: ' .. workspaceFolder)
+    print('Running build at: ' .. workspaceFolder .. '/build')
     local term = require'toggleterm.terminal'.Terminal
     --[[ print("term is: " .. term.name) ]]
     local toggleterm = term:new({
         --[[ name = "term", ]]
-        cmd = 'devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build',
-        dir = workspaceFolder,
+        --[[ cmd = 'devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build', ]]
+        cmd = global_cmd,
+        dir = workspaceFolder .. '/build',
         size = { height = 5, width = 5 },
         hidden = false,
         direction = 'horizontal',
