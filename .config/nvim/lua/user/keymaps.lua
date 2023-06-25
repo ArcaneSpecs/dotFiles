@@ -37,12 +37,14 @@ vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = 
 vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, expr = true })
 
 -- Undotree
-keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts);
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- Navigate git hunks
-keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts);
-keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts);
+keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts)
 
+-- Quick paste first register
+keymap("n", "<leader>j", "\"0P", opts)
 
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
@@ -78,11 +80,15 @@ keymap("n", "<C-A-Right>", ":vertical resize +10<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+keymap("n", "<A-h>", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<A-l>", ":BufferLineMoveNext<CR>", opts)
+
 -- Close all buffers
 keymap("n", "<leader>C", ":bufdo bwipeout<CR>", opts)
 
 -- Close all buffers
-keymap("n", "<leader>y", ":%bd|e#<CR>", opts);
+keymap("n", "<leader>y", ":%bd|e#<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-k>", "<Esc>:m -2<CR>", opts)

@@ -31,6 +31,7 @@ require "user.nvim-dap"
 require "user.vimspector"
 require "user.undotree"
 require "user.lazygit"
+
 --[[ require "user.glslview" ]]
 
 -- print("NVIM init called!")

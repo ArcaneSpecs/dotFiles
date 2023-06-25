@@ -25,6 +25,18 @@ lsp.ensure_installed({
     'pyright'
 })
 
+lsp.set_preferences({
+    --[[ suggest_lsp_servers = false, ]]
+    suggest_lsp_servers = true,
+    sign_icons = {
+        error = '',
+        --error = 'TEPPOOO!',
+        warn  = '',
+        info  = '',
+        hint  = ''
+    }
+})
+
 --[[ lsp.configure('lua-language-server', { ]]
 lsp.configure('lua_ls', {
     settings = {
@@ -171,17 +183,6 @@ lsp.setup_nvim_cmp({
     },
 })
 
-lsp.set_preferences({
-    --[[ suggest_lsp_servers = false, ]]
-    suggest_lsp_servers = true,
-    sign_icons = {
-        error = '',
-        --error = 'TEPPOOO!',
-        warn  = '',
-        info  = '',
-        hint  = ''
-    }
-})
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, noremap = true, silent = true }

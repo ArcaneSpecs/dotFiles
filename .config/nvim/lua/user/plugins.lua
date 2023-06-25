@@ -44,7 +44,7 @@ return packer.startup(function(use)
     --use({"ViliLipo/Oiko"})
 	use({ "wbthomason/packer.nvim", commit = "1d0cf98a561f7fd654c970c49f917d74fafe1530" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" }) -- Useful lua functions used by lots of plugins
-	use({ "windwp/nvim-autopairs", commit = "45ae3122a4c7744db41298b41f9f5a3f092123e6" }) -- Autopairs, integrates with both cmp and treesitter
+	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use({ "numToStr/Comment.nvim", commit = "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" })
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" })
 	use({ "kyazdani42/nvim-web-devicons", commit = "8d2c5337f0a2d0a17de8e751876eeb192b32310e" })
