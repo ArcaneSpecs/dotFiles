@@ -1,9 +1,11 @@
 {
     "layer": "top",
-    "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
+    // "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
+    "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
+    // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
+    "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory" ],
 
     "wlr/workspaces": {
         "all-outputs": true,
@@ -27,7 +29,7 @@
 
     "pulseaudio": {
 	"tooltip": false,
-	"scroll-step": 5,
+	"scroll-step": 2.5,
 	"format": "{icon} {volume}%",
 	"format-icons": {
 		"default": ["奄", "奔", "墳"]
@@ -38,7 +40,7 @@
 	"tooltip": false,
 	"format-wifi": " {essid}",
 	"format-ethernet": " {ipaddr}",
-	"on-click": "wezterm nmtui"
+	"on-click": "kitty nmtui"
      },
      "cpu": {
      	"interval": 10,
@@ -63,8 +65,39 @@
         },
      },
      "clock": {
-        "format": "{: %R   %d/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "{: %R   %d.%m.%Y}",
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        // "tooltip-format": "{calendar}",
+        "interval": 10,
+        // "format": "{:󰃭  %Y-%m-%d %a    %I:%M %p %Z}",
+        "timezones": 
+        [
+          "Finland/Helsinki"
+        ],
+        "tooltip": true,
+        "tooltip-format": "{calendar}",
+        "calendar": 
+        {
+            "mode"        : "year",
+            "mode-mon-col": 3,
+            "weeks-pos"   : "",
+            "on-scroll"   : 1,
+            "on-click"    : "mode",
+            "format": 
+            {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":
+        {
+            "on-click": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down"
+        }
      },
      "tray": {
          "spacing": 10,
@@ -93,16 +126,18 @@
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 	"on-click": "blueman-manager"
     },
-    "custom/waybar-media": {
-        "format": "{icon} {}",
+    "custom/media": {
+        "exec": "python $HOME/.config/waybar/mediaplayer.py",
+        // "format": " {text} {alt} {class} {}  ",
+        "format": " {}  ",
         "escape": true,
         "return-type": "json",
-        "max-length": 40,
+        "max-length": 80,
         "on-click": "playerctl play-pause",
         "on-click-right": "playerctl stop",
-        "smooth-scrolling-threshold": 10,
+        // "smooth-scrolling-threshold": 10,
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
-        "exec": "$HOME/.config/waybar/mediaplayer.py"
     }
 }
+
