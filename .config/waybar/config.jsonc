@@ -32,14 +32,18 @@
 	"scroll-step": 2,
 	"format": "{icon} {volume}%",
 	"format-icons": {
-		"default": ["奄", "奔", "墳"]
+		// "default": ["奄", "奔", "墳"]
+        // 󰕿 󰖀 󰕾
+		"default": ["󰕿 ", "󰖀 ", "󰕾 "]
 	},
 	"on-click": "pavucontrol"
      },
      "network": {
 	"tooltip": false,
 	"format-wifi": " {essid}",
-	"format-ethernet": " {ipaddr}",
+	// "format-ethernet": " {ipaddr}",
+	"format-ethernet": "󰀂 {ipaddr}",
+	// "format-ethernet": "󰈁 {ipaddr}",
 	"on-click": "kitty nmtui"
      },
      "cpu": {

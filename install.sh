@@ -19,6 +19,10 @@ cp -r .config/ ~/
 cp .xinitrc ~/.xinitrc
 cp .Xresources ~/.Xresources
 cp .zshrc ~/
+cp .bashrc ~/
+
+sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf
+sudo cp .config/nvidia/nvidia.conf /etc/modprobe.d/nvidia.conf
 
 sudo cp .config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
