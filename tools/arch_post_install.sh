@@ -12,6 +12,7 @@ yes | sudo pacman -Scc
 chsh -s /bin/zsh
 
 yes | sudo pacman -S --needed base-devel git wget zip unzip sddm-git pcmanfm nodejs \
+arc-gtk-theme arc-icon-theme
 
 mkdir -p ~/github
 git clone --depth 1 --recursive https://github.com/marlonrichert/zsh-autocomplete.git ~/github/zsh-autocomplete
