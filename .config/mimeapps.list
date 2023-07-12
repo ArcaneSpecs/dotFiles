@@ -1,0 +1,9 @@
+[Added Associations]
+image/gif=mpv.desktop;
+application/x-ms-dos-executable=net.lutris.Lutris.desktop;
+image/png=krita_png.desktop;
+application/vnd.appimage=nvim.desktop;rofi.desktop;
+
+[Default Applications]
+image/png=krita_png.desktop
+

@@ -21,6 +21,9 @@ else
     yay --version
 fi
 
+# Display manager / Login manager
+sudo pacman -S sddm
+
 # Hyprland deps
 yay -S colord ffmpegthumbnailer gnome-keyring grimblast-git gtk-engine-murrine    \
 imagemagick kvantum pamixer playerctl polkit-kde-agent qt5-quickcontrols          \

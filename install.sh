@@ -1,8 +1,9 @@
 #!/bin/bash
 
+pushd "$(dirname "$0")/" > /dev/null
+
 # Use this to Install dotFiles if this file is copied directly from git and not cloned first
 # git clone --depth 1 git@github.com:ArcaneSpecs/dotFiles.git
-
 
 # Install nix
 # sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -19,6 +20,7 @@ cp .xinitrc ~/.xinitrc
 cp .Xresources ~/.Xresources
 cp .zshrc ~/
 
+sudo cp .config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
-
+popd > /dev/null
 
