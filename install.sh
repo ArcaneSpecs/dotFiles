@@ -14,16 +14,17 @@ pushd "$(dirname "$0")/" > /dev/null
 # Install neovim from git
 # git clone --depth 1 --recursive git@github.com:neovim/neovim.git github/neovim
 
-# Move stuff to .config
+# Configs 
 cp -r .config/ ~/
 cp .xinitrc ~/.xinitrc
 cp .Xresources ~/.Xresources
 cp .zshrc ~/
 cp .bashrc ~/
 
+# System files
+sudo cp locale.conf /etc/
 sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf
 sudo cp .config/nvidia/nvidia.conf /etc/modprobe.d/nvidia.conf
-
 sudo cp .config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
 popd > /dev/null
