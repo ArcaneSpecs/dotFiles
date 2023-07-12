@@ -29,7 +29,7 @@
 
     "pulseaudio": {
 	"tooltip": false,
-	"scroll-step": 2.5,
+	"scroll-step": 2,
 	"format": "{icon} {volume}%",
 	"format-icons": {
 		"default": ["奄", "奔", "墳"]
@@ -65,10 +65,10 @@
         },
      },
      "clock": {
-        "format": "{: %R   %d.%m.%Y}",
+        "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
         // "tooltip-format": "{calendar}",
-        "interval": 10,
+        "interval": 1,
         // "format": "{:󰃭  %Y-%m-%d %a    %I:%M %p %Z}",
         "timezones": 
         [
