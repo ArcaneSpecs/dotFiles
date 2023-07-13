@@ -23,3 +23,19 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/patu/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/patu/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/patu/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/patu/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
