@@ -11,8 +11,8 @@ yes | sudo pacman -Scc
 # Change shell to zsh
 chsh -s /bin/zsh
 
-yes | sudo pacman -S --needed base-devel git wget zip unzip sddm-git pcmanfm nodejs \
-arc-gtk-theme arc-icon-theme
+yes | sudo pacman -S --needed base-devel git wget tar zip unzip sddm-git pcmanfm nodejs \
+arc-gtk-theme arc-icon-theme 
 
 mkdir -p ~/github
 git clone --depth 1 --recursive https://github.com/marlonrichert/zsh-autocomplete.git ~/github/zsh-autocomplete
@@ -25,6 +25,9 @@ sudo mkdir -p /usr/share/fonts/nerdfonts
 cd ~/Downloads
 sudo unzip -o "*.zip" "*.ttf" "*.otf" -d /usr/share/fonts/nerdfonts/
 sudo fc-cache -f -v
+
+# Download QT themes
+# wget https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1687532960/Bluish-Dark-Kvantum.tar.gz?response-content-disposition=attachment%3B%2520Bluish-Dark-Kvantum.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230713%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230713T095448Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=bdda392ec449548040287520d919f82aca056a512b1250077ebaf032f0dd21e0 -P ~/Downloads/
 
 # Check if yay is installed
 if yay --version &> /dev/null; then
@@ -46,15 +49,19 @@ qt5-quickcontrols2 qt5-wayland qt6-wayland sway-bg ttf-font-awesome tumbler     
 ttf-jetbrains-mono ttf-icomoon-feather xdg-desktop-portal-hyprland-git xdotool    \
 xwaylandvideobridge-cursor-mode-2-git cliphist qt5-imageformats qt5ct
 
+# Set kvantum theme
+# kvantummanager --set Fluent-Dark 
+kvantummanager --set Bluish-Dark-Kvantum
+
+
 # CLI 
 yes | yay -S btop cava neofetch noise-suppression-for-voice    \
-rofi-lbonn-wayland-git rofi-emoji starship zsh viewnior ripgrep
+dunst rofi-lbonn-wayland-git rofi-emoji starship zsh viewnior ripgrep ncspot \
+htop ark ncdu 
 
 # PipeWire 
 yes | yay -S pipewire pipewire-alsa pipewire-audio pipewire-pulse      \
 pipewire-jack wireplumber gst-plugin-pipewire pavucontrol
-
-yes | yay -S dunst rofi rofi-emoji
 
 # OBS
 #yay -S obs-studio-rc ffmpeg-obs cef-minimal-obs-rc-bin 

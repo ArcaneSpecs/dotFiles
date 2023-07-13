@@ -8,6 +8,7 @@ cp -r ~/.config/hypr .config
 cp -r ~/.config/qt5ct .config 
 cp -r ~/.config/qt6ct .config 
 cp -r ~/.config/nvim .config 
+cp -r ~/.config/Kvantum .config
 
 # Files in .config
 cp ~/.xinitrc .

@@ -15,3 +15,6 @@ alias pkgsize="sudo pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $
 
 alias hlog="cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log > hyprland.log"
 
+export PATH=$PATH:$HOME/.local/bin
+export QT_QPA_PLATFORMTHEME=qt5ct
+
