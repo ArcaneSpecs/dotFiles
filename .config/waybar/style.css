@@ -79,8 +79,8 @@ window#waybar.PCSX2 #window {
 
 #workspaces button.active {
     /* background: #deb4fe; */
-	background: #1e1e1e;
-    color: #11111b;
+	/* background: #1e1e1e; */
+    color: #ff1111;
 }
 
 #mpd {
