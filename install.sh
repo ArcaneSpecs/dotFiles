@@ -21,6 +21,9 @@ cp .Xresources ~/.Xresources
 cp .zshrc ~/
 cp .bashrc ~/
 
+# My programs
+cp -r .local/ ~/
+
 # System files
 sudo cp locale.conf /etc/
 sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Take date as the file name 
+filename=$(date +%d-%m-%Y_%H-%M-%S.png)
+
+# Take a screenshot and copy it to the clipboard
+grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
+xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+
