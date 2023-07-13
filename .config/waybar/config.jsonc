@@ -12,54 +12,65 @@
         "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch worksace e-1",
         "on-scroll-down": "hyprctl dispatch worksace e+1",
-        "sort-by-number": true,
-
+        // "sort-by-number": true,
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+//			"1": "一",
+//			"2": "二",
+//			"3": "三",
+//			"4": "四",
+//			"5": "五",
+			"urgent": "",
+			// "active": "",
+			// "default": "󰧞",
+            "sort-by-number": true
+        },
     },
 
     "mpd": {
     	"tooltip": false,
-	"format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
-	"format-disconnected": "ﳌ",
-	"format-stopped": "",
-	"state-icons": {
-		"playing": "",
+        "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "format-disconnected": "ﳌ",
+        "format-stopped": "",
+        "state-icons": {
+            "playing": "",
         	"paused": ""
         }
     },
-
     "pulseaudio": {
-	"tooltip": false,
-	"scroll-step": 2,
-	"format": "{icon} {volume}%",
-	"format-icons": {
-		// "default": ["奄", "奔", "墳"]
-        // 󰕿 󰖀 󰕾
-		"default": ["󰕿 ", "󰖀 ", "󰕾 "]
-	},
-	"on-click": "pavucontrol"
-     },
-     "network": {
-	"tooltip": false,
-	"format-wifi": " {essid}",
-	// "format-ethernet": " {ipaddr}",
-	"format-ethernet": "󰀂 {ipaddr}",
-	// "format-ethernet": "󰈁 {ipaddr}",
-	"on-click": "kitty nmtui"
-     },
-     "cpu": {
+        "tooltip": false,
+        "scroll-step": 2,
+        "format": "{icon} {volume}%",
+        "format-icons": {
+            // "default": ["奄", "奔", "墳"]
+            // 󰕿 󰖀 󰕾
+            "default": ["󰕿 ", "󰖀 ", "󰕾 "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "tooltip": false,
+        "format-wifi": " {essid}",
+        // "format-ethernet": " {ipaddr}",
+        "format-ethernet": "󰀂 {ipaddr}",
+        // "format-ethernet": "󰈁 {ipaddr}",
+        "on-click": "kitty nmtui"
+    },
+    "cpu": {
      	"interval": 10,
      	"format": " {usage}%",
      	"max-length": 10
-     },
-     "memory": {
+    },
+    "memory": {
 	"tooltip": true,
 	"format": " {}%"
-     },
-     "hyprland/window": {
+    },
+    "hyprland/window": {
         "format": "👉 {}",
-	"separate-outputs": true
-     },
-     "battery": {
+    "separate-outputs": true
+    },
+    "battery": {
         "format": "{capacity}% {icon}",
 	"interval": "20",
         "format-icons": ["", "", "", "", ""],
@@ -102,18 +113,18 @@
             "on-scroll-up": "tz_up",
             "on-scroll-down": "tz_down"
         }
-     },
-     "tray": {
-         "spacing": 10,
-     },
-     "idle_inhibitor": {
+    },
+    "tray": {
+        "spacing": 10,
+    },
+    "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "Π",
             "deactivated": "Σ",
         },
         "tooltip": false,
-     },
+    },
     "backlight": {
     	"device": "intel_backlight",
     	"format": "{percent}% {icon}",
@@ -123,12 +134,12 @@
     },
     "bluetooth": {
     	"format": " {status}",
-	"format-disabled": "",
-	"format-connected": " {num_connections} connected",
-	"tooltip-format": "{controller_alias}\t{controller_address}",
-	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-	"on-click": "blueman-manager"
+        "format-disabled": "",
+        "format-connected": " {num_connections} connected",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
     },
     "custom/media": {
         "exec": "python $HOME/.config/waybar/mediaplayer.py",

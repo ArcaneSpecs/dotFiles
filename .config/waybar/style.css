@@ -1,6 +1,7 @@
 * {
 	border: none;
 	border-radius: 0;
+
 	font-family: MesloLGM Nerd Font;
 	font-size: 14px;
 	min-height: 20px;
@@ -15,15 +16,17 @@ window#waybar.hidden {
 }
 
 #window {
+    /* border: 1px; */
+    /* border-style: solid; */
+    /* border-radius: 10px; */
     margin-top: 4px;
     padding-left: 16px;
     padding-right: 16px;
-	border-radius: 26px;
 	transition: none;
-	/*
-    color: #1494d7;
-	background: #282a36;
-    */
+
+    /* color: #1494d7; */
+    /* background: #282a36; */
+
     color: transparent;
 	background: transparent;
 }
@@ -38,10 +41,14 @@ window#waybar.PCSX2 #window {
 }
 
 #workspaces {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+	border-color: #1494d7;
+
 	margin-top: 4px;
 	margin-left: 12px;
 	margin-bottom: 4px;
-	border-radius: 26px;
 	background: #1e1e1e;
 	/* background: #282a36; */
 	transition-duration: 0.2s;
@@ -56,7 +63,11 @@ window#waybar.PCSX2 #window {
 }
 
 #workspaces button.focused {
-	color: #9aedfe;
+	/* padding: 0 10px; */
+	transition-duration: 0.2s;
+	color: #ff0000;
+	background: #1e1e1e;
+	font-size: 10px;
 }
 
 #workspaces button:hover {
@@ -69,17 +80,20 @@ window#waybar.PCSX2 #window {
 #workspaces button.active {
     /* background: #deb4fe; */
 	background: #1e1e1e;
-    border-radius: 26px;
     color: #11111b;
 }
 
 #mpd {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	/* background: #282a36; */
 	background: #1e1e1e;
 	transition: none;
@@ -94,37 +108,54 @@ window#waybar.PCSX2 #window {
 }
 
 #network {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+    border-color: #1494d7;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
-	color: #4d4d4d;
-	/* background: #bd93f9; */
+    color: #1494d7;
 	background: #1e1e1e;
+	/* color: #4d4d4d; */
+	/* background: #bd93f9; */
 }
 
 #pulseaudio {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+    
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #1e1e1e;
 }
 
 #temperature {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #1e1e1e;
@@ -132,12 +163,17 @@ window#waybar.PCSX2 #window {
 }
 
 #cpu {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #1e1e1e;
@@ -145,12 +181,17 @@ window#waybar.PCSX2 #window {
 }
 
 #memory {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #1e1e1e;
@@ -158,26 +199,36 @@ window#waybar.PCSX2 #window {
 }
 
 #clock {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
 	margin-right: 12px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #282a36;
 }
 
 #battery {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
 	margin-right: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 12px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 }
@@ -195,13 +246,18 @@ window#waybar.PCSX2 #window {
 }
 
 #backlight {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	transition: none;
 	color: #1494d7;
 	background: #1e1e1e;
@@ -209,14 +265,19 @@ window#waybar.PCSX2 #window {
 }
 
 #idle_inhibitor {
-        transition-duration: 0.2s;
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
+    transition-duration: 0.2s;
+
 	margin-top: 4px;
 	margin-left: 8px;
 	margin-right: 12px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
 }
 
 #idle_inhibitor.deactivated {
@@ -230,12 +291,16 @@ window#waybar.PCSX2 #window {
 }
 
 #bluetooth {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
 }
 
 #bluetooth.on {
@@ -266,13 +331,18 @@ window#waybar.PCSX2 #window {
 	/* background: #282a36; */
 	/* transition: none; */
 	/* color: #1494d7; */
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	/* background: #282a36; */
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	/*background: #282a36;*/
 	transition: none;
 	color: #1494d7;
@@ -280,12 +350,17 @@ window#waybar.PCSX2 #window {
 }
 
 #tray {
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
 	margin-top: 4px;
 	margin-left: 8px;
+	margin-bottom: 4px;
+    
 	padding-left: 16px;
 	padding-right: 16px;
-	margin-bottom: 4px;
-	border-radius: 26px;
+
 	/*background: #282a36;*/
 	transition: none;
 	color: #1494d7;

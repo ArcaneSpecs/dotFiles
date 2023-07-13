@@ -5,6 +5,7 @@ pushd "$(dirname "$0")/" > /dev/null
 # Directories in .config
 cp -r ~/.config/kitty .config
 cp -r ~/.config/hypr .config
+cp -r ~/.config/waybar .config
 cp -r ~/.config/qt5ct .config 
 cp -r ~/.config/qt6ct .config 
 cp -r ~/.config/nvim .config 
