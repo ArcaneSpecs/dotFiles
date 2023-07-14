@@ -63,12 +63,12 @@
      	"max-length": 10
     },
     "memory": {
-	"tooltip": true,
-	"format": " {}%"
+	    "tooltip": true,
+	    "format": " {}%"
     },
     "hyprland/window": {
         "format": "👉 {}",
-    "separate-outputs": true
+        "separate-outputs": true
     },
     "battery": {
         "format": "{capacity}% {icon}",
@@ -78,8 +78,8 @@
             "warning": 50,
             "critical": 25,
         },
-     },
-     "clock": {
+    },
+    "clock": {
         "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
         // "tooltip-format": "{calendar}",
@@ -87,31 +87,31 @@
         // "format": "{:󰃭  %Y-%m-%d %a    %I:%M %p %Z}",
         "timezones": 
         [
-          "Finland/Helsinki"
+        "Finland/Helsinki"
         ],
         "tooltip": true,
         "tooltip-format": "{calendar}",
         "calendar": 
         {
-            "mode"        : "year",
-            "mode-mon-col": 3,
-            "weeks-pos"   : "",
-            "on-scroll"   : 1,
-            "on-click"    : "mode",
-            "format": 
-            {
-                "months":     "<span color='#ffead3'><b>{}</b></span>",
-                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-            }
+        "mode"        : "year",
+        "mode-mon-col": 3,
+        "weeks-pos"   : "",
+        "on-scroll"   : 1,
+        "on-click"    : "mode",
+        "format": 
+        {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
         },
         "actions":
         {
-            "on-click": "mode",
-            "on-scroll-up": "tz_up",
-            "on-scroll-down": "tz_down"
+        "on-click": "mode",
+        "on-scroll-up": "tz_up",
+        "on-scroll-down": "tz_down"
         }
     },
     "tray": {
