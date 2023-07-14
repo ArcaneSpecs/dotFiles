@@ -1,9 +1,31 @@
 #!/bin/bash
 
-# Take date as the file name 
-filename=$(date +%d-%m-%Y_%H-%M-%S.png)
+if [[ $1 == "-h" || $1 == "--help" ]]; 
+then
+    echo "Usage: screensht [OPTION]"
+    echo "Take a screenshot and copy it to the clipboard"
+    echo "  -h, --help      display this help and exit"
+    echo "  -s, --swappy    capture the screen and edit in swappy"
+    # echo "  -f, --full      capture the entire screen"
+    # echo "  -w, --window    select a window to capture"
+    exit 0
+fi
 
-# Take a screenshot and copy it to the clipboard
-grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
-xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+# Edit in swappy
+if [[ $1 == "-s" || $1 == "--swappy" ]];
+then
+    # Take date as the file name 
+    filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
+    # Take a screenshot and copy it to the clipboard
+    grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
+    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    exit 0
+else 
+    # Take date as the file name 
+    filename=$(date +%d-%m-%Y_%H-%M-%S.png)
+
+    # Take a screenshot and copy it to the clipboard
+    grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
+    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+fi
