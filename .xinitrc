@@ -1,3 +1,4 @@
+$HOME/.monicarc   #monitor calibration
 exec qtile start
 
 xrdb ~/.Xresources
