@@ -34,6 +34,8 @@ window {
     width: 1400px;
     orientation: horizontal;
     border-radius: 9px;
+    border: 1px;
+	border-color: #1494d7;
 }
 
 prompt {
@@ -62,7 +64,7 @@ entry {
     horizontal-align: 0;
     placeholder: "Search...";
     /*placeholder: "Global search";*/
-    placeholder-color: @foreground;
+    placeholder-color: #6e6a86;
     blink: true;
 }
 
@@ -155,7 +157,8 @@ element alternate.active {
 }
 
 element selected {
-    background-color: #403d52ff;
+    /*background-color: #403d52ff;*/
+	background-color: #403d9aff;
     text-color: @foreground;
 }
 
