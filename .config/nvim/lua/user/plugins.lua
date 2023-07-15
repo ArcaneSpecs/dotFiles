@@ -107,7 +107,7 @@ return packer.startup(function(use)
     use('preservim/tagbar')
 
     use { 'timtro/glslView-nvim', ft = 'glsl' }
-
+    use('jrop/jq.nvim')
     -- DAP
     use("mfussenegger/nvim-dap")
     use("leoluz/nvim-dap-go")
