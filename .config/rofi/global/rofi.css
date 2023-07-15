@@ -169,6 +169,6 @@ element selected.urgent {
 
 element selected.active {
     background-color: #403d5220;
-    color: @foreground-selected;
+    color: #ff0000ee;
 }
 

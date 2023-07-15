@@ -47,3 +47,14 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd([[
+augroup yaml_syntax
+  autocmd!
+  " autocmd BufNewFile,BufRead *.conf setfiletype yaml
+  " autocmd BufNewFile,BufRead *.conf setsyntax yaml
+  autocmd BufNewFile,BufRead *.conf set filetype=yaml
+  autocmd BufNewFile,BufRead *.conf set syntax=yaml
+  autocmd BufNewFile,BufRead *.conf set filetype=yaml
+  autocmd BufNewFile,BufRead *.conf set syntax=yaml
+augroup END
+]])
