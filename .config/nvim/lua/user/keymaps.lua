@@ -39,9 +39,16 @@ vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, exp
 -- Undotree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
+-- Make J not jump the cursor
+keymap("n", "J", "mzJ`z", opts)
+
+-- Telescope
+keymap("n", "<leader>d", ":cdo %s///g<Left><Left><Left>", opts)
+
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
 keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "gh", ":Gitsigns preview_hunk_inline<CR>", opts)
 
 -- Quick paste first register
 keymap("n", "<leader>j", "\"0P", opts)
@@ -56,7 +63,7 @@ keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
 keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
 
-keymap("n", "<F3>", ":lua require'dapui'.toggle()<CR>", opts)
+keymap("n", "<leader><F3>", ":lua require'dapui'.toggle()<CR>", opts)
 keymap("n", "<F7>", ":lua require'dap'.terminate()<CR>", opts)
 
 keymap("n", "<leader>1", ":lua require'dapui'.float_element(\"scopes\", {})<CR>", opts)

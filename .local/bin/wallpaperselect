@@ -4,9 +4,9 @@
 DIR=$HOME/.config/Wallpapers
 
 # Transition config (type swww img --help for more settings
-FPS=30
+FPS=60
 TYPE="simple"
-DURATION=3
+DURATION=1
 
 # rofi window config (in %)
 WIDTH=40
@@ -14,7 +14,8 @@ HEIGHT=60
 
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
-PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$"))
+#PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$"))
+PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".webp$"))
 #PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)))
 
 RANDOM_PIC=${PICS[ $RANDOM % ${#PICS[@]} ]}

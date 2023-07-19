@@ -57,7 +57,7 @@ kvantummanager --set Bluish-Dark-Kvantum
 # CLI 
 yes | yay -S btop cava neofetch noise-suppression-for-voice    \
 dunst rofi-lbonn-wayland-git rofi-emoji starship zsh viewnior ripgrep ncspot \
-htop ark ncdu swww
+htop ark ncdu swww wofi
 
 # PipeWire 
 yes | yay -S pipewire pipewire-alsa pipewire-audio pipewire-pulse      \

@@ -12,6 +12,8 @@ cp -r ~/.config/nvim .config
 cp -r ~/.config/Kvantum .config
 cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
+cp -r ~/.config/Wallpapers .config
+
 cp -r ~/.local/bin .local
 
 # Files in .config

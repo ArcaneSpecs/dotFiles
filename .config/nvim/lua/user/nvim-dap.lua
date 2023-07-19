@@ -55,9 +55,9 @@ dap.adapters.lldb = {
     name = 'lldb'
 }
 
---[[ local cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb" ]]
+local cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb"
 --[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
-local cmd = "/usr/bin/lldb"
+--[[ local cmd = "/usr/bin/lldb" ]]
 if (operating_system == "Windows_NT") then
     cmd = "C:/Users/patu/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
 end
@@ -127,7 +127,10 @@ dap.adapters.codelldb = function(on_adapter)
     )
 end
 
-tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
+--[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
+--[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
+tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch'
+--[[ tempcwd = '${workspaceFolder}/build' ]]
 if (operating_system == "Windows_NT") then
     tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
 end
@@ -177,7 +180,10 @@ dap.configurations.cpp = {
                     vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file')
             else
                 return vim.fn.input('Path to executable: ',
-                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file')
+                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file') ]]
+                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file') ]]
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file')
+                    --[[ vim.fn.getcwd() .. '/build/Vulkan', 'file') ]]
             end
         end,
         -- cwd = '${workspaceFolder}',

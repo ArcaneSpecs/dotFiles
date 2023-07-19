@@ -98,11 +98,11 @@ local mappings = {
     -- Toggle wrap
     ["z"] = { "<cmd>set wrap!<cr>", "Toggle wrap" },
 
-    d = {
-        name = "Dap",
-        r = { ":lua require'dap'.repl.toggle()<CR>", "Toggle Repl console" }
-        -- t = { ":lua require'dap'.symbol<CR>", "Toggle Repl console" }
-    },
+    --[[ d = { ]]
+    --[[     name = "Dap", ]]
+    --[[     r = { ":lua require'dap'.repl.toggle()<CR>", "Toggle Repl console" } ]]
+    --[[     -- t = { ":lua require'dap'.symbol<CR>", "Toggle Repl console" } ]]
+    --[[ }, ]]
     
     p = {
         name = "Packer",

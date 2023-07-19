@@ -13,6 +13,7 @@ telescope.setup {
     selection_caret = " ",
     path_display = { "truncate" },
     file_ignore_patterns = {
+            "includes",
             "External",
             "external",
             "vendor",

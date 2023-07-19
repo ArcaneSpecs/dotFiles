@@ -16,7 +16,7 @@ alias gpu_info="watch -n 0.5 'nvidia-smi'"
 alias conf="cd ~/.config"
 alias dots="cd ~/dotfiles"
 alias dot="cd ~/dotfiles"
-
+alias meld="GTK_THEME=Arc:dark meld"
 
 export PATH=$PATH:$HOME/.local/bin
 export QT_QPA_PLATFORMTHEME=qt5ct
