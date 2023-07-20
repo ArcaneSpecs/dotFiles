@@ -17,6 +17,7 @@ alias conf="cd ~/.config"
 alias dots="cd ~/dotfiles"
 alias dot="cd ~/dotfiles"
 alias meld="GTK_THEME=Arc:dark meld"
+alias plan="nvim ~/TimeManagement/Testing.md"
 
 export PATH=$PATH:$HOME/.local/bin
 export QT_QPA_PLATFORMTHEME=qt5ct

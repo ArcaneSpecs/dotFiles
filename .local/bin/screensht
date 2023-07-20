@@ -17,6 +17,7 @@ then
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
+    mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
@@ -25,6 +26,7 @@ else
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
+    mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
