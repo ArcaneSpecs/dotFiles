@@ -8,12 +8,14 @@ yes | sudo pacman -Syu
 # Change shell to zsh
 sudo chsh -s /bin/zsh
 
-yes | sudo pacman -S --needed base-devel git wget tar zip unzip sddm-git pcmanfm nodejs
+yes | sudo pacman -S --needed base-devel 
+yes | sudo pacman -S git wget tar zip unzip sddm-git pcmanfm nodejs
 sudo pacman -S arc-gtk-theme arc-icon-theme 
 
 mkdir -p ~/github
 git clone --depth 1 --recursive https://github.com/marlonrichert/zsh-autocomplete.git ~/github/zsh-autocomplete
 
+mkdir -p ~/Downloads
 # Install fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip -P ~/Downloads
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/InconsolataGo.zip -P ~/Downloads
@@ -63,7 +65,8 @@ pipewire-jack wireplumber gst-plugin-pipewire pavucontrol
 #yay -S obs-studio-rc ffmpeg-obs cef-minimal-obs-rc-bin 
 
 # Hyprland
-yay -S hyprland-nvidia-git hyprpicker-git waybar-hyprland-git \
+#yay -S hyprland-nvidia-git hyprpicker-git waybar-hyprland-git \
+yay -S hyprland-git hyprpicker-git waybar-hyprland-git \
 nwg-look wf-recorder wlsunset
 
 # yay -S hyprland-git polkit-kde-agent dunst grimblast rofi rofi-emoji       \
