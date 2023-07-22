@@ -6,6 +6,7 @@
 # Take the first argument as the input file and strip the extension
 # INPUT_FILE=$1
 # FILENAME=${INPUT_FILE%.*}
+mkdir -p mp4s
 
 files=()
 for VAR in *.mp4 

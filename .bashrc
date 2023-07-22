@@ -3,11 +3,11 @@
 #
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
+# PS1='[\u@\h \W]\$ '
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
 alias ll='ls -la --color=auto'
 alias pkgsize="sudo pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'| sort -hr"
 alias hlog="cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log > hyprland.log"
@@ -19,6 +19,8 @@ alias dot="cd ~/dotfiles"
 alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
 
-export PATH=$PATH:$HOME/.local/bin
+export VULKAN_SDK=~/vulkan/1.3.250.1/
+
+export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct
 

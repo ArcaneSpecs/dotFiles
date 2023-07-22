@@ -129,7 +129,8 @@ end
 
 --[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
 --[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
-tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch'
+--[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
+tempcwd = '${workspaceFolder}/../build-linux/bin/'
 --[[ tempcwd = '${workspaceFolder}/build' ]]
 if (operating_system == "Windows_NT") then
     tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
@@ -182,7 +183,8 @@ dap.configurations.cpp = {
                 return vim.fn.input('Path to executable: ',
                     --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file') ]]
                     --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file') ]]
-                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file')
+                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file') ]]
+                    vim.fn.getcwd() .. '../build-linux/bin/blender', 'file')
                     --[[ vim.fn.getcwd() .. '/build/Vulkan', 'file') ]]
             end
         end,
