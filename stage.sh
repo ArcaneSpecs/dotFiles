@@ -14,7 +14,11 @@ cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
 cp -r ~/.config/Wallpapers .config
 
-cp -r ~/.local/bin .local
+# cp -r ~/.local/bin .local
+cp ~/.local/bin/screensht .local/bin
+cp ~/.local/bin/wrappedhl.sh .local/bin
+cp ~/.local/bin/wallpaper .local/bin
+cp ~/.local/bin/wallpaperselect .local/bin
 
 # Files in .config
 cp ~/.xinitrc .
