@@ -5,7 +5,7 @@
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     "modules-center": ["clock"],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
-    "modules-right": ["network", "pulseaudio", "custom/temp", "cpu", "memory" ],
+    "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory" ],
 
     "wlr/workspaces": {
         "all-outputs": true,
@@ -56,6 +56,11 @@
         "format-ethernet": "󰀂 {ipaddr}",
         // "format-ethernet": "󰈁 {ipaddr}",
         "on-click": "kitty nmtui"
+    },
+    "custom/keybinds": {
+        "format": "   ",
+        "on-click": "~/.config/hypr/scripts/deactivate_keybinds.sh",
+        "on-scroll-up": "~/.config/hypr/scripts/activate_keybinds.sh",
     },
     "cpu": {
      	"interval": 10,

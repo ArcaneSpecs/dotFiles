@@ -24,3 +24,4 @@ export EDITOR=nvim
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+
