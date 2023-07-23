@@ -14,8 +14,8 @@ cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
 
 # Just files but not the mp4s
-# find ~/.config/Wallpapers -type f -exec cp {} .config/Wallpapers \;
-cp -r ~/.config/Wallpapers .config
+find ~/.config/Wallpapers -maxdepth 1 -type f -exec cp {} .config/Wallpapers \;
+# cp -r ~/.config/Wallpapers .config
 
 # cp -r ~/.local/bin .local
 cp ~/.local/bin/screensht .local/bin

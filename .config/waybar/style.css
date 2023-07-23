@@ -198,6 +198,24 @@ window#waybar.PCSX2 #window {
 	/* background: linear-gradient(to bottom right, purple, #252525); */
 }
 
+#custom-temp{
+    border: 1px;
+    border-style: solid;
+	border-radius: 10px;
+
+	margin-top: 4px;
+	margin-left: 8px;
+	/* margin-right: 12px; */
+	margin-bottom: 4px;
+
+	padding-left: 16px;
+	padding-right: 16px;
+
+	transition: none;
+	color: #1494d7;
+	background: #282a36;
+}
+
 #clock {
     border: 1px;
     border-style: solid;

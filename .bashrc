@@ -20,7 +20,7 @@ alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
 
 export VULKAN_SDK=~/vulkan/1.3.250.1/
-
+export EDITOR=nvim 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct
 

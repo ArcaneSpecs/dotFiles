@@ -5,7 +5,7 @@
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     "modules-center": ["clock"],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
-    "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory" ],
+    "modules-right": ["network", "pulseaudio", "custom/temp", "cpu", "memory" ],
 
     "wlr/workspaces": {
         "all-outputs": true,
@@ -113,6 +113,12 @@
         "on-scroll-up": "tz_up",
         "on-scroll-down": "tz_down"
         }
+    },
+    "custom/temp": {
+        "interval": 1,
+        "exec": "~/.config/waybar/scripts/get_cpu_temp.sh",
+        "format": " {}°C",
+        "on-click": "kitty watch -n 0.2 sensors",
     },
     "tray": {
         "spacing": 10,
