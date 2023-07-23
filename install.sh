@@ -21,6 +21,10 @@ cp .Xresources ~/.Xresources
 cp .zshrc ~/
 cp .bashrc ~/
 
+# Autostart
+mkdir -p ~/.config/autostart
+cp -r .config/autostart/ ~/.config/ 
+
 # My programs
 cp -r .local/ ~/
 
@@ -29,6 +33,7 @@ sudo cp locale.conf /etc/
 sudo cp locale.gen /etc/
 sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf
 sudo cp .config/nvidia/nvidia.conf /etc/modprobe.d/nvidia.conf
+sudo mkdir -p /etc/sddm.conf.d/
 sudo cp .config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
 sudo locale-gen

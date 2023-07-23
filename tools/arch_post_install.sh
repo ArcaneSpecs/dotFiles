@@ -3,14 +3,16 @@
 pushd "$(dirname "$0")/" > /dev/null
 
 # Update system
-yes | sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
 
-yes | sudo pacman -S --needed base-devel 
-yes | sudo pacman -S git wget tar zip unzip sddm-git pcmanfm nodejs
-sudo pacman -S arc-gtk-theme arc-icon-theme 
+sudo pacman -S --needed --noconfirm base-devel
+sudo pacman -S --noconfirm git wget tar zip unzip sddm pcmanfm nodejs kitty locate 
+sudo pacman -S --noconfirm arc-gtk-theme arc-icon-theme breeze-icons
+
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 mkdir -p ~/github
 git clone --depth 1 --recursive https://github.com/marlonrichert/zsh-autocomplete.git ~/github/zsh-autocomplete
@@ -45,18 +47,20 @@ yay -S xdg-desktop-portal-hyprland-git swaybg colord ffmpegthumbnailer gnome-key
 gtk-engine-murrine imagemagick kvantum pamixer playerctl polkit-kde-agent            \
 qt5-quickcontrols qt5-quickcontrols2 qt5-wayland qt6-wayland sway-bg ttf-font-awesome tumbler \
 ttf-jetbrains-mono ttf-icomoon-feather xdotool    \
-xwaylandvideobridge-cursor-mode-2-git cliphist qt5-imageformats qt5ct \
-mpvpaper
+xwaylandvideobridge-cursor-mode-2-git cliphist qt5-imageformats qt5ct
 
 # Set kvantum theme
 # kvantummanager --set Fluent-Dark 
 kvantummanager --set Bluish-Dark-Kvantum
 
-
 # CLI 
 yay -S btop cava neofetch noise-suppression-for-voice    \
 dunst rofi-lbonn-wayland-git rofi-emoji starship zsh viewnior ripgrep ncspot \
-htop ark ncdu swww wofi
+htop ark ncdu wofi gtop glances
+
+# Wallpaper manager, swww is really efficient but can only do images and gifs, mpvpaper can play mp4s and do playlists etc.
+#yay -S swww 
+yay -S mpvpaper
 
 # PipeWire 
 yay -S pipewire pipewire-alsa pipewire-audio pipewire-pulse      \
@@ -70,14 +74,19 @@ pipewire-jack wireplumber gst-plugin-pipewire pavucontrol
 yay -S hyprland-git hyprpicker-git waybar-hyprland-git \
 nwg-look wf-recorder wlsunset
 
-# yay -S hyprland-git polkit-kde-agent dunst grimblast rofi rofi-emoji       \
+# yay -S hyprland-git polkit-kde-agent dunst grimblast rofi-git rofi-emoji    \
 # wl-clipboard wf-recorder wlogout grimblast-git hyprpicker-git hyprpaper-git \
 # xdg-desktop-portal-hyprland-git ffmpegthumbnailer tumbler wtype colord      \
 # imagemagick swaylock-effects qt5-wayland qt6-wayland ripgrep waybar-hyprland-git
 
+# Dev + misc software
+sudo pacman -S --noconfirm krita discord blender mpv vlc steam lutris wine \
+man tldr lxappearance
+yay -S obs-studio mangohud goverlay 
+
+sudo updatedb # Update locate
 yay -S ckb-next
 sudo systemctl enable ckb-next-daemon
-ckb-next-daemon &
-ckb-next
+sudo ckb-next-daemon &
 
 popd

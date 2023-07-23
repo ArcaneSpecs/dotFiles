@@ -12,6 +12,9 @@ cp -r ~/.config/nvim .config
 cp -r ~/.config/Kvantum .config
 cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
+
+# Just files but not the mp4s
+# find ~/.config/Wallpapers -type f -exec cp {} .config/Wallpapers \;
 cp -r ~/.config/Wallpapers .config
 
 # cp -r ~/.local/bin .local
@@ -19,6 +22,9 @@ cp ~/.local/bin/screensht .local/bin
 cp ~/.local/bin/wrappedhl.sh .local/bin
 cp ~/.local/bin/wallpaper .local/bin
 cp ~/.local/bin/wallpaperselect .local/bin
+
+# Autostart
+cp -r ~/.config/autostart/ .config
 
 # Files in .config
 cp ~/.xinitrc .
