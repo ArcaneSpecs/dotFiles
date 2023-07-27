@@ -58,7 +58,8 @@
         "on-click": "kitty nmtui"
     },
     "custom/keybinds": {
-        "format": "   ",
+        // "format": "   ",
+        "format": "󰐼 ",
         "on-click": "~/.config/hypr/scripts/deactivate_keybinds.sh",
         "on-scroll-up": "~/.config/hypr/scripts/activate_keybinds.sh",
     },

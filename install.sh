@@ -31,8 +31,11 @@ cp -r .local/ ~/
 # System files
 sudo cp locale.conf /etc/
 sudo cp locale.gen /etc/
-sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf
-sudo cp .config/nvidia/nvidia.conf /etc/modprobe.d/nvidia.conf
+
+# For nvidia
+# sudo cp .config/nvidia/mkinitcpio.conf /etc/mkinitcpio.conf
+# sudo cp .config/nvidia/nvidia.conf /etc/modprobe.d/nvidia.conf
+
 sudo mkdir -p /etc/sddm.conf.d/
 sudo cp .config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 

@@ -12,7 +12,7 @@ then
 fi
 
 # Edit in swappy
-if [[ $1 == "-s" || $1 == "--swappy" ]];
+if [[ $1 == "-ss" || $1 == "--swappy" ]];
 then
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
@@ -21,8 +21,10 @@ then
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    play ~/.local/bin/screenshot_effect.mp3
     exit 0
-else 
+elif [[ $1 == "-s" || $1 == "--select" ]];
+then
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
@@ -30,4 +32,16 @@ else
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    play ~/.local/bin/screenshot_effect.mp3
+    exit 0
+else 
+    # Take date as the file name 
+    filename=$(date +%d-%m-%Y_%H-%M-%S.png)
+
+    mkdir -p ~/Pictures/screenshots
+    # Take a screenshot and copy it to the clipboard
+    grim -g "0,0 1920x1080" ~/Pictures/screenshots/$filename 
+    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    play ~/.local/bin/screenshot_effect.mp3
+    exit 0
 fi
