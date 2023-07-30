@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# mkdir -p ~/Pictures/screenshots
+
 if [[ $1 == "-h" || $1 == "--help" ]]; 
 then
     echo "Usage: screensht [OPTION]"
@@ -17,7 +19,7 @@ then
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
-    mkdir -p ~/Pictures/screenshots
+    # mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
@@ -28,17 +30,17 @@ then
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
-    mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
     play ~/.local/bin/screenshot_effect.mp3
     exit 0
 else 
+    # Fullscreen screenshot
     # Take date as the file name 
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
-    mkdir -p ~/Pictures/screenshots
+    # mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "0,0 1920x1080" ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename

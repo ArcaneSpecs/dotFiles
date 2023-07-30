@@ -6,24 +6,24 @@ end
 
 require("nvim-dap-virtual-text").setup()
 
---[
---dap.adapters.python = {
---type = 'executable',
---command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python',
---args = { '-m', 'debugpy.adapter' }
---}
+dap.adapters.python = {
+    type = 'executable',
+    --[[ command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python', ]]
+    args = { '-m', 'debugpy.adapter' }
+}
 
---dap.configurations.python = {
---{
---type = 'python';
---request = 'launch';
---name = "Launch file";
---program = "${file}";
---pythonPath = function()
---return '/usr/bin/python'
---end;
---},
---}
+dap.configurations.python = {
+    {
+        type = 'python',
+        request = 'launch',
+        name = "Launch file",
+        program = "${file}",
+        pythonPath = function()
+            --[[ return '/usr/bin/python' ]]
+            return "/home/patu/github/webui_stable_diffusion/venv/bin/python"
+        end,
+    },
+}
 
 -- /usr/lib/python3.10/site-packages/debugpy/adapter
 
@@ -185,7 +185,7 @@ dap.configurations.cpp = {
                     --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file') ]]
                     --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file') ]]
                     vim.fn.getcwd() .. '../build-linux/bin/blender', 'file')
-                    --[[ vim.fn.getcwd() .. '/build/Vulkan', 'file') ]]
+                --[[ vim.fn.getcwd() .. '/build/Vulkan', 'file') ]]
             end
         end,
         -- cwd = '${workspaceFolder}',
