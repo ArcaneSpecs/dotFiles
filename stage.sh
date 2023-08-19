@@ -12,6 +12,7 @@ cp -r ~/.config/nvim .config
 cp -r ~/.config/Kvantum .config
 cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
+cp -r ~/.config/zsh .config
 
 # Just files but not the mp4s
 find ~/.config/Wallpapers -maxdepth 1 -type f -exec cp {} .config/Wallpapers \;

@@ -22,7 +22,9 @@ lsp.ensure_installed({
     'clangd',
     'texlab',
     'lua_ls',
-    'pyright'
+    'pyright',
+    'tsserver'
+
 })
 
 lsp.set_preferences({

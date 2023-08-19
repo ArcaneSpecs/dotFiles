@@ -1,7 +1,8 @@
 {
     "layer": "top",
     // "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
-    "modules-left": ["wlr/workspaces", "custom/media", "tray"],
+    // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
+    "modules-left": ["wlr/workspaces", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     "modules-center": ["clock"],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],

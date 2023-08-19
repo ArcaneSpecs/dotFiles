@@ -44,6 +44,8 @@ keymap("n", "J", "mzJ`z", opts)
 
 -- Telescope
 keymap("n", "<leader>d", ":cdo %s///g<Left><Left><Left>", opts)
+keymap("n", "<A-1>", "<CR>:set wrap<CR><C-w>j", opts)
+
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -51,7 +53,9 @@ keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts)
 keymap("n", "gh", ":Gitsigns preview_hunk_inline<CR>", opts)
 
 -- Quick paste first register
-keymap("n", "<leader>j", "\"0P", opts)
+keymap("n", "<leader>J", "\"0P", opts)
+keymap("n", "<leader>j", "viw\"0P", opts)
+keymap("n", "<leader>h", "viw\"1P", opts)
 
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
