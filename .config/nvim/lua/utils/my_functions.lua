@@ -38,12 +38,13 @@ function build_wyvern_engine()
         dir = workspaceFolder .. '/build',
         size = { height = 5, width = 5 },
         hidden = false,
-        direction = 'horizontal',
+        direction = '',
         close_on_exit = false
         -- env = {
             
         -- },
     })
+    
     toggleterm:toggle()
 
     -- os.execute('devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build')

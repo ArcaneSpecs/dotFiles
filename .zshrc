@@ -143,20 +143,21 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # 
 # export MANGOHUD=1
 # 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/patu/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/patu/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
 # else
-#     if [ -f "/home/patu/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/patu/anaconda3/etc/profile.d/conda.sh"
+#     if [ -f "/home/patu/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/patu/miniconda3/etc/profile.d/conda.sh"
 #     else
-#         export PATH="/home/patu/anaconda3/bin:$PATH"
+#         export PATH="/home/patu/miniconda3/bin:$PATH"
 #     fi
 # fi
 # unset __conda_setup
-# # <<< conda initialize <<<
+# <<< conda initialize <<<
 
 
 #### ARCO ZSHRC ####
@@ -268,7 +269,7 @@ fi
 
 
 ####   ARCOLINUX SETTINGS   ####
-export PAGER='most'
+# export PAGER='most'
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

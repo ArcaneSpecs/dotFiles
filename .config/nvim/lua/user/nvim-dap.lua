@@ -128,13 +128,16 @@ dap.adapters.codelldb = function(on_adapter)
 end
 
 --[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
+local tempcwd = '${workspaceFolder}'
 --[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
 --[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
-tempcwd = '${workspaceFolder}/../build-linux/bin/'
+--[[ tempcwd = '${workspaceFolder}/../build-linux/bin/' ]]
 --[[ tempcwd = '${workspaceFolder}/build' ]]
 if (operating_system == "Windows_NT") then
     tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
 end
+
+local lastUsedFile = nil  -- Define a variable to store the last used file
 
 dap.configurations.cpp = {
     --[[ { ]]
@@ -176,23 +179,54 @@ dap.configurations.cpp = {
         -- type = 'cppdbg',
         request = 'launch',
         program = function()
+            local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/'
+
+            if (operating_system == "Windows_NT") then
+                defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/'
+            end
+
+            local path = defaultPath
+
+            if lastUsedFile ~= nil then
+                path = lastUsedFile
+            end
+
+            local inputPath = vim.fn.input('Path to executable: ', path, 'file')
+
+            -- Check if inputPath is not empty and store it as the last used file
+            if inputPath ~= '' then
+                lastUsedFile = inputPath
+            end
+
+            return inputPath
+            --[[
             if (operating_system == "Windows_NT") then
                 return vim.fn.input('Path to executable: ',
                     vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file')
             else
                 return vim.fn.input('Path to executable: ',
-                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file') ]]
-                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file') ]]
-                    --[[ vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file') ]]
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file')
+                    
+                    -- Get path to current working directory and the executable name
+                    
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/', 'file')
+
+                    
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file')
+                    vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file')
                     vim.fn.getcwd() .. '../build-linux/bin/blender', 'file')
-                --[[ vim.fn.getcwd() .. '/build/Vulkan', 'file') ]]
+                vim.fn.getcwd() .. '/build/Vulkan', 'file')
             end
+            ]]-- 
         end,
         -- cwd = '${workspaceFolder}',
         cwd = tempcwd,
-        stopOnEntry = true,
+        stopOnEntry = false,
         args = {},
-        preLaunchTask = 'Build',
+        --[[ preLaunchTask = { ]]
+        --[[     command = 'cd build && make', ]]
+        --[[     type = 'shell', ]]
+        --[[ }, ]]
     },
 }
 

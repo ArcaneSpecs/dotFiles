@@ -4,6 +4,7 @@
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     "modules-left": ["wlr/workspaces", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
+    // "modules-center": ["hyprland/window", "clock"],
     "modules-center": ["clock"],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
     "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory" ],
@@ -75,11 +76,11 @@
     },
     "hyprland/window": {
         "format": "👉 {}",
-        "separate-outputs": true
+        "separate-outputs": true,
     },
     "battery": {
         "format": "{capacity}% {icon}",
-	"interval": "20",
+	    "interval": "20",
         "format-icons": ["", "", "", "", ""],
         "states": {
             "warning": 50,
@@ -87,38 +88,40 @@
         },
     },
     "clock": {
-        "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
+        // "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
+        "format": "{: %R  %Ss  %d.%m.%Y}",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
         // "tooltip-format": "{calendar}",
         "interval": 1,
         // "format": "{:󰃭  %Y-%m-%d %a    %I:%M %p %Z}",
         "timezones": 
         [
-        "Finland/Helsinki"
+            "Finland/Helsinki"
+            // ,"America/New_York",
         ],
         "tooltip": true,
         "tooltip-format": "{calendar}",
-        "calendar": 
-        {
-        "mode"        : "year",
-        "mode-mon-col": 3,
-        "weeks-pos"   : "",
-        "on-scroll"   : 1,
-        "on-click"    : "mode",
-        "format": 
-        {
-        "months":     "<span color='#ffead3'><b>{}</b></span>",
-        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-        }
+        "calendar": {
+            "mode"        : "year",
+            "mode-mon-col": 2,
+            "weeks-pos"   : "",
+            "on-scroll"   : 1,
+            "on-click"    : "mode",
+            "weeks-pos"   : "left",
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
         },
-        "actions":
-        {
-        "on-click": "mode",
-        "on-scroll-up": "tz_up",
-        "on-scroll-down": "tz_down"
+        "actions": {
+           "on-click-right": "mode",
+           "on-click-forward": "tz_up",
+           "on-click-backward": "tz_down",
+           "on-scroll-up": "shift_up",
+           "on-scroll-down": "shift_down"
         }
     },
     "custom/temp": {

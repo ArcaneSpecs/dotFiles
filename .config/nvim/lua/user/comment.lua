@@ -13,7 +13,7 @@ comment.setup {
         elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
             location = require("ts_context_commentstring.utils").get_visual_start_location()
         end
-    
+
         return require("ts_context_commentstring.internal").calculate_commentstring {
             key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
             location = location,
@@ -80,10 +80,8 @@ comment.setup {
     },
 
     ---Pre-hook, called before commenting the line
-    ---@type fun(ctx: CommentCtx):string
-    pre_hook = nil,
+    --pre_hook = nil,
 
     ---Post-hook, called after commenting is done
-    ---@type fun(ctx: CommentCtx)
     post_hook = nil,
 }

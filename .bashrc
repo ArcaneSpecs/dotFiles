@@ -19,6 +19,10 @@ alias dots="cd ~/dotfiles"
 alias dot="cd ~/dotfiles"
 alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
+alias vpn="sudo openconnect vpn.jyu.fi/student"
+
+
+export PAGER=less
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export VULKAN_SDK=~/vulkan/1.3.250.1/
@@ -26,4 +30,18 @@ export EDITOR=nvim
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/patu/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/patu/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/patu/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/patu/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
 

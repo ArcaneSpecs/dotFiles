@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# Wallpaper program
+wallpaper_program="mpvpaper"
+
 # WALLPAPERS PATH
-DIR=$HOME/.config/Wallpapers
+# DIR=$HOME/.config/Wallpapers
+# DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-19
+# DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-20
+DIR=$HOME/github/stable-diffusion-webui/outputs/txt2img-images/2023-08-20
 
 # Transition config (type swww img --help for more settings
 FPS=60
@@ -12,10 +18,17 @@ DURATION=1
 WIDTH=40
 HEIGHT=60
 
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+# WALLPAPER_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+# WALLPAPER_PARAMS="\"-fork -o \"no-audio --loop\" \"*\""
+# WALLPAPER_PARAMS="-fork -o 'no-audio --loop loop-playlist' '*'"
+# echo $WALLPAPER_PARAMS
+mpvpaper_command="mpvpaper"
+mpvpaper_switches="-fork -o 'no-audio --loop loop-playlist'"
+file_path="~/.config/Wallpapers/space0.jpg"
 
-#PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$"))
-PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".webp$"))
+# Reverse the order so we get the last image first
+PICS=($(ls -r ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$" -e ".webp$"))
+# PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".webp$"))
 #PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)))
 
 RANDOM_PIC=${PICS[ $RANDOM % ${#PICS[@]} ]}
@@ -26,8 +39,13 @@ CONFIG="$HOME/.config/rofi/global"
 STYLE="$HOME/.config/rofi/global/rofi.css"
 
 # to check if swaybg is running
-if [[ $(pidof swaybg) ]]; then
-  pkill swaybg
+# if [[ $(pidof swaybg) ]]; then
+#   pkill swaybg
+# fi
+
+# to check if mpvpaper is running
+if [[ $(pidof mpvpaper) ]]; then
+  pkill mpvpaper 
 fi
 
 ## rofi Command
@@ -54,7 +72,8 @@ menu(){
     printf "$RANDOM_PIC_NAME"
 }
 
-swww query || swww init
+# swww query || swww init
+# $wallpaper_program query || $wallpaper_program init
 
 main() {
     choice=$(menu | ${rofi_command})
@@ -64,13 +83,46 @@ main() {
 
     # random choice case
     if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
-        swww img ${DIR}/${RANDOM_PIC} $SWWW_PARAMS
+        # swww img ${DIR}/${RANDOM_PIC} $WALLPAPER_PARAMS
+        # $wallpaper_program ${WALLPAPER_PARAMS} "${DIR}/${RANDOM_PIC}" 
+        # $mpvpaper_command $mpvpaper_switches "*" 
+        mpvpaper -fork -o 'no-audio --loop loop-playlist' "*" "${DIR}/${RANDOM_PIC}" 
         return
     fi
     
     pic_index=$(echo $choice | cut -d. -f1)
-    swww img ${DIR}/${PICS[$pic_index]} $SWWW_PARAMS
+    echo "$mpvpaper_command $mpvpaper_switches $file_path"
+    mpvpaper -fork -o 'no-audio --loop loop-playlist' "*" ${DIR}/${PICS[$pic_index]} 
+    # "${mpvpaper_command}" ${mpvpaper_switches} "*" "$file_path"
 }
+
+# main() {
+#     choice=$(menu | ${rofi_command})
+#
+#     # no choice case
+#     if [[ -z $choice ]]; then return; fi
+#
+#     # random choice case
+#     if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
+#         # swww img ${DIR}/${RANDOM_PIC} $WALLPAPER_PARAMS
+#         # $wallpaper_program ${WALLPAPER_PARAMS} "${DIR}/${RANDOM_PIC}" 
+#         return
+#     fi
+#     
+#     pic_index=$(echo $choice | cut -d. -f1)
+#     echo "pic index is:${pic_index}"
+#
+#     # $wallpaper_program ${WALLPAPER_PARAMS} ${DIR}/${PICS[$pic_index]} 
+#     # $wallpaper_program ${WALLPAPER_PARAMS} ${DIR}
+#     echo "$mpvpaper_command $mpvpaper_switches '*' "$file_path""
+#
+#     # mpvpaper -fork -o 'no-audio --loop loop-playlist' "*" ~/.config/Wallpapers/space0.jpg 
+#
+#     $mpvpaper_command $mpvpaper_switches "*" "$file_path"
+#     # mpvpaper -fork -o 'no-audio --loop loop-playlist' '*' ~/.config/Wallpapers/space0.jpg
+#     # $wallpaper_program $WALLPAPER_PARAMS '*' "~/.config/Wallpapers/space0.jpg"
+#     # swww img ${DIR}/${PICS[$pic_index]} $WALLPAPER_PARAMS
+# }
 
 # Check if rofi is already running
 if pidof rofi >/dev/null; then
@@ -84,3 +136,4 @@ fi
 # if [[ -n "$choice" ]]; then
     # Restart Waybar
 # fi
+
