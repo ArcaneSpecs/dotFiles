@@ -20,7 +20,14 @@ alias dot="cd ~/dotfiles"
 alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
 alias vpn="sudo openconnect vpn.jyu.fi/student"
+alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
+alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
+# Game mode for steam
+# LD_PRELOAD="$LD_PRELOAD:/usr/\$LIB/libgamemode.so.0" gamemoderun %command% 
 
 export PAGER=less
 

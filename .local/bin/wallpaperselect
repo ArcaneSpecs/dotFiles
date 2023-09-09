@@ -4,10 +4,10 @@
 wallpaper_program="mpvpaper"
 
 # WALLPAPERS PATH
-# DIR=$HOME/.config/Wallpapers
+DIR=$HOME/.config/Wallpapers
 # DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-19
 # DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-20
-DIR=$HOME/github/stable-diffusion-webui/outputs/txt2img-images/2023-08-20
+# DIR=$HOME/github/stable-diffusion-webui/outputs/txt2img-images/2023-08-20
 
 # Transition config (type swww img --help for more settings
 FPS=60

@@ -30,7 +30,8 @@ keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_
 
 -- Build and run Wyvern Engine (TODO: specify project build)
 keymap("n", "<F6>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", opts)
-keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>", opts)
+--[[ keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>", opts) ]]
+keymap("n", "<C-b>", ":lua require'utils.my_functions'.run_build_in_current_cwd()<CR>", opts)
 
 -- Copilot
 vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = true })

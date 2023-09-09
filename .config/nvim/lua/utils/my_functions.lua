@@ -6,6 +6,7 @@
 -- or any other location that nvim searches for lua scripts
 ----------------------------------------------------------------------------
 
+
 workspaceFolder = '/home/patu/simpleWyvern'
 
 -- Build command
@@ -25,6 +26,31 @@ function run_wyvern_engine()
     print('Running at: ' .. workspaceFolder)
     os.execute(wyvernEditor)
     --[[ os.execute('cd ' .. 'C:/devel/TIES471/VulkanExample/build/bin && '.. 'C:/devel/TIES471/VulkanExample/build/bin/WyvernEngine.exe') ]]
+end
+
+function build()
+    -- Get current working directory
+    local current_working_directory = vim.fn.getcwd()
+    print('Running build at: ' .. current_working_directory .. '/build')
+    local term = require'toggleterm.terminal'.Terminal
+    --[[ print("term is: " .. term.name) ]]
+    local toggleterm = term:new({
+        --[[ name = "term", ]]
+        --[[ cmd = 'devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build', ]]
+        cmd = "make -j32",
+        dir = current_working_directory .. '/build',
+        size = { height = 5, width = 5 },
+        hidden = false,
+        direction = 'horizontal',
+        close_on_exit = false
+        -- env = {
+            
+        -- },
+    })
+    
+    --[[ toggleterm:toggle() ]]
+    toggleterm:open()
+    -- os.execute('devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build')
 end
 
 function build_wyvern_engine()
@@ -65,6 +91,7 @@ end
 return {
     run_wyvern_engine = run_wyvern_engine,
     build_wyvern_engine = build_wyvern_engine,
-    swap_to_header_or_source_file = swap_to_header_or_source_file
+    swap_to_header_or_source_file = swap_to_header_or_source_file,
+    run_build_in_current_cwd = build
 }
 

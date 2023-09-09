@@ -127,14 +127,19 @@ dap.adapters.codelldb = function(on_adapter)
     )
 end
 
---[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
-local tempcwd = '${workspaceFolder}'
---[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
---[[ tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
---[[ tempcwd = '${workspaceFolder}/../build-linux/bin/' ]]
---[[ tempcwd = '${workspaceFolder}/build' ]]
+--[[ local tempcwd = '${workspaceFolder}' ]]
+--[[ local tempcwd = '${workspaceFolder}/build' ]]
+
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Release-linux-x86_64/WyvernEditor' ]]
+--[[ local tempcwd = '${workspaceFolder}/build/bin/' ]]
+local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO'
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
+--[[ local tempcwd = '${workspaceFolder}/../build-linux/bin/' ]]
+--[[ local tempcwd = '${workspaceFolder}/build' ]]
+
 if (operating_system == "Windows_NT") then
-    tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
+    tempcwd = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor'
 end
 
 local lastUsedFile = nil  -- Define a variable to store the last used file
@@ -179,7 +184,9 @@ dap.configurations.cpp = {
         -- type = 'cppdbg',
         request = 'launch',
         program = function()
-            local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/'
+            --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/' ]]
+            --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Release-linux-x86_64/' ]]
+            local defaultPath = vim.fn.getcwd() .. '/build/bin/'
 
             if (operating_system == "Windows_NT") then
                 defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/'
@@ -222,7 +229,9 @@ dap.configurations.cpp = {
         -- cwd = '${workspaceFolder}',
         cwd = tempcwd,
         stopOnEntry = false,
-        args = {},
+        args = {
+            
+        },
         --[[ preLaunchTask = { ]]
         --[[     command = 'cd build && make', ]]
         --[[     type = 'shell', ]]
@@ -319,9 +328,9 @@ dapui.setup {
             elements = {
                 'scopes',
                 'breakpoints',
-                'stacks',
                 'watches',
-                'console',
+                'stacks',
+                --[[ 'console', ]]
             },
             size = 40,
             position = 'left',
