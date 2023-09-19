@@ -42,7 +42,7 @@ telescope.setup {
             "%.hdr",
             "%.hdri",
 
-        },                
+        },
     mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,

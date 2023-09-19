@@ -113,7 +113,6 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # 
 
 # source ~/github/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source ~/.bashrc
 source ~/github/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -303,12 +302,12 @@ fi
 ### ALIASES ###
 
 #list
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -alFh'
-alias l='ls'
-alias l.="ls -A | egrep '^\.'"
-alias listdir="ls -d */ > list"
+# alias ls='ls --color=auto'
+# alias la='ls -a'
+# alias ll='ls -alFh'
+# alias l='ls'
+# alias l.="ls -A | egrep '^\.'"
+# alias listdir="ls -d */ > list"
 
 #pacman
 alias sps='sudo pacman -S'
@@ -655,7 +654,7 @@ alias awa="arcolinux-welcome-app"
 
 #git
 alias rmgitcache="rm -r ~/.cache/git"
-alias grh="git reset --hard"
+# alias grh="git reset --hard"
 
 #pamac
 alias pamac-unlock="sudo rm /var/tmp/pamac/dbs/db.lock"
@@ -686,3 +685,6 @@ alias personal='cp -Rf /personal/* ~'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.bashrc
+

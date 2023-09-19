@@ -23,6 +23,9 @@ alias vpn="sudo openconnect vpn.jyu.fi/student"
 alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
 alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 
+alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
+alias xfix="run xinput --set-prop 12 "libinput Accel Speed" -0.5; run xset r rate 200 170"
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 

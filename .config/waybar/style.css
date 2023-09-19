@@ -1,6 +1,12 @@
+/* Global variables */ 
+/* :root { */
+/*     --custom_border: 4px; */
+/* } */
+
 * {
 	border: none;
-	border-radius: 0;
+	/* border-radius: var(--custom_border); */
+	border-radius: 0px; 
 
 	font-family: MesloLGM Nerd Font;
 	font-size: 14px;
@@ -18,7 +24,7 @@ window#waybar.hidden {
 #window {
     /* border: 1px; */
     /* border-style: solid; */
-    /* border-radius: 10px; */
+    border-radius: 0px; /* Border-radius */
     margin-top: 4px;
     padding-left: 16px;
     padding-right: 16px;
@@ -43,7 +49,7 @@ window#waybar.PCSX2 #window {
 #workspaces {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 	border-color: #1494d7;
 
 	margin-top: 4px;
@@ -86,7 +92,7 @@ window#waybar.PCSX2 #window {
 #mpd {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -110,7 +116,7 @@ window#waybar.PCSX2 #window {
 #network {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */ 
     border-color: #1494d7;
 
 	margin-top: 4px;
@@ -130,7 +136,7 @@ window#waybar.PCSX2 #window {
 #pulseaudio {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
     
 	margin-top: 4px;
 	margin-left: 8px;
@@ -147,7 +153,7 @@ window#waybar.PCSX2 #window {
 #temperature {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -165,7 +171,7 @@ window#waybar.PCSX2 #window {
 #cpu {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -183,7 +189,7 @@ window#waybar.PCSX2 #window {
 #memory {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -201,7 +207,7 @@ window#waybar.PCSX2 #window {
 #custom-temp{
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -219,7 +225,7 @@ window#waybar.PCSX2 #window {
 #custom-keybinds {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -237,7 +243,7 @@ window#waybar.PCSX2 #window {
 #clock {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -250,12 +256,13 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	color: #1494d7;
 	background: #282a36;
+	/* background: linear-gradient(to bottom, #1494d7, #282a36); */
 }
 
 #battery {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -284,7 +291,7 @@ window#waybar.PCSX2 #window {
 #backlight {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 5px;
@@ -303,7 +310,7 @@ window#waybar.PCSX2 #window {
 #idle_inhibitor {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
     transition-duration: 0.2s;
 
@@ -329,7 +336,7 @@ window#waybar.PCSX2 #window {
 #bluetooth {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;
@@ -369,7 +376,7 @@ window#waybar.PCSX2 #window {
 	/* color: #1494d7; */
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	/* background: #282a36; */
 	margin-top: 4px;
@@ -388,7 +395,7 @@ window#waybar.PCSX2 #window {
 #tray {
     border: 1px;
     border-style: solid;
-	border-radius: 10px;
+	border-radius: 0px; /* Border-radius */
 
 	margin-top: 4px;
 	margin-left: 8px;

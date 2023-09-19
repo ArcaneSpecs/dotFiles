@@ -1,3 +1,4 @@
+awesome
 $HOME/.monicarc   #monitor calibration
 exec qtile start
 
