@@ -50,7 +50,8 @@
 !! white
 !*.color7:     #BFBFBF
 !*.color15:    #E6E6E6
-
+Xcursor.theme: Adwaita
+Xcursor.size: 24
 
 
 

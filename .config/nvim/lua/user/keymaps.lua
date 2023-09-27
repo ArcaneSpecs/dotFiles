@@ -44,9 +44,12 @@ keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Telescope
-keymap("n", "<leader>d", ":cdo %s///g<Left><Left><Left>", opts)
-keymap("n", "<A-1>", "<CR>:set wrap<CR><C-w>j", opts)
+keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
+keymap("n", "<C-1>", "<CR>:set wrap<CR><C-w>j", opts)
 
+-- Diffs movement
+keymap("n", "<A-2>", "[c", opts)
+keymap("n", "<A-1>", "]c", opts)
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -69,6 +72,8 @@ keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpo
 keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
 
 keymap("n", "<leader><F3>", ":lua require'dapui'.toggle()<CR>", opts)
+keymap("n", "<leader><F4>", ":lua require'dapui'.toggle(2)<CR>", opts)
+keymap("n", "<leader><F2>", ":lua require'dapui'.eval()<CR>", opts)
 keymap("n", "<F7>", ":lua require'dap'.terminate()<CR>", opts)
 
 keymap("n", "<leader>1", ":lua require'dapui'.float_element(\"scopes\", {})<CR>", opts)

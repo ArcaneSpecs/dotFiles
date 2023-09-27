@@ -24,7 +24,6 @@ lsp.ensure_installed({
     'lua_ls',
     'pyright',
     'tsserver'
-
 })
 
 lsp.set_preferences({
@@ -32,7 +31,7 @@ lsp.set_preferences({
     suggest_lsp_servers = true,
     sign_icons = {
         error = '',
-        --error = 'TEPPOOO!',
+        --[[ error = 'TEPPOOO!', ]]
         warn  = '',
         info  = '',
         hint  = ''
@@ -53,6 +52,26 @@ lsp.configure('lua_ls', {
                 },
             }
         }
+    }
+})
+
+lsp.configure('clangd', {
+    cmd = {
+        "clangd",
+        "--all-scopes-completion",
+        "--suggest-missing-includes",
+        "--background-index",
+        "--pch-storage=disk",
+        "--cross-file-rename",
+        "--log=info",
+        "--completion-style=detailed",
+        "--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
+        "--clang-tidy",
+        "--offset-encoding=utf-16", --temporary fix for null-ls
+        -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
+        -- "--fallback-style=Google",
+        -- "--header-insertion=never",
+        -- "--query-driver=<list-of-white-listed-complers>"
     }
 })
 
@@ -170,7 +189,7 @@ lsp.setup_nvim_cmp({
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snippet]",
-                -- ultisnips = "[Ultisnips]",
+                --[[ ultisnips = "[Ultisnips]", ]]
                 buffer = "[Buffer]",
                 path = "[Path]",
             })[entry.source.name]
@@ -180,6 +199,7 @@ lsp.setup_nvim_cmp({
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },
+        --[[ { name = "Ultisnips" }, ]]
         { name = "buffer" },
         { name = "path" },
     },
@@ -221,11 +241,11 @@ vim.diagnostic.config({
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-    width = 60,
+    border = "single",
+    width = 80,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-    width = 60,
+    border = "single",
+    width = 80,
 })

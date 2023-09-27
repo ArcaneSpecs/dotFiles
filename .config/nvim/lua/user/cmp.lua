@@ -103,7 +103,7 @@ cmp.setup {
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[LuaSnippet]",
-        ultisnips = "[Ultisnips]",
+        --[[ ultisnips = "[Ultisnips]", ]]
         buffer = "[Buffer]",
         path = "[Path]",
       })[entry.source.name]
@@ -115,7 +115,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "ultisnips" },
+    --[[ { name = "ultisnips" }, ]]
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

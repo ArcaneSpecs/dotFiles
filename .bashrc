@@ -6,9 +6,14 @@
 # [[ $- != *i* ]] && return
 # PS1='[\u@\h \W]\$ '
 
-alias ls='ls --color=auto'
+alias ls='eza --icons --color=auto'
 alias grep='grep --color=auto'
-alias ll='ls -la --color=auto'
+alias ll='eza --icons --grid --all --color=auto'
+# alias l.="/usr/bin/ls -GA | grep '^[ . . .]' | pr -t -6"
+# alias l.="eza --all --icons -1 | grep '^( | | )'"
+# alias l.="eza --all --icons -1"
+alias l.="eza --icons --all -1 --color=never | grep -E '^( | | | | | |󱆃 )\.' | column -t"
+
 alias pkgsize="sudo pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'| sort -hr"
 #alias hlog="cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log > hyprland.log"
 alias gpu_mem="watch -n 0.5 nvidia-smi --query-gpu=memory.used --format=csv"
@@ -21,10 +26,11 @@ alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
 alias vpn="sudo openconnect vpn.jyu.fi/student"
 alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
-alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 
-alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
-alias xfix="run xinput --set-prop 12 "libinput Accel Speed" -0.5; run xset r rate 200 170"
+alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
+alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now; echo 'blacklist wacom' | sudo tee -a /etc/modprobe.d/blacklist.conf; sudo rmmod wacom"
+
+alias xfix="xinput --set-prop 12 'libinput Accel Speed' 0.0 && xset r rate 200 200"
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
@@ -34,8 +40,11 @@ export CXX=/usr/bin/clang++
 
 export PAGER=less
 
+export XCURSOR_THEME=Adwaita
+export XCURSOR_SIZE=24
+
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
-export VULKAN_SDK=~/vulkan/1.3.250.1/
+export VULKAN_SDK=~/vulkan/1.3.261.1/
 export EDITOR=nvim 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct

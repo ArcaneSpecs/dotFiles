@@ -130,10 +130,10 @@ end
 --[[ local tempcwd = '${workspaceFolder}' ]]
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
 
---[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
+local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Release-linux-x86_64/WyvernEditor' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/' ]]
-local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO'
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
 --[[ local tempcwd = '${workspaceFolder}/../build-linux/bin/' ]]
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
@@ -143,6 +143,8 @@ if (operating_system == "Windows_NT") then
 end
 
 local lastUsedFile = nil  -- Define a variable to store the last used file
+
+local currentCWD = nil
 
 dap.configurations.cpp = {
     --[[ { ]]
@@ -205,6 +207,7 @@ dap.configurations.cpp = {
                 lastUsedFile = inputPath
             end
 
+
             return inputPath
             --[[
             if (operating_system == "Windows_NT") then
@@ -227,7 +230,12 @@ dap.configurations.cpp = {
             ]]-- 
         end,
         -- cwd = '${workspaceFolder}',
-        cwd = tempcwd,
+        cwd = function ()
+            return vim.fn.getcwd() .. '/WyvernEditor'
+        end,
+        --[[ cwd = tempcwd, ]]
+
+        --[[ cwd = currentCWD, ]]
         stopOnEntry = false,
         args = {
             
@@ -327,12 +335,12 @@ dapui.setup {
         {
             elements = {
                 'scopes',
-                'breakpoints',
+                --[[ 'breakpoints', ]]
                 'watches',
                 'stacks',
                 --[[ 'console', ]]
             },
-            size = 40,
+            size = 80,
             position = 'left',
         },
         {
@@ -340,7 +348,7 @@ dapui.setup {
                 'repl',
                 --[[ 'watches' ]]
             },
-            size = 20,
+            size = 12,
             position = 'bottom',
         },
         {

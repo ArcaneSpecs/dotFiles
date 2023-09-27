@@ -94,7 +94,8 @@ return packer.startup(function(use)
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
-            --[[ {'SirVer/ultisnips'}, ]]
+            --[[ { "SirVer/ultisnips" }, ]]
+            --[[ { "quangnguyen30192/cmp-nvim-ultisnips" }, ]]
         }
     }
     -- Inline hints
