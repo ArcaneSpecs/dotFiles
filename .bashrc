@@ -6,6 +6,7 @@
 # [[ $- != *i* ]] && return
 # PS1='[\u@\h \W]\$ '
 
+alias make='make -j32'
 alias ls='eza --icons --color=auto'
 alias grep='grep --color=auto'
 alias ll='eza --icons --grid --all --color=auto'
@@ -30,13 +31,23 @@ alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
 alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now; echo 'blacklist wacom' | sudo tee -a /etc/modprobe.d/blacklist.conf; sudo rmmod wacom"
 
-alias xfix="xinput --set-prop 12 'libinput Accel Speed' 0.0 && xset r rate 200 200"
+# alias xfix="xinput --set-prop 10 'libinput Accel Speed' 0.0 && xset r rate 200 200"
+alias xfix="xinput --set-prop 'pointer:''Logitech USB Receiver' 'libinput Accel Profile Enabled' 0, 1 && xinput --set-prop 'pointer:''Logitech USB Receiver' 'libinput Accel Speed' 0.0 && xset r rate 200 200"
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 
+alias nuke="cd .. && rm -rf build && mkdir build && cd build && ../Scripts/Linux-GenProjects.sh && make -j32"
+
+export MANGOHUD=0
+
 # Game mode for steam
-# LD_PRELOAD="$LD_PRELOAD:/usr/\$LIB/libgamemode.so.0" gamemoderun %command% 
+#   LD_PRELOAD="$LD_PRELOAD:/usr/\$LIB/libgamemode.so.0" gamemoderun %command% 
+#
+# # Starfield fix on arch
+# Need:  vulkan-radeon and lib32-vulkan-radeon
+#   DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json PROTON_LOG=1 %command%
+#DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json PROTON_LOG=1 %command%
 
 export PAGER=less
 
@@ -48,6 +59,7 @@ export VULKAN_SDK=~/vulkan/1.3.261.1/
 export EDITOR=nvim 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 export QT_QPA_PLATFORMTHEME=qt5ct
+export SHELL=/usr/bin/zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

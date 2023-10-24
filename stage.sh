@@ -33,6 +33,9 @@ cp ~/.Xresources .
 cp ~/.zshrc .
 cp ~/.bashrc .
 
+# Files in etc
+cp /etc/default/grub .
+
 # System files to make hyprland work on nvidia GPU
 # cp /etc/mkinitcpio.conf .config/nvidia/mkinitcpio.conf 
 # cp /etc/modprobe.d/nvidia.conf .config/nvidia/nvidia.conf

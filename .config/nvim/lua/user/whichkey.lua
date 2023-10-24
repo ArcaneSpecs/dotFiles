@@ -179,7 +179,7 @@ local mappings = {
         C = { "<cmd>Telescope commands<cr>", "Commands" },
     },
 
-    t = {
+    y = {
         name = "Terminal",
         n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
         u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },

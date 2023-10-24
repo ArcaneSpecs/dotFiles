@@ -18,7 +18,8 @@ end
 --   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
-  Method = "m",
+  Method = "ƒ ",
+  --[[ Method = "m", ]]
   Function = "",
   Constructor = "",
   Field = "",

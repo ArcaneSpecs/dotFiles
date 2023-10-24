@@ -7,12 +7,13 @@
 ----------------------------------------------------------------------------
 
 
-workspaceFolder = '/home/patu/simpleWyvern'
+workspaceFolder = '/home/patu/simple_wyvern'
 
 -- Build command
 global_cmd = 'make'
 -- Run command
-wyvernEditor = 'cd ' .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor'
+wyvernEditor = 'cd ' .. workspaceFolder .. '/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor'
+--[[ wyvernEditor = 'cd ' .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor' ]]
 
 local operating_system = vim.loop.os_uname().sysname
 

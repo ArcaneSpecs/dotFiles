@@ -2,12 +2,15 @@
     "layer": "top",
     // "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
+    // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
     "modules-left": ["hyprland/workspaces", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
-    "modules-center": ["clock"],
+    // "modules-center": ["clock"],
+    "modules-center": ["hyprland/window"],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
-    "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory" ],
+    // "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory", "clock"],
+    "modules-right": [ "pulseaudio", "custom/temp", "cpu", "memory", "clock"],
 
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -79,6 +82,7 @@
         // "format-ethernet": "󰈁 {ipaddr}",
         "on-click": "kitty nmtui"
     },
+    // For toggling hyperland keybind so that we can use for example a virtual machine without the keybinds
     "custom/keybinds": {
         // "format": "   ",
         "format": "󰐼 ",
@@ -88,15 +92,18 @@
     "cpu": {
      	"interval": 10,
      	"format": " {usage}%",
-     	"max-length": 10
+     	"max-length": 10,
+        "on-click": "kitty htop",
     },
     "memory": {
 	    "tooltip": true,
-	    "format": " {}%"
+	    "format": " {}%",
+        "on-click": "kitty nvtop",
     },
     "hyprland/window": {
-        "format": "👉 {}",
+        "max-length": 80,
         "separate-outputs": true,
+        "format": "{title}",
     },
     "battery": {
         "format": "{capacity}% {icon}",

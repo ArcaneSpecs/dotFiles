@@ -21,6 +21,9 @@ cp .Xresources ~/.Xresources
 cp .zshrc ~/
 cp .bashrc ~/
 
+# Grub
+# sudo cp grub /etc/default/grub
+
 # Autostart
 mkdir -p ~/.config/autostart
 cp -r .config/autostart/ ~/.config/ 

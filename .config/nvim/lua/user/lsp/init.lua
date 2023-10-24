@@ -16,30 +16,41 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 local lsp = require("lsp-zero")
 
+lsp.extend_lspconfig()
+
 lsp.preset("recommended")
 
-lsp.ensure_installed({
+lsp.setup_servers({
+    'tsserver',
+    'rust_analyzer',
     'clangd',
-    'texlab',
     'lua_ls',
     'pyright',
-    'tsserver'
+    'texlab',
 })
 
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+--[[
 lsp.set_preferences({
-    --[[ suggest_lsp_servers = false, ]]
+    -- suggest_lsp_servers = false,
     suggest_lsp_servers = true,
     sign_icons = {
         error = '',
-        --[[ error = 'TEPPOOO!', ]]
+        --error = 'TEPPOOO!',
         warn  = '',
         info  = '',
         hint  = ''
     }
 })
+]]--
 
 --[[ lsp.configure('lua-language-server', { ]]
-lsp.configure('lua_ls', {
+lsp.use('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -55,7 +66,7 @@ lsp.configure('lua_ls', {
     }
 })
 
-lsp.configure('clangd', {
+lsp.use('clangd', {
     cmd = {
         "clangd",
         "--all-scopes-completion",
@@ -104,7 +115,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<CR>"] = cmp.mapping.confirm { select = false },
     ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
             cmp.select_next_item()
@@ -140,7 +151,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 --   פּ ﯟ   some other good icons
 local kind_icons = {
     Text = "",
-    Method = "m",
+    --[[ Method = "m", ]]
+    Method = "ƒ ",
     Function = "",
     Constructor = "",
     Field = "",
@@ -167,7 +179,10 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
-lsp.setup_nvim_cmp({
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
     mapping = cmp_mappings,
     window = {
         completion = cmp.config.window.bordered(),
@@ -207,6 +222,7 @@ lsp.setup_nvim_cmp({
 
 
 lsp.on_attach(function(client, bufnr)
+    --[[ lsp.default_keymaps({buffer = bufnr}) ]]
     local opts = { buffer = bufnr, noremap = true, silent = true }
 
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)

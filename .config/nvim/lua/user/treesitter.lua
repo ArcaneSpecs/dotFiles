@@ -8,6 +8,8 @@ vim.cmd('autocmd BufRead,BufNewFile *.vert set filetype=glsl')
 vim.cmd('autocmd BufRead,BufNewFile *.comp set filetype=glsl')
 vim.cmd('autocmd BufRead,BufNewFile *.shader set filetype=glsl')
 vim.cmd('autocmd BufRead,BufNewFile *.glslh set filetype=glsl')
+vim.cmd('autocmd BufRead,BufNewFile *.glsl set filetype=glsl')
+vim.cmd('autocmd BufRead,BufNewFile *.hlsl set filetype=hlsl')
 
 configs.setup({
 	ensure_installed = "all", -- one of "all" or a list of languages

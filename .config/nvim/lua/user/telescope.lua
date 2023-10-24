@@ -18,6 +18,7 @@ telescope.setup {
             "external",
             "vendor",
             "Vendor",
+            "%.obj",
             "%.gltf",
             "%.glb",
             "%.wav",
@@ -41,7 +42,6 @@ telescope.setup {
             "%.tga",
             "%.hdr",
             "%.hdri",
-
         },
     mappings = {
       i = {

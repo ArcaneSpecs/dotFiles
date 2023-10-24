@@ -2,7 +2,7 @@
 
 cd build
 
-if make; then
+if make -j32; then
     # read -p "Press [Enter]/Q to close..."
     exit 0 
 else

@@ -9,11 +9,13 @@
 	border-radius: 0px; 
 
 	font-family: MesloLGM Nerd Font;
+
 	font-size: 14px;
 	min-height: 20px;
 }
 
 window#waybar {
+	/* background: #1e1e1e; */
 	background: transparent;
 }
 
@@ -30,11 +32,11 @@ window#waybar.hidden {
     padding-right: 16px;
 	transition: none;
 
-    /* color: #1494d7; */
-    /* background: #282a36; */
+    /* color: transparent; */
+    color: #1494d7;
 
-    color: transparent;
 	background: transparent;
+    /* background: #282a36; */
 }
 
 window#waybar.termite #window,
@@ -47,7 +49,7 @@ window#waybar.PCSX2 #window {
 }
 
 #workspaces {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 	border-color: #1494d7;
@@ -55,9 +57,11 @@ window#waybar.PCSX2 #window {
 	margin-top: 4px;
 	margin-left: 12px;
 	margin-bottom: 4px;
-	background: #1e1e1e;
+	/* background: #1e1e1e; */
+	/* background: transparent; */
 	/* background: #282a36; */
 	transition-duration: 0.2s;
+	background: #282a36;
 }
 
 #workspaces button {
@@ -90,7 +94,7 @@ window#waybar.PCSX2 #window {
 }
 
 #mpd {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -101,10 +105,10 @@ window#waybar.PCSX2 #window {
 	padding-right: 16px;
 
 	/* background: #282a36; */
-	background: #1e1e1e;
 	transition: none;
 	color: #4d4d4d;
 	/*background: #5af78e;*/
+	background: #282a36;
 }
 
 #mpd.disconnected,
@@ -114,7 +118,7 @@ window#waybar.PCSX2 #window {
 }
 
 #network {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */ 
     border-color: #1494d7;
@@ -128,13 +132,13 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
     color: #1494d7;
-	background: #1e1e1e;
 	/* color: #4d4d4d; */
 	/* background: #bd93f9; */
+	background: #282a36;
 }
 
 #pulseaudio {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
     
@@ -147,11 +151,11 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #1e1e1e;
+	background: #282a36;
 }
 
 #temperature {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -164,12 +168,12 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #1e1e1e;
+	background: #282a36;
 	/* background: linear-gradient(to bottom right, #f61e61, #fa82a7); */
 }
 
 #cpu {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -182,12 +186,12 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #1e1e1e;
 	/* background: linear-gradient(to bottom right, #ff2d55, #252525); */
+	background: #282a36;
 }
 
 #memory {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -200,12 +204,12 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #1e1e1e;
 	/* background: linear-gradient(to bottom right, purple, #252525); */
+	background: #282a36;
 }
 
 #custom-temp{
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -223,7 +227,7 @@ window#waybar.PCSX2 #window {
 }
 
 #custom-keybinds {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -241,7 +245,7 @@ window#waybar.PCSX2 #window {
 }
 
 #clock {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -260,7 +264,7 @@ window#waybar.PCSX2 #window {
 }
 
 #battery {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -274,6 +278,7 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
+	background: #282a36;
 }
 
 #battery.plugged {
@@ -289,7 +294,7 @@ window#waybar.PCSX2 #window {
 }
 
 #backlight {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -303,12 +308,12 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #1e1e1e;
 	/* background: linear-gradient(to bottom right, grey, #252525); */
+	background: #282a36;
 }
 
 #idle_inhibitor {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -321,6 +326,7 @@ window#waybar.PCSX2 #window {
 
 	padding-left: 16px;
 	padding-right: 16px;
+	background: #1e1e1e;
 }
 
 #idle_inhibitor.deactivated {
@@ -334,7 +340,7 @@ window#waybar.PCSX2 #window {
 }
 
 #bluetooth {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -344,6 +350,7 @@ window#waybar.PCSX2 #window {
 
 	padding-left: 16px;
 	padding-right: 16px;
+	background: #1e1e1e;
 }
 
 #bluetooth.on {
@@ -374,7 +381,7 @@ window#waybar.PCSX2 #window {
 	/* background: #282a36; */
 	/* transition: none; */
 	/* color: #1494d7; */
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 
@@ -393,7 +400,7 @@ window#waybar.PCSX2 #window {
 }
 
 #tray {
-    border: 1px;
+    /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
 

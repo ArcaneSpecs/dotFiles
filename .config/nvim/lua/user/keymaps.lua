@@ -104,13 +104,15 @@ keymap("n", "<A-l>", ":BufferLineMoveNext<CR>", opts)
 -- Close all buffers
 keymap("n", "<leader>C", ":bufdo bwipeout<CR>", opts)
 
--- Close all buffers
-keymap("n", "<leader>y", ":%bd|e#<CR>", opts)
+--[[ keymap("n", "<leader>Y", ":%bd|e#<CR>", opts) ]]
 
 -- Move text up and down
 keymap("n", "<A-k>", "<Esc>:m -2<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m +1<CR>", opts)
 
+-- Todo comments
+keymap("n", "<leader>t", ":TodoTelescope<CR>", opts)
+keymap("n", "<leader>T", ":TodoLocList cwd=Wyvern/src<CR>", opts)
 
 -- Move current line / block with Alt-j/k ala vscode.
 --[[ ["<A-j>"] = "<Esc>:m .+1<CR>==gi", ]]

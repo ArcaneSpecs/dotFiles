@@ -4,6 +4,16 @@ if not status_ok then
     return
 end
 
+vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
+vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+
+vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
+vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
+vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
+
 require("nvim-dap-virtual-text").setup()
 
 dap.adapters.python = {
@@ -130,7 +140,10 @@ end
 --[[ local tempcwd = '${workspaceFolder}' ]]
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
 
-local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor'
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
+local tempcwd = '${workspaceFolder}/Projects/DEMO'
+--[[ local tempcwd = '${workspaceFolder}/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64/' ]]
+--[[ local tempcwd = '${workspaceFolder}/build' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Release-linux-x86_64/WyvernEditor' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
@@ -142,7 +155,7 @@ if (operating_system == "Windows_NT") then
     tempcwd = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor'
 end
 
-local lastUsedFile = nil  -- Define a variable to store the last used file
+local lastUsedFile = nil -- Define a variable to store the last used file
 
 local currentCWD = nil
 
@@ -216,29 +229,34 @@ dap.configurations.cpp = {
             else
                 return vim.fn.input('Path to executable: ',
                     vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file')
-                    
+
                     -- Get path to current working directory and the executable name
-                    
+
                     vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/', 'file')
 
-                    
+
                     vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/VulkanDEMO/VulkanDEMO', 'file')
                     vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/StopWatch/StopWatch', 'file')
                     vim.fn.getcwd() .. '../build-linux/bin/blender', 'file')
                 vim.fn.getcwd() .. '/build/Vulkan', 'file')
             end
-            ]]-- 
+            ]]
+               --
         end,
         -- cwd = '${workspaceFolder}',
-        cwd = function ()
-            return vim.fn.getcwd() .. '/WyvernEditor'
-        end,
-        --[[ cwd = tempcwd, ]]
-
+        --[[ cwd = function() ]]
+        --[[     return vim.fn.getcwd() .. '/WyvernEditor' ]]
+        --[[ end, ]]
+        cwd = tempcwd,
+        --[[ console = "integratedTerminal", ]]
+        --[[ internalConsoleOptions = "neverOpen", ]]
         --[[ cwd = currentCWD, ]]
         stopOnEntry = false,
         args = {
-            
+            "--project_root",
+            "/home/patu/dev/simple_wyvern/Projects/DEMO",
+            "--project_name",
+            "DEMO"
         },
         --[[ preLaunchTask = { ]]
         --[[     command = 'cd build && make', ]]
@@ -318,13 +336,24 @@ end
 
 dapui.setup {
     icons = {
-        expanded = "►",
-        collapsed = "▼",
-        circular = "⭕"
-
         -- expanded = "➖",
         -- collapsed = "➕",
-        -- circular = "⭕"
+        -- circular = "⭕",
+
+        expanded = "►",
+        collapsed = "▼",
+        circular = "⭕",
+
+        disconnect = "",
+        pause = "",
+        play = "",
+        run_last = "",
+        step_back = "",
+        step_into = "",
+        step_out = "",
+        step_over = "",
+        terminate = "",
+        breakpoint = "T",
     },
     mappings = {
         expand = "<CR>",
@@ -334,18 +363,19 @@ dapui.setup {
     layouts = {
         {
             elements = {
-                'scopes',
+                --[[ 'scopes', ]]
                 --[[ 'breakpoints', ]]
                 'watches',
                 'stacks',
                 --[[ 'console', ]]
             },
-            size = 80,
+            size = 85,
             position = 'left',
         },
         {
             elements = {
                 'repl',
+                --[[ 'console', ]]
                 --[[ 'watches' ]]
             },
             size = 12,
