@@ -48,3 +48,9 @@ luac.out
 .config/copilot
 .config/github_copilot
 
+.config/nvim/node_modules
+.config/nvim/package.json
+.config/nvim/package-lock.json
+
+
+

@@ -56,5 +56,9 @@ augroup yaml_syntax
   autocmd BufNewFile,BufRead *.conf set syntax=yaml
   autocmd BufNewFile,BufRead *.conf set filetype=yaml
   autocmd BufNewFile,BufRead *.conf set syntax=yaml
+  autocmd BufNewFile,BufRead *.make set filetype=make
+  autocmd BufNewFile,BufRead *.make set syntax=make
+  autocmd BufNewFile,BufRead *.xml set filetype=xml
+  autocmd BufNewFile,BufRead *.xml set syntax=xml
 augroup END
 ]])

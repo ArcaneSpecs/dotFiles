@@ -4,11 +4,20 @@ if not status_ok then
     return
 end
 
-vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
-vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
-vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+local operating_system = vim.loop.os_uname().sysname
+
+vim.fn.sign_define('DapBreakpoint', {
+    text = '',
+    texthl = 'DapBreakpoint',
+    linehl = 'DapBreakpoint',
+    numhl = 'DapBreakpoint'
+})
+vim.fn.sign_define('DapBreakpointCondition',
+    { text = 'ﳁ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected',
+    { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
+vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
@@ -16,9 +25,22 @@ vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353
 
 require("nvim-dap-virtual-text").setup()
 
+local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+
+--[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
+
+if (operating_system == "Linux") then
+    require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+elseif (operating_system == "Windows_NT") then
+    --[[ python_command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python' ]]
+    python_command = "" -- TODO: debugpy on windows
+end
+
+
 dap.adapters.python = {
     type = 'executable',
-    --[[ command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python', ]]
+    command = python_command,
+    venv = os.getenv('HOME') .. '/simple_wyvern/Tools/DependencySetup/venv/bin/activate',
     args = { '-m', 'debugpy.adapter' }
 }
 
@@ -30,7 +52,9 @@ dap.configurations.python = {
         program = "${file}",
         pythonPath = function()
             --[[ return '/usr/bin/python' ]]
-            return "/home/patu/github/webui_stable_diffusion/venv/bin/python"
+            return os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+            --[[ return "/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
+            --[[ return "/home/patu/github/webui_stable_diffusion/venv/bin/python" ]]
         end,
     },
 }
@@ -39,7 +63,6 @@ dap.configurations.python = {
 
 -- Check what platform we are on
 -- print(vim.loop.os_uname().sysname)
-local operating_system = vim.loop.os_uname().sysname
 local lldb_path = '/usr/bin/lldb-vscode'
 --[[ local lldb_path = '/usr/bin/lldb' ]]
 
@@ -65,10 +88,15 @@ dap.adapters.lldb = {
     name = 'lldb'
 }
 
-local cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb"
---[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
---[[ local cmd = "/usr/bin/lldb" ]]
-if (operating_system == "Windows_NT") then
+
+local cmd = ""
+
+if (operating_system == "Linux") then
+    cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb"
+    -- print("Linux!")
+elseif (operating_system == "Windows_NT") then
+    --[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
+    --[[ local cmd = "/usr/bin/lldb" ]]
     cmd = "C:/Users/patu/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
 end
 
@@ -141,7 +169,14 @@ end
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
 
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
-local tempcwd = '${workspaceFolder}/Projects/DEMO'
+--[[ local tempcwd = '${workspaceFolder}/Projects/DEMO' ]]
+--[[ local tempcwd = '/home/patu/Documents/Wyvern Projects/RPG' ]]
+local tempcwd = '/home/patu/Documents/Wyvern_Projects/RPG'
+
+--[[ local tempcwd = "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64" ]]
+--[[ local tempcwd = '${workspaceFolder}/' ]]
+--[[ local tempcwd = '/home/patu/dev/TIEP114/demot/Nand2Tetris/projects/04/oma' ]]
+--[[ local tempcwd = '${workspaceFolder}/Demot/Nand2Tetris/projects/04/oma' ]]
 --[[ local tempcwd = '${workspaceFolder}/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64/' ]]
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Release-linux-x86_64/WyvernEditor' ]]
@@ -241,7 +276,7 @@ dap.configurations.cpp = {
                 vim.fn.getcwd() .. '/build/Vulkan', 'file')
             end
             ]]
-               --
+            --
         end,
         -- cwd = '${workspaceFolder}',
         --[[ cwd = function() ]]
@@ -253,10 +288,23 @@ dap.configurations.cpp = {
         --[[ cwd = currentCWD, ]]
         stopOnEntry = false,
         args = {
+            --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
+            --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO", ]]
+            --[[ "DEMO", ]]
+
+            -- For debugging editor
             "--project_root",
-            "/home/patu/dev/simple_wyvern/Projects/DEMO",
-            "--project_name",
-            "DEMO"
+            "/home/patu/Documents/Wyvern_Projects/RPG",
+            "--project_alias", -- We initialize the project with the alias and not the game name that is shown to customers
+            "RPG",
+            "--engine_assets",
+            "/home/patu/dev/simple_wyvern/WyvernEditor",
+            "--engine_root", "/home/patu/dev/simple_wyvern",
+
+            -- For debugging runtime
+            --[[ "RPG", ]]
+            --[[ "--project_root", ]]
+            --[[ "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/RPG/RPG/Binaries/Debug-linux-x86_64", ]]
         },
         --[[ preLaunchTask = { ]]
         --[[     command = 'cd build && make', ]]

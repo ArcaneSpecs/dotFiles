@@ -22,8 +22,6 @@ vim.g.maplocalleader = " "
 -- Terminal toggle
 keymap("n", "<C-t>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
 
--- Tagbar
-keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
 
 -- Alternate cpp and header files
 keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
@@ -31,7 +29,8 @@ keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_
 -- Build and run Wyvern Engine (TODO: specify project build)
 keymap("n", "<F6>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", opts)
 --[[ keymap("n", "<C-b>", ":lua require'utils.my_functions'.build_wyvern_engine()<CR>", opts) ]]
-keymap("n", "<C-b>", ":lua require'utils.my_functions'.run_build_in_current_cwd()<CR>", opts)
+--[[ keymap("n", "<C-b>", ":lua require'utils.my_functions'.run_build_in_current_cwd()<CR>", opts) ]]
+--[[ keymap("n", "<C-b>", ":lua require'utils.my_functions'.run_build_in_current_game_cwd()<CR>", opts) ]]
 
 -- Copilot
 vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = true })
@@ -47,9 +46,13 @@ keymap("n", "J", "mzJ`z", opts)
 keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
 keymap("n", "<C-1>", "<CR>:set wrap<CR><C-w>j", opts)
 
+-- Tagbar
+--[[ keymap("n", "<C-d>", ":TagbarToggle<CR>", opts) ]]
+
 -- Diffs movement
 keymap("n", "<A-2>", "[c", opts)
 keymap("n", "<A-1>", "]c", opts)
+keymap("n", "<C-d>", ":diffthis<CR>", opts)
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -95,8 +98,11 @@ keymap("n", "<C-A-Left>", ":vertical resize -10<CR>", opts)
 keymap("n", "<C-A-Right>", ":vertical resize +10<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Using these keeps the buffer list in order if you move them with Alt-h/l
+keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
+--[[ keymap("n", "<S-l>", ":bnext<CR>", opts) ]]
+--[[ keymap("n", "<S-h>", ":bprevious<CR>", opts) ]]
 
 keymap("n", "<A-h>", ":BufferLineMovePrev<CR>", opts)
 keymap("n", "<A-l>", ":BufferLineMoveNext<CR>", opts)

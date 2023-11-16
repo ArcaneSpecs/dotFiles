@@ -6,7 +6,8 @@ GRUB_DISTRIBUTOR="Arch"
 # Default arch
 # GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
 
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 mitigations=off split_lock_detect=off split_lock_mitigate=0 pci=nommconf amd_iommu=on iommu=pt nokaslr amdgpu.dpm=1"
+# Clearcpuid=514 for Hogwarts: Legacy
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 mitigations=off split_lock_detect=off split_lock_mitigate=0 pci=nommconf amd_iommu=on iommu=pt nokaslr amdgpu.dpm=1 clearcpuid=514"
 
 GRUB_CMDLINE_LINUX="rootfstype=ext4"
 

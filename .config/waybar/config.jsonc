@@ -3,7 +3,8 @@
     // "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
-    "modules-left": ["hyprland/workspaces", "tray"],
+    // "modules-left": ["hyprland/workspaces", "tray"],
+    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
     // "modules-center": ["clock"],
@@ -83,11 +84,25 @@
         "on-click": "kitty nmtui"
     },
     // For toggling hyperland keybind so that we can use for example a virtual machine without the keybinds
-    "custom/keybinds": {
+    "custom/keybinds_deactivate": {
         // "format": "   ",
         "format": "󰐼 ",
         "on-click": "~/.config/hypr/scripts/deactivate_keybinds.sh",
-        "on-scroll-up": "~/.config/hypr/scripts/activate_keybinds.sh",
+    },
+    "custom/keybinds_activate": {
+        // "format": "   ",
+        "format": " ",
+        "on-click": "~/.config/hypr/scripts/activate_keybinds.sh",
+    },
+    "custom/launch_terminal": {
+        // "format": "   ",
+        "format": " ",
+        "on-click": "kitty ~",
+    },
+    "custom/launch_actions_runner": {
+        // "format": "   ",
+        "format": " ",
+        "on-click": "kitty ~/dev/wyvern_engine_actions_runner/actions-runner/run.sh",
     },
     "cpu": {
      	"interval": 10,

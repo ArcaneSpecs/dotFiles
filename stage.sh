@@ -23,6 +23,9 @@ cp ~/.local/bin/screensht .local/bin
 cp ~/.local/bin/wrappedhl.sh .local/bin
 cp ~/.local/bin/wallpaper .local/bin
 cp ~/.local/bin/wallpaperselect .local/bin
+cp ~/.local/bin/screenshot_effect.mp3 .local/bin
+cp ~/.local/bin/edit_config .local/bin
+
 
 # Autostart
 cp -r ~/.config/autostart/ .config

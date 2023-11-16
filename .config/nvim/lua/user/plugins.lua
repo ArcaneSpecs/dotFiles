@@ -43,8 +43,8 @@ return packer.startup(function(use)
     -- My plugins here
     --use({"ViliLipo/Oiko"})
     use({ "wbthomason/packer.nvim", commit = "1d0cf98a561f7fd654c970c49f917d74fafe1530" }) -- Have packer manage itself
-    use({ "nvim-lua/plenary.nvim", commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" }) -- Useful lua functions used by lots of plugins
-    use("windwp/nvim-autopairs")                                                        -- Autopairs, integrates with both cmp and treesitter
+    use({ "nvim-lua/plenary.nvim", commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" })  -- Useful lua functions used by lots of plugins
+    use("windwp/nvim-autopairs")                                                           -- Autopairs, integrates with both cmp and treesitter
     use({ "numToStr/Comment.nvim", commit = "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" })
     use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" })
     use({ "kyazdani42/nvim-web-devicons", commit = "8d2c5337f0a2d0a17de8e751876eeb192b32310e" })
@@ -72,15 +72,15 @@ return packer.startup(function(use)
     use("sainnhe/gruvbox-material")
     -- git@github.com:vimcolorschemes/vimcolorschemes.git
 
-    -- Todo comments 
+    -- Todo comments
     use {
-      "folke/todo-comments.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
     }
 
     -- GitHub Copilot
@@ -91,13 +91,19 @@ return packer.startup(function(use)
         requires = {
             -- LSP support
             { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
+            {
+                'williamboman/mason.nvim',
+                opts = {
+                    ensure_installed = "pyright",
+                }
+
+            },
             { 'williamboman/mason-lspconfig.nvim' },
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },       -- The completion plugin
-            { "hrsh7th/cmp-buffer" },     -- buffer completions
-            { "hrsh7th/cmp-path" },       -- path completions
+            { "hrsh7th/nvim-cmp" },         -- The completion plugin
+            { "hrsh7th/cmp-buffer" },       -- buffer completions
+            { "hrsh7th/cmp-path" },         -- path completions
             { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
@@ -122,6 +128,7 @@ return packer.startup(function(use)
     use('jrop/jq.nvim')
     -- DAP
     use("mfussenegger/nvim-dap")
+    use("mfussenegger/nvim-dap-python")
     use("leoluz/nvim-dap-go")
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
@@ -151,7 +158,7 @@ return packer.startup(function(use)
                     '/var/log/.*',
                     'messages%..*',
                 },
-        }
+            }
         end,
     }
 
@@ -162,6 +169,6 @@ return packer.startup(function(use)
 
     -- Git
     use("lewis6991/gitsigns.nvim")
-    use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+    --[[ use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters ]]
     use("nvim-treesitter/nvim-treesitter")
 end)

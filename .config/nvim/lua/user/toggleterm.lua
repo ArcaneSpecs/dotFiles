@@ -3,6 +3,15 @@ if not status_ok then
 	return
 end
 
+local operating_system = vim.loop.os_uname().sysname
+
+local shell_select = ""
+if (operating_system == "Windows_NT") then
+    shell_select = "cmd.exe"
+else
+	shell_select = "zsh"
+end
+
 toggleterm.setup({
 	size = 20,
 	open_mapping = [[<c-\>]],
@@ -15,7 +24,7 @@ toggleterm.setup({
 	persist_size = true,
 	direction = "float",
 	close_on_exit = true,
-	shell = "zsh",
+	shell = shell_select,
 	float_opts = {
 		border = "double",
 		winblend = 0,

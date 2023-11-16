@@ -15,7 +15,13 @@ alias ll='eza --icons --grid --all --color=auto'
 # alias l.="eza --all --icons -1"
 alias l.="eza --icons --all -1 --color=never | grep -E '^( | | | | | |󱆃 )\.' | column -t"
 
-alias pkgsize="sudo pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'| sort -hr"
+# sudo mount -t iso9660 -o ro,loop /path/to/file.iso /mount-point 
+alias mountiso="sudo mount -t iso9660 -o ro,loop"
+# mkisofs -V "ARCHIVE_2013_07_27" -J -r -o isoimage.iso ./for_iso
+# nameofiso.iso ./folder_to_iso
+alias mkiso="mkisofs -V 'ARCHIVE_2013_07_27'-J -r -o"
+# -mod "/home/patu/Games/bfme2/drive_c/users/patu/Application Data/My Battle for Middle-earth(tm) II Files/HDEdition.big"
+alias pkgsize="sudo pacman -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}'| sort -hr | less"
 #alias hlog="cat /tmp/hypr/$(ls -t /tmp/hypr/ | head -n 1)/hyprland.log > hyprland.log"
 alias gpu_mem="watch -n 0.5 nvidia-smi --query-gpu=memory.used --format=csv"
 # alias gpu_info="watch -n 0.5 'nvidia-smi'"
@@ -33,6 +39,9 @@ alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload
 
 # alias xfix="xinput --set-prop 10 'libinput Accel Speed' 0.0 && xset r rate 200 200"
 alias xfix="xinput --set-prop 'pointer:''Logitech USB Receiver' 'libinput Accel Profile Enabled' 0, 1 && xinput --set-prop 'pointer:''Logitech USB Receiver' 'libinput Accel Speed' 0.0 && xset r rate 200 200"
+alias sshfix="eval \$(ssh-agent -s) && ssh-add ~/.ssh/id_rsa && ssh-add ~/.ssh/id_ed25519"
+alias make_all="make -j32 config=release& make -j32 config=debug& make -j32 config=production"
+
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
@@ -55,9 +64,13 @@ export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
-export VULKAN_SDK=~/vulkan/1.3.261.1/
 export EDITOR=nvim 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
+
+export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$HOME/.virtualenvs/debugpy/bin/
+export VULKAN_SDK=~/VulkanSDK/1.3.268.0
+export PATH=$PATH:$VULKAN_SDK
+
 export QT_QPA_PLATFORMTHEME=qt5ct
 export SHELL=/usr/bin/zsh
 

@@ -1,0 +1,94 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    config_to_open=$1
+    echo "Config to be opened: $config_to_open"
+fi
+
+# configs PATH
+DIR=$HOME/.config
+
+# rofi window config (in %)
+WIDTH=40
+HEIGHT=60
+
+# config_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+# config_PARAMS="\"-fork -o \"no-audio --loop\" \"*\""
+# config_PARAMS="-fork -o 'no-audio --loop loop-playlist' '*'"
+# echo $config_PARAMS
+editor_command="kitty nvim"
+switches=""
+file_path="~/.config/hypr/hyprland.conf"
+
+# Reverse the order so we get the last image first
+PICS=($(ls -r ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$" -e ".webp$"))
+
+# CONFS=($(ls -r ${DIR} | grep -e ""))
+# CONFS=($(ls -r ${DIR}))
+
+CONFS=(
+"~/.config/hypr/hyprland.conf" 
+"~/.config/kitty/kitty.conf"
+"~/.config/waybar/config.jsonc"
+
+)
+
+# rofi STYLES
+CONFIG="$HOME/.config/rofi/global"
+STYLE="$HOME/.config/rofi/global/rofi.css"
+
+## rofi Command
+rofi_command="wofi --show dmenu \
+            --prompt choose... \
+			--width=$WIDTH% --height=$HEIGHT% \
+			--hide-scroll --no-actions \
+			--cache-file=/dev/null \
+			--matching=fuzzy \
+            --theme ~/.config/rofi/global/rofi.css"
+			# --conf $CONFIG --style $STYLE --color $COLORS \
+
+menu(){
+    # Here we are looping in the PICS array that is composed of all images in the $DIR folder
+    for i in ${!CONFS[@]}; do
+        printf "$i. ${CONFS[$i]}\n"
+    done
+}
+
+main() {
+    choice=$(menu | ${rofi_command})
+
+    # no choice case
+    if [[ -z $choice ]]; then return; fi
+
+    #echo "Choice is $choice"
+
+    # Syntax for choice is:
+    # 0. ~/.config/hypr/hyprland.conf
+
+    # Cut the file path out of choise
+    index=$(echo $choice | cut -d " " -f 1 | tr -d ".")
+    #echo "Choice is now $index"
+    file_path="${CONFS[$index]}"
+    #echo "File path is $file_path"
+
+    # Evaluate the actual file path
+    eval file_path=$file_path
+    # Get the directory of file_path
+    dir_path=$(dirname $file_path)
+    #echo "$editor_command $switches $file_path"
+    cd $dir_path && $editor_command $switches $file_path
+}
+
+# Check if rofi is already running
+if pidof wofi >/dev/null; then
+    killall wofi 
+    exit 0
+else
+    main
+fi
+
+# Uncomment to launch something if a choice was made 
+# if [[ -n "$choice" ]]; then
+    # Restart Waybar
+# fi
+
