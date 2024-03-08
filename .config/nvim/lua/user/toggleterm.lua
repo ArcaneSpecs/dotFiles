@@ -27,7 +27,7 @@ toggleterm.setup({
 	shell = shell_select,
 	float_opts = {
 		border = "double",
-		winblend = 0,
+		winblend = 3,
 		highlights = {
 			border = "Normal",
 			background = "Normal",

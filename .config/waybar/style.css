@@ -16,7 +16,9 @@
 
 window#waybar {
 	/* background: #1e1e1e; */
-	background: transparent;
+	/* background: transparent; */
+	/* background: rgba(0, 0, 0, 0.5); */
+	background: linear-gradient(to bottom, rgba(10, 10, 16, 0.9), rgba(0, 0, 0, 0.05));
 }
 
 window#waybar.hidden {
@@ -61,7 +63,9 @@ window#waybar.PCSX2 #window {
 	/* background: transparent; */
 	/* background: #282a36; */
 	transition-duration: 0.2s;
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
+	/* background: transparent; */
 }
 
 #workspaces button {
@@ -90,7 +94,7 @@ window#waybar.PCSX2 #window {
 #workspaces button.active {
     /* background: #deb4fe; */
 	/* background: #1e1e1e; */
-    color: #ff1111;
+    color: #ee5a11;
 }
 
 #mpd {
@@ -108,7 +112,8 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	color: #4d4d4d;
 	/*background: #5af78e;*/
-	background: #282a36;
+	background: transparent;
+	/* background: #282a36; */
 }
 
 #mpd.disconnected,
@@ -151,7 +156,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: transparent; */
 }
 
 #temperature {
@@ -168,7 +174,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
 	/* background: linear-gradient(to bottom right, #f61e61, #fa82a7); */
 }
 
@@ -187,7 +194,8 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	color: #1494d7;
 	/* background: linear-gradient(to bottom right, #ff2d55, #252525); */
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
 }
 
 #memory {
@@ -204,8 +212,9 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
+	background: rgba(48, 48, 48, 0.5);
 	/* background: linear-gradient(to bottom right, purple, #252525); */
-	background: #282a36;
+	/* background: #282a36; */
 }
 
 #custom-temp{
@@ -223,7 +232,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
 }
 
 #custom-keybinds_activate {
@@ -241,7 +251,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #14efe7;
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
 }
 
 #custom-launch_terminal {
@@ -260,7 +271,8 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	/* color: #14efe7; */
 	color: #1494d7;
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
 }
 
 #custom-launch_actions_runner {
@@ -279,8 +291,30 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	/* color: #14efe7; */
 	color: #14bed7;
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
 }
+
+#custom-launch_actions_runner_stockbrokerage {
+    /* border: 1px; */
+    border-style: solid;
+	border-radius: 0px; /* Border-radius */
+
+	margin-top: 4px;
+	margin-left: 8px;
+	/* margin-right: 12px; */
+	margin-bottom: 4px;
+
+	padding-left: 20px;
+	padding-right: 16px;
+
+	transition: none;
+	/* color: #14efe7; */
+	color: #efbed7;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
+}
+
 #custom-keybinds_deactivate {
     /* border: 1px; */
     border-style: solid;
@@ -296,7 +330,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #ee94d7;
-	background: #282a36;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
 }
 
 #clock {
@@ -314,7 +349,8 @@ window#waybar.PCSX2 #window {
 
 	transition: none;
 	color: #1494d7;
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
 	/* background: linear-gradient(to bottom, #1494d7, #282a36); */
 }
 
@@ -364,7 +400,8 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	color: #1494d7;
 	/* background: linear-gradient(to bottom right, grey, #252525); */
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
 }
 
 #idle_inhibitor {
@@ -469,5 +506,6 @@ window#waybar.PCSX2 #window {
 	/*background: #282a36;*/
 	transition: none;
 	color: #1494d7;
-	background: #282a36;
+	/* background: #282a36; */
+	background: rgba(48, 48, 48, 0.5);
 }

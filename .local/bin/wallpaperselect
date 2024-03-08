@@ -3,8 +3,15 @@
 # Wallpaper program
 wallpaper_program="mpvpaper"
 
-# WALLPAPERS PATH
 DIR=$HOME/.config/Wallpapers
+
+# WALLPAPERS PATH
+if [[ -z $1 ]]; then
+    DIR=$HOME/.config/Wallpapers
+else
+    DIR=$1
+fi
+
 # DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-19
 # DIR=$HOME/github/stable-diffusion-webui/outputs/img2img-images/2023-08-20
 # DIR=$HOME/github/stable-diffusion-webui/outputs/txt2img-images/2023-08-20
@@ -27,7 +34,9 @@ mpvpaper_switches="-fork -o 'no-audio --loop loop-playlist'"
 file_path="~/.config/Wallpapers/space0.jpg"
 
 # Reverse the order so we get the last image first
-PICS=($(ls -r ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$" -e ".webp$"))
+# PICS=($(ls -r ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$" -e ".webp$"))
+PICS=($(find ${DIR} -type f -printf "%P\n" | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp4$" -e ".webp$"))
+
 # PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".webp$"))
 #PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)))
 

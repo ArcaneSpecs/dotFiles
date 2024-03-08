@@ -2,9 +2,14 @@
 
 whatsapp-for-linux &
 discord &
-obs --minimize-to-tray &
-sleep 2
-obs-cli replaybuffer start --host 127.0.0.1 --password 1234 --port 4444 &
+# obs --minimize-to-tray &
+flatpak run com.obsproject.Studio --minimize-to-tray &
+easyeffects &
+# Telegram &
+
+# pavucontrol &
+sleep 4
+obs-cmd replay start
+# obs-cli replaybuffer start --host 192.168.1.82 --password teppo --port 4455 &
 # steam &
 
-:

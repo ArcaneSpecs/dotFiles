@@ -4,7 +4,7 @@
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
     // "modules-left": ["hyprland/workspaces", "tray"],
-    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner"],
+    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner", "custom/launch_actions_runner_stockbrokerage"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
     // "modules-center": ["clock"],
@@ -53,7 +53,6 @@
             // "sort-by-number": true
         },
     },
-
     "mpd": {
     	"tooltip": false,
         "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
@@ -73,7 +72,9 @@
             // 󰕿 󰖀 󰕾
             "default": ["󰕿 ", "󰖀 ", "󰕾 "]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "on-click-right": "qpwgraph",
+        "on-click-middle": "easyeffects"
     },
     "network": {
         "tooltip": false,
@@ -102,13 +103,18 @@
     "custom/launch_actions_runner": {
         // "format": "   ",
         "format": " ",
-        "on-click": "kitty ~/dev/wyvern_engine_actions_runner/actions-runner/run.sh",
+        "on-click": "kitty ~/dev/wyvern_engine_actions_runner/run.sh",
+    },
+    "custom/launch_actions_runner_stockbrokerage": {
+        // "format": "   ",
+        "format": " ",
+        "on-click": "kitty ~/dev/StockBrokerageRunner/run.sh",
     },
     "cpu": {
      	"interval": 10,
      	"format": " {usage}%",
      	"max-length": 10,
-        "on-click": "kitty htop",
+        "on-click": "kitty btop",
     },
     "memory": {
 	    "tooltip": true,

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#source ~/.bashrc
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach || tmux new-session | nvim "$(pwd)"
+    # tmux attach || tmux new-session -s "nvim"
+fi
+
+# tmux attach | tmux new-session | nvim .
+

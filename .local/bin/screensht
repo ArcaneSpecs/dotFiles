@@ -26,7 +26,7 @@ then
     # Take a screenshot and copy it to the clipboard
     # grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
     # grim -g "$(slurp)" - | kolourpaint ~/Pictures/screenshots/$filename | pngquant - 
-    grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
+    grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
     # kolourpaint ~/Pictures/screenshots/$filename 
     krita ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
@@ -38,7 +38,7 @@ then
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
     # Take a screenshot and copy it to the clipboard
-    grim -g "$(slurp)" ~/Pictures/screenshots/$filename 
+    grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
     xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
     play ~/.local/bin/screenshot_effect.mp3
     exit 0

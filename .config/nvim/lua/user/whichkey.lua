@@ -86,10 +86,10 @@ local mappings = {
     ["w"] = { "<cmd>w!<CR>", "Save" },
     -- ["q"] = { "<cmd>q!<CR>", "Quit" },
     ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-    ["h"] = { "<cmd>nohlsearch!<CR>", "Toggle search highlight" },
+    ["n"] = { "<cmd>set nohlsearch!<CR>", "Toggle search highlight" },
     ["f"] = {
         --[[ "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
-        "<cmd>lua require('telescope.builtin').find_files()<cr>",
+        "<cmd>lua require('telescope.builtin').find_files({hidden=true, no_ignore=true})<cr>",
         "Find files",
     },
     ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
@@ -131,7 +131,7 @@ local mappings = {
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
         d = {
-            "<cmd>Gitsigns diffthis HEAD<cr>",
+            "<cmd>Gitsigns diffthis<cr>",
             "Diff",
         },
     },

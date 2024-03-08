@@ -12,6 +12,7 @@ vim.fn.sign_define('DapBreakpoint', {
     linehl = 'DapBreakpoint',
     numhl = 'DapBreakpoint'
 })
+
 vim.fn.sign_define('DapBreakpointCondition',
     { text = 'ﳁ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected',
@@ -29,8 +30,18 @@ local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
 
 --[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
 
+dap.defaults.fallback.external_terminal = {
+    command = '/usr/bin/alacritty';
+    args = {'-e'};
+}
+
+dap.defaults.fallback.terminal_win_cmd = 'tabnew'
+dap.defaults.fallback.force_external_terminal = true
+
 if (operating_system == "Linux") then
     require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+
+
 elseif (operating_system == "Windows_NT") then
     --[[ python_command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python' ]]
     python_command = "" -- TODO: debugpy on windows
@@ -87,7 +98,6 @@ dap.adapters.lldb = {
     command = lldb_path, -- adjust as needed, must be absolute path
     name = 'lldb'
 }
-
 
 local cmd = ""
 
@@ -161,7 +171,7 @@ dap.adapters.codelldb = function(on_adapter)
         function()
             on_adapter(adapter)
         end,
-        500
+        2000
     )
 end
 
@@ -170,9 +180,13 @@ end
 
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/WyvernEditor' ]]
 --[[ local tempcwd = '${workspaceFolder}/Projects/DEMO' ]]
+--[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
 --[[ local tempcwd = '/home/patu/Documents/Wyvern Projects/RPG' ]]
-local tempcwd = '/home/patu/Documents/Wyvern_Projects/RPG'
-
+--[[ local tempcwd = '/home/patu/Documents/Wyvern_Projects/RPG' ]]
+local tempcwd = '/home/patu/github/Lumos/Lumos/bin/Debug-linux-x86_64/'
+--[[ local tempcwd = '/home/patu/github/vulkan-base/' ]]
+--[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm' ]]
+--[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect' ]]
 --[[ local tempcwd = "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64" ]]
 --[[ local tempcwd = '${workspaceFolder}/' ]]
 --[[ local tempcwd = '/home/patu/dev/TIEP114/demot/Nand2Tetris/projects/04/oma' ]]
@@ -192,42 +206,8 @@ end
 
 local lastUsedFile = nil -- Define a variable to store the last used file
 
-local currentCWD = nil
-
+-- Our custom lldb launch
 dap.configurations.cpp = {
-    --[[ { ]]
-    --[[     name = 'Launch codelldb', ]]
-    --[[     type = 'codelldb', ]]
-    --[[     -- type = 'cppdbg', ]]
-    --[[     request = 'launch', ]]
-    --[[     program = function() ]]
-    --[[         if (operating_system == "Windows_NT") then ]]
-    --[[             return vim.fn.input('Path to executable: ', ]]
-    --[[                 vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/WyvernEditor.exe', 'file') ]]
-    --[[         else ]]
-    --[[             return vim.fn.input('Path to executable: ', ]]
-    --[[                 vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor', 'file') ]]
-    --[[         end ]]
-    --[[     end, ]]
-    --[[     -- cwd = '${workspaceFolder}', ]]
-    --[[     cwd = tempcwd, ]]
-    --[[     stopOnEntry = true, ]]
-    --[[     args = {}, ]]
-    --[[     preLaunchTask = 'Build', ]]
-    --[[]]
-    --[[     -- 💀 ]]
-    --[[     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting: ]]
-    --[[     -- ]]
-    --[[     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope ]]
-    --[[     -- ]]
-    --[[     -- Otherwise you might get the following error: ]]
-    --[[     -- ]]
-    --[[     --    Error on launch: Failed to attach to the target process ]]
-    --[[     -- ]]
-    --[[     -- But you should be aware of the implications: ]]
-    --[[     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html ]]
-    --[[     -- runInTerminal = false, ]]
-    --[[ }, ]]
     {
         name = 'Launch lldb',
         type = 'lldb',
@@ -278,14 +258,15 @@ dap.configurations.cpp = {
             ]]
             --
         end,
-        -- cwd = '${workspaceFolder}',
+
         --[[ cwd = function() ]]
-        --[[     return vim.fn.getcwd() .. '/WyvernEditor' ]]
+        --[[     print(vim.fn.getcwd()) ]]
+        --[[     return vim.fn.getcwd() ]]
         --[[ end, ]]
+
         cwd = tempcwd,
-        --[[ console = "integratedTerminal", ]]
+        console = "externalTerminal",
         --[[ internalConsoleOptions = "neverOpen", ]]
-        --[[ cwd = currentCWD, ]]
         stopOnEntry = false,
         args = {
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
@@ -293,17 +274,54 @@ dap.configurations.cpp = {
             --[[ "DEMO", ]]
 
             -- For debugging editor
-            "--project_root",
-            "/home/patu/Documents/Wyvern_Projects/RPG",
-            "--project_alias", -- We initialize the project with the alias and not the game name that is shown to customers
-            "RPG",
-            "--engine_assets",
-            "/home/patu/dev/simple_wyvern/WyvernEditor",
-            "--engine_root", "/home/patu/dev/simple_wyvern",
+            --[[ "--project_root", ]]
+            --[[ "/home/patu/Documents/Wyvern_Projects/RPG", ]]
+            --[[ "--project_alias", -- We initialize the project with the alias and not the game name that is shown to customers ]]
+            --[[ "RPG", ]]
+            --[[ "--engine_assets", ]]
+            --[[ "/home/patu/dev/simple_wyvern/WyvernEditor", ]]
+            --[[ "--engine_root", ]]
+            --[[ "/home/patu/dev/simple_wyvern", ]]
+
+            --[[ "~/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/my-tool/metareflect/main.cxx" ]]
+            --[[ "clang-tools-extra/my-tool/metareflect/main.cxx" ]]
+            --[[ "clang-tools-extra/metareflect/metareflect/text.gxx" ]]
+
+            --[[ "clang-tools-extra/my-tool/example/Example.cpp", ]]
+
+            -- For testing WyvernHeaderGenerator
+            --[[ "example/Example.h", ]]
+            --[[ "--", ]]
+            --[[ "-DGENERATE_REFLECTION", ]]
+            --[[ "-x", ]]
+            --[[ "c++", ]]
+            --[[ "-I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/WyvernHeaderGenerator/", ]]
+            --[[ "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Modules", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Reflection", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Core", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/GameFramework", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Events", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/ImGui", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Scene", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Maths", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Input", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Graphics", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Utils", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform/Android", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform/GLFW", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform/Vulkan", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform/Unix", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Platform/Windows", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Core/OS", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Graphics/RHI", "-I/home/patu/dev/simple_wyvern/Wyvern/Source/Engine/Graphics/Camera", "-I/home/patu/dev/simple_wyvern/Wyvern/External/glfw/include", "-I/home/patu/dev/simple_wyvern/Wyvern/External/glm", "-I/home/patu/dev/simple_wyvern/Wyvern/External/glad/include", "-I/home/patu/dev/simple_wyvern/Wyvern/External/stb", "-I/home/patu/dev/simple_wyvern/Wyvern/External/imgui", "-I/home/patu/dev/simple_wyvern/Wyvern/External/tracy/public", "-I/home/patu/dev/simple_wyvern/Wyvern/External/spdlog/include", "-I/home/patu/dev/simple_wyvern/Wyvern/External/cereal/include", "-I/home/patu/dev/simple_wyvern/Wyvern/External/imgui_plugins", "-I/home/patu/dev/simple_wyvern/Wyvern/External/spirv_cross/include", "-I/home/patu/dev/simple_wyvern/Wyvern/External/VulkanMemoryAllocator/include" ]]
+
+            -- For testing metareflect
+            --[[ "example/test.hxx", ]]
+            --[[ "--", ]]
+            --[[ "-D__METAREFLECT__", ]]
+            --[[ "-x", ]]
+            --[[ "c++", ]]
+            --[[ "-I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect", ]]
+            --[[ "-I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect/metareflect", ]]
+            --[[ "-I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect/example", ]]
+
+            --[[ "-I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/lib/Headers" ]]
+
+            --[[ "Example.cpp -- -DGENERATE_REFLECTION -x c++ -I/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/my-tool/example/" ]]
+            --[[ "namespace n { namespace m { class C {}; } }", ]]
+
+            --[[ "~/dev/simple_wyvern/Tools/WyvernHeaderGenerator/Test.cpp" ]]
+            -- For RenderDoc
+            --project_root "/home/patu/Documents/Wyvern_Projects/RPG" --project_alias "RPG" --engine_assets "/home/patu/dev/simple_wyvern/WyvernEditor" --engine_root "/home/patu/dev/simple_wyvern"
 
             -- For debugging runtime
             --[[ "RPG", ]]
             --[[ "--project_root", ]]
+            --[[ "/home/patu/Documents/Wyvern_Projects/RPG", -- For debugging runtime inside a project ]]
+            -- This if we want to debug packaged game
             --[[ "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/RPG/RPG/Binaries/Debug-linux-x86_64", ]]
         },
         --[[ preLaunchTask = { ]]
@@ -357,16 +375,11 @@ for _, language in ipairs { "typescript", "javascript" } do
     }
 end
 
-
--- print("aaaaaaaaaaaaaaaaaaa from nvim dap!")
-
-
 local status_ok, dapui = pcall(require, "dapui")
 if not status_ok then
     print("dapui not loaded!!")
     return
 end
-
 
 -- Automaticly open and close dapui when starting and stopping to debug
 dap.listeners.before.event_terminated["dapui_config"] = function()
@@ -381,15 +394,17 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
-
 dapui.setup {
+    force_buffers = true,
     icons = {
         -- expanded = "➖",
         -- collapsed = "➕",
         -- circular = "⭕",
 
-        expanded = "►",
-        collapsed = "▼",
+        --[[ expanded = "►", ]]
+        --[[ collapsed = "▼", ]]
+        collapsed = "►",
+        expanded = "▼",
         circular = "⭕",
 
         disconnect = "",
@@ -403,10 +418,25 @@ dapui.setup {
         terminate = "",
         breakpoint = "T",
     },
+    expand_lines = true,
+    --[[ mappings = { ]]
+    --[[     expand = {"<CR>", "<Tab>"}, ]]
+    --[[     open = "o", ]]
+    --[[     remove = "d" ]]
+    --[[ }, ]]
     mappings = {
-        expand = "<CR>",
-        open = "o",
-        remove = "d"
+      edit = "e",
+      expand = { "<CR>", "<Tab>", "<2-LeftMouse>" },
+      open = "o",
+      remove = "d",
+      repl = "r",
+      toggle = "t"
+    },
+    floating = {
+        border = "single",
+        mappings = {
+            close = { "q", "<Esc>" },
+        }
     },
     layouts = {
         {
@@ -417,7 +447,7 @@ dapui.setup {
                 'stacks',
                 --[[ 'console', ]]
             },
-            size = 85,
+            size = 65,
             position = 'left',
         },
         {
@@ -426,7 +456,7 @@ dapui.setup {
                 --[[ 'console', ]]
                 --[[ 'watches' ]]
             },
-            size = 12,
+            size = 16,
             position = 'bottom',
         },
         {
@@ -437,5 +467,4 @@ dapui.setup {
             position = 'right'
         }
     }
-
 }

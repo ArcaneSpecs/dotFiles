@@ -13,7 +13,7 @@ workspaceFolder = '/home/patu/simple_wyvern/Projects/DEMO'
 -- Build command
 global_cmd = 'make'
 -- Run command
-wyvernEditor = 'cd ' .. workspaceFolder .. '/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor --project_root ' .. workspaceFolder .. ' --project_name DEMO --engine_assets ' .. workspaceFolder .. '/WyvernEditor'
+wyvernEditor = 'cd ' .. workspaceFolder .. '/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor --project_root ' .. workspaceFolder .. ' --project_name DEMO --engine_assets ' .. workspaceFolder .. ''
 --[[ wyvernEditor = 'cd ' .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor && '  .. workspaceFolder .. '/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor' ]]
 
 local operating_system = vim.loop.os_uname().sysname
@@ -114,11 +114,18 @@ function swap_to_header_or_source_file()
     -- os.execute("devenv build/WyvernEngine.sln /Build && build/bin/Debug-Windows-x86_64/WyvernEditor/WyvernEditor.exe")
 end
 
+function run_my_dapui()
+    if vim.fn.filereadable(".vscode/launch.json") then require("dap.ext.vscode").load_launchjs(nil,
+            { lldb = { "c", "cpp" } }) end
+    require("dap").continue()
+end
+
 return {
     run_wyvern_engine = run_wyvern_engine,
     build_wyvern_engine = build_wyvern_engine,
     swap_to_header_or_source_file = swap_to_header_or_source_file,
     run_build_in_current_cwd = build,
-    run_build_in_current_game_cwd = build_game
+    run_build_in_current_game_cwd = build_game,
+    run_my_dapui = run_my_dapui,
 }
 

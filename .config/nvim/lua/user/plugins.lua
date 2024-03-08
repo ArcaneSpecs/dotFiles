@@ -82,7 +82,24 @@ return packer.startup(function(use)
             -- refer to the configuration section below
         }
     }
-
+    -- GO implementation generator
+    use {
+        'edolphin-ydf/goimpl.nvim',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-telescope/telescope.nvim' },
+            { 'nvim-treesitter/nvim-treesitter' },
+        },
+        config = function()
+            require 'telescope'.load_extension 'goimpl'
+        end,
+    }
+    -- Cpp tools
+    use {
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        "Badhi/nvim-treesitter-cpp-tools",
+    }
     -- GitHub Copilot
     use("github/copilot.vim")
     -- LSP
@@ -114,6 +131,16 @@ return packer.startup(function(use)
             --[[ { "SirVer/ultisnips" }, ]]
             --[[ { "quangnguyen30192/cmp-nvim-ultisnips" }, ]]
         }
+    }
+    -- Auto sessions / autosessions
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require("auto-session").setup {
+                log_level = "error",
+                auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+            }
+        end
     }
     -- Inline hints
     use('simrat39/inlay-hints.nvim')

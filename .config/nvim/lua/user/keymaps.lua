@@ -22,9 +22,23 @@ vim.g.maplocalleader = " "
 -- Terminal toggle
 keymap("n", "<C-t>", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
 
-
 -- Alternate cpp and header files
-keymap("n", "<A-o>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
+--[[ keymap("n", "<A-o>", ":ClangdSwitchSourceHeader<CR>", opts) ]]
+
+-- Alternate glsl shader files
+
+vim.cmd([[
+  autocmd FileType cpp nnoremap <buffer> <A-o> :ClangdSwitchSourceHeader<CR>
+]])
+
+vim.cmd([[
+  autocmd FileType glsl nnoremap <buffer> <A-o> :lua require('utils.NvimUtilities').switch_shader()<CR>
+]])
+
+keymap("n", "<A-o>", ":lua require('utils.NvimUtilities').switch_file_pair()<CR>", opts)
+
+-- Alternate cpp and header files but also generate one if it doesn't exist in cwd
+keymap("n", "<A-i>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
 
 -- Build and run Wyvern Engine (TODO: specify project build)
 keymap("n", "<F6>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", opts)
@@ -36,15 +50,27 @@ keymap("n", "<F6>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", 
 vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = true })
 vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, expr = true })
 
+-- Hex editor
+-- To hex
+keymap("n", "<leader>x", ":%!xxd<CR>", opts)
+-- From hex to text
+keymap("n", "<leader>xw", ":%!xxd -r<CR>", opts)
+keymap("n", "<leader>X", ":%!xxd -r<CR>", opts)
+
 -- Undotree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
+
+-- Go to method
+keymap("n", "<leader>m", ":Telescope lsp_document_symbols<CR>", opts)
 
 -- Make J not jump the cursor
 keymap("n", "J", "mzJ`z", opts)
 
 -- Telescope
+-- Replace in all files in quick fix list
 keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
-keymap("n", "<C-1>", "<CR>:set wrap<CR><C-w>j", opts)
+-- Preview file in quick fix list
+keymap("n", "<S-Return>", "<CR>:set wrap<CR><C-w>j", opts)
 
 -- Tagbar
 --[[ keymap("n", "<C-d>", ":TagbarToggle<CR>", opts) ]]
@@ -66,20 +92,30 @@ keymap("n", "<leader>h", "viw\"1P", opts)
 
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
-keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
+--[[ keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts) ]]
+
+-- Bind F5 to run dapui
+keymap("n", "<F5>", ":lua require'utils.my_functions'.run_my_dapui()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
 keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
 keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
+keymap("n", "<leader>k", ":lua require'dapui'.open()<CR>", opts)
 
 keymap("n", "<leader><F3>", ":lua require'dapui'.toggle()<CR>", opts)
 keymap("n", "<leader><F4>", ":lua require'dapui'.toggle(2)<CR>", opts)
-keymap("n", "<leader><F2>", ":lua require'dapui'.eval()<CR>", opts)
+keymap("n", "<leader><F2>", ":lua require'dapui'.eval(nil, {enter=true})<CR>", opts)
 keymap("n", "<F7>", ":lua require'dap'.terminate()<CR>", opts)
 
-keymap("n", "<leader>1", ":lua require'dapui'.float_element(\"scopes\", {})<CR>", opts)
+keymap("n", "<leader>1", ":lua require'dapui'.float_element(\"scopes\", {enter=true})<CR>", opts)
+keymap("n", "<leader>2", ":lua require'dapui'.float_element(\"stacks\", {enter=true})<CR>", opts)
+keymap("n", "<leader>3", ":lua require'dapui'.float_element(\"watches\", {enter=true})<CR>", opts)
+keymap("n", "<leader>4", ":lua require'dapui'.float_element(\"breakpoints\", {enter=true})<CR>", opts)
+
+--[[ keymap("n", "<leader>i", ":lua require'telescope'.extensions.goimpl.goimpl{}<CR>", opts) ]]
+keymap("n", "<leader>i", ":TSCppDefineClassFunc<CR>", opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -104,6 +140,12 @@ keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 --[[ keymap("n", "<S-l>", ":bnext<CR>", opts) ]]
 --[[ keymap("n", "<S-h>", ":bprevious<CR>", opts) ]]
 
+-- Navigate tabs
+keymap("n", "<A-S-l>", ":tabnext<CR>", opts)
+keymap("n", "<A-S-h>", ":tabprevious<CR>", opts)
+keymap("n", "<A-S-n>", ":tabnew<CR>", opts)
+keymap("n", "<A-S-w>", ":tabclose<CR>", opts)
+
 keymap("n", "<A-h>", ":BufferLineMovePrev<CR>", opts)
 keymap("n", "<A-l>", ":BufferLineMoveNext<CR>", opts)
 
@@ -118,7 +160,7 @@ keymap("n", "<A-j>", "<Esc>:m +1<CR>", opts)
 
 -- Todo comments
 keymap("n", "<leader>t", ":TodoTelescope<CR>", opts)
-keymap("n", "<leader>T", ":TodoLocList cwd=Wyvern/src<CR>", opts)
+keymap("n", "<leader>T", ":TodoLocList cwd=Wyvern/Source<CR>", opts)
 
 -- Move current line / block with Alt-j/k ala vscode.
 --[[ ["<A-j>"] = "<Esc>:m .+1<CR>==gi", ]]
@@ -156,3 +198,4 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+

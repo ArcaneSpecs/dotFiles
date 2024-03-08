@@ -145,19 +145,18 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/patu/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/patu/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/patu/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/patu/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 # <<< conda initialize <<<
-
 
 #### ARCO ZSHRC ####
 ###
@@ -266,7 +265,6 @@ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
 
 ####   ARCOLINUX SETTINGS   ####
 # export PAGER='most'
@@ -405,9 +403,9 @@ alias update-fc='sudo fc-cache -fv'
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
 
 #copy shell configs
-alias cb='cp /etc/skel/.bashrc ~/.bashrc && echo "Copied."'
-alias cz='cp /etc/skel/.zshrc ~/.zshrc && exec zsh'
-alias cf='cp /etc/skel/.config/fish/config.fish ~/.config/fish/config.fish && echo "Copied."'
+# alias cb='cp /etc/skel/.bashrc ~/.bashrc && echo "Copied."'
+# alias cz='cp /etc/skel/.zshrc ~/.zshrc && exec zsh'
+# alias cf='cp /etc/skel/.config/fish/config.fish ~/.config/fish/config.fish && echo "Copied."'
 
 #switch between bash and zsh
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
@@ -688,4 +686,3 @@ alias personal='cp -Rf /personal/* ~'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source ~/.bashrc
-

@@ -27,10 +27,21 @@ PICS=($(ls -r ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$" -e ".mp
 # CONFS=($(ls -r ${DIR}))
 
 CONFS=(
+"~/MyDoc/MyDocumentation/university/todo.md" 
+"~/MyDoc/notes/TODO.md" 
 "~/.config/hypr/hyprland.conf" 
+"~/.config/hypr/keybinds.conf"
 "~/.config/kitty/kitty.conf"
 "~/.config/waybar/config.jsonc"
-
+"~/.local/bin/wallpaperselect"
+"~/.local/bin/edit_config"
+"~/.config/hypr/scripts/colorpicker.sh"
+"~/.config/hypr/scripts/init.sh"
+"~/.config/gtk-3.0/bookmarks"
+"~/.config/ranger/rc.conf"
+"~/github/cfiles/config.h"
+"~/.bashrc"
+"~/.zshrc"
 )
 
 # rofi STYLES
@@ -48,7 +59,7 @@ rofi_command="wofi --show dmenu \
 			# --conf $CONFIG --style $STYLE --color $COLORS \
 
 menu(){
-    # Here we are looping in the PICS array that is composed of all images in the $DIR folder
+    # Here we are looping in the confs array that is composed of all full config file paths 
     for i in ${!CONFS[@]}; do
         printf "$i. ${CONFS[$i]}\n"
     done
@@ -76,7 +87,8 @@ main() {
     # Get the directory of file_path
     dir_path=$(dirname $file_path)
     #echo "$editor_command $switches $file_path"
-    cd $dir_path && $editor_command $switches $file_path
+    #cd $dir_path && $editor_command $switches $file_path
+    cd ~/ && $editor_command $switches $file_path
 }
 
 # Check if rofi is already running

@@ -1,7 +1,9 @@
-local status_ok, _ = pcall(require, "lspconfig")
+local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
     return
 end
+
+
 
 --[[ require "user.lsp.configs" ]]
 --[[ require("user.lsp.handlers").setup() ]]
@@ -28,12 +30,6 @@ lsp.setup_servers({
     'texlab',
 })
 
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 --[[
 lsp.set_preferences({
     -- suggest_lsp_servers = false,
@@ -48,6 +44,10 @@ lsp.set_preferences({
 })
 ]]
 --
+lsp.use('tsserver', {
+    settings = {
+    }
+})
 
 --[[ lsp.configure('lua-language-server', { ]]
 lsp.use('lua_ls', {
@@ -70,15 +70,17 @@ lsp.use('clangd', {
     cmd = {
         "clangd",
         "--all-scopes-completion",
-        "--suggest-missing-includes",
+        --[[ "--suggest-missing-includes", ]] -- Obsolete
         "--background-index",
         "--pch-storage=disk",
-        "--cross-file-rename",
+        --[[ "--cross-file-rename", ]] -- Obsolete
         "--log=info",
         "--completion-style=detailed",
         "--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
         "--clang-tidy",
         "--offset-encoding=utf-16", --temporary fix for null-ls
+        --[[ "--std=c++17", ]]
+        --[[ "--std=c89" ]]
         -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
         -- "--fallback-style=Google",
         -- "--header-insertion=never",
@@ -91,6 +93,9 @@ lsp.use('pyright', {
         python = {
             analysis = {
                 extraPaths = { '/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/include' },
+            },
+            format = {
+                enable = false
             }
         }
     }
@@ -230,7 +235,6 @@ cmp.setup({
     },
 })
 
-
 lsp.on_attach(function(client, bufnr)
     --[[ lsp.default_keymaps({buffer = bufnr}) ]]
     local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -239,7 +243,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "gw", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "gW", function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set("n", "<C-g>", function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "<M-e>", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "<M-d>", function() vim.diagnostic.goto_prev() end, opts)
     vim.keymap.set("n", "ga", function() vim.lsp.buf.code_action() end, opts)
@@ -250,6 +254,34 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+--[[ local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " } ]]
+--[[ for type, icon in pairs(signs) do ]]
+--[[     local hl = "DiagnosticSign" .. type ]]
+--[[     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl }) ]]
+--[[ end ]]
+--[[]]
+--[[ vim.fn.sign_define( ]]
+--[[     "LspDiagnosticsSignError", ]]
+--[[     { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" } ]]
+--[[ ) ]]
+--[[ vim.fn.sign_define( ]]
+--[[     "LspDiagnosticsSignWarning", ]]
+--[[     { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" } ]]
+--[[ ) ]]
+--[[ vim.fn.sign_define( ]]
+--[[     "LspDiagnosticsSignHint", ]]
+--[[     { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" } ]]
+--[[ ) ]]
+--[[ vim.fn.sign_define( ]]
+--[[     "LspDiagnosticsSignInformation", ]]
+--[[     { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" } ]]
+--[[ ) ]]
+--[[]]
+--[[ sign define DiagnosticSignError text= texthl=TextError linehl= numhl= ]]
+--[[ sign define DiagnosticSignWarn  text= texthl=TextWarn  linehl= numhl= ]]
+--[[ sign define DiagnosticSignInfo  text= texthl=TextInfo  linehl= numhl= ]]
+--[[ sign define DiagnosticSignHint  text= texthl=TextHint  linehl= numhl= ]]
 
 vim.diagnostic.config({
     virtual_text = true,
@@ -263,15 +295,38 @@ vim.diagnostic.config({
         source = "always",
         header = "",
         prefix = "",
-    }
+    },
+    signs = true
 })
 
+-- { name = "DiagnosticSignError", text = " " },
+-- { name = "DiagnosticSignWarn",  text = " " },
+-- { name = "DiagnosticSignHint",  text = " " },
+-- { name = "DiagnosticSignInfo",  text = " " },
+
+vim.fn.sign_define(
+    "DiagnosticSignError",
+    { texthl = "DiagnosticSignError", text = "", numhl = "DiagnosticSignError" }
+)
+vim.fn.sign_define(
+    "DiagnosticSignWarning",
+    { texthl = "DiagnosticSignWarning", text = "", numhl = "DiagnosticSignWarning" }
+)
+vim.fn.sign_define(
+    "DiagnosticSignHint",
+    { texthl = "DiagnosticSignHint", text = "", numhl = "DiagnosticSignHint" }
+)
+vim.fn.sign_define(
+    "DiagnosticSignInformation",
+    { texthl = "DiagnosticSignInformation", text = "", numhl = "DiagnosticSignInformation" }
+)
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "single",
+    border = "rounded",
     width = 80,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "single",
+    border = "rounded",
     width = 80,
 })

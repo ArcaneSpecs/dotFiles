@@ -2,7 +2,6 @@
 --[[ vim.opt.foldmethod = "expr" ]]
 --[[ vim.opt.foldexpr = "nvim_treesitter#foldexpr()" ]]
 
-
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
@@ -21,13 +20,17 @@ require "user.lualine"
 require "user.toggleterm"
 require "user.project"
 require "user.impatient"
+require "user.cpp-tools"
 require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
--- require "user.autocommands"
+require "user.autocommands"
+require "user.autosessions"
 -- require "nvim-comment"
 require "user.nvim-dap"
--- require "user.harpoon"
+
+--[[ https://github.com/toppair/reach.nvim ]]
+require "user.harpoon"
 -- require "user.vimspector"
 require "user.undotree"
 require "user.lazygit"
@@ -43,4 +46,8 @@ if vim.g.neovide then
     vim.o.guifont = "Jetbrains Mono"
 end
 
+-- Extra settings
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.cmd('highlight Search guibg=#4b9ba8 guifg=#13252B')
 

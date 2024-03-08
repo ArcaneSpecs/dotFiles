@@ -113,9 +113,7 @@ local function_name = function()
     if function_name == '' then
         function_name = '[No Name]'
     end
-    return function_name
 end
-
 
 lualine.setup({
     options = {
@@ -142,11 +140,14 @@ lualine.setup({
         lualine_a = { branch },
         lualine_b = { diagnostics },
         --[[ lualine_c = { mode }, ]]
-        lualine_c = {},
+
+        --[[ lualine_c = { diff }, ]]
+        lualine_c = { diff, {require('auto-session.lib').current_session_name} },
+
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         --[[ lualine_x = { filename, diff, spaces, "encoding", filetype }, ]]
         --[[ lualine_x = { filename, diff, function_name }, ]]
-        lualine_x = { filename, diff },
+        lualine_x = { filename },
         --[[ lualine_x = { filename, diff, filetype }, ]]
         lualine_y = { filetype },
         --[[ lualine_z = { progress }, ]]
@@ -156,7 +157,7 @@ lualine.setup({
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { filename },
+        lualine_c = { diagnostics, filename },
         lualine_x = { "location" },
         lualine_y = {},
         lualine_z = { filetype },

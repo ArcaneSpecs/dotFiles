@@ -12,20 +12,22 @@ cp -r ~/.config/nvim .config
 cp -r ~/.config/Kvantum .config
 cp -r ~/.config/rofi .config
 cp -r ~/.config/firefox .config
-cp -r ~/.config/zsh .config
+# cp -r ~/.config/zsh .config
+cp -r ~/.config/ranger .config
+cp -r ~/.config/gtk-3.0/ .config
 
 # Just files but not the mp4s
 find ~/.config/Wallpapers -maxdepth 1 -type f -exec cp {} .config/Wallpapers \;
 # cp -r ~/.config/Wallpapers .config
 
 # cp -r ~/.local/bin .local
-cp ~/.local/bin/screensht .local/bin
-cp ~/.local/bin/wrappedhl.sh .local/bin
-cp ~/.local/bin/wallpaper .local/bin
-cp ~/.local/bin/wallpaperselect .local/bin
-cp ~/.local/bin/screenshot_effect.mp3 .local/bin
-cp ~/.local/bin/edit_config .local/bin
-
+# cp ~/.local/bin/screensht .local/bin
+# cp ~/.local/bin/wrappedhl.sh .local/bin
+# cp ~/.local/bin/wallpaper .local/bin
+# cp ~/.local/bin/wallpaperselect .local/bin
+# cp ~/.local/bin/screenshot_effect.mp3 .local/bin
+# cp ~/.local/bin/edit_config .local/bin
+cp ~/.local/bin/* .local/bin
 
 # Autostart
 cp -r ~/.config/autostart/ .config
