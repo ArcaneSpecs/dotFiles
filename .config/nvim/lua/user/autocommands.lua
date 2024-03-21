@@ -3,6 +3,7 @@ vim.cmd [[
     autocmd!
     "Close quickfix windows, help windows and man pages etc. with q"
     " autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
+    "Highlight the area that was yanked"
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     "Hides quick fix tabs from tabline"

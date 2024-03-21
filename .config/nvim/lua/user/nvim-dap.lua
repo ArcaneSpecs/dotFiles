@@ -183,7 +183,8 @@ end
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/VulkanDEMO' ]]
 --[[ local tempcwd = '/home/patu/Documents/Wyvern Projects/RPG' ]]
 --[[ local tempcwd = '/home/patu/Documents/Wyvern_Projects/RPG' ]]
-local tempcwd = '/home/patu/github/Lumos/Lumos/bin/Debug-linux-x86_64/'
+-- local tempcwd = '/home/patu/github/Lumos/Lumos/bin/Debug-linux-x86_64/'
+local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64/'
 --[[ local tempcwd = '/home/patu/github/vulkan-base/' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect' ]]

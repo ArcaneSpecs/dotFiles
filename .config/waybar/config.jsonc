@@ -122,7 +122,7 @@
         "on-click": "kitty nvtop",
     },
     "hyprland/window": {
-        "max-length": 80,
+        "max-length": 75,
         "separate-outputs": true,
         "format": "{title}",
     },
@@ -137,7 +137,9 @@
     },
     "clock": {
         // "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
-        "format": "{: %R  %Ss  %d.%m.%Y}",
+        "format": " {:%R  %Ss  %d.%m.%Y}",
+        // "format": "{:%R}",
+        // "format": "{:%0I:%M %p}",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
         // "tooltip-format": "{calendar}",
         "interval": 1,

@@ -47,6 +47,8 @@ alias history_timestamps='HISTTIMEFORMAT="%Y-%m-%d %T "'
 alias history='history -i'
 alias hs='history -i'
 
+alias kdenlive='flatpak run org.kde.kdenlive'
+
 alias ff='nvim "$(fzf)"'
 
 alias memuse='function _memuse(){ cat /proc/$1/smaps | grep Rss | awk '\''{print $2}'\'' | awk '\''{s+=$1} END {printf "%.0f\n", s/1024}'\'' /dev/stdin; }; _memuse'

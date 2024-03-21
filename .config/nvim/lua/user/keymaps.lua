@@ -37,6 +37,9 @@ vim.cmd([[
 
 keymap("n", "<A-o>", ":lua require('utils.NvimUtilities').switch_file_pair()<CR>", opts)
 
+-- Set tab to tab
+keymap("i", "<Tab>", "<Tab>", opts)
+
 -- Alternate cpp and header files but also generate one if it doesn't exist in cwd
 keymap("n", "<A-i>", ":lua require'utils.my_functions'.swap_to_header_or_source_file()<CR>", opts)
 
@@ -89,6 +92,7 @@ keymap("n", "gh", ":Gitsigns preview_hunk_inline<CR>", opts)
 keymap("n", "<leader>J", "\"0P", opts)
 keymap("n", "<leader>j", "viw\"0P", opts)
 keymap("n", "<leader>h", "viw\"1P", opts)
+keymap("n", "<leader>p", "\"_dP", opts)
 
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
@@ -115,7 +119,7 @@ keymap("n", "<leader>3", ":lua require'dapui'.float_element(\"watches\", {enter=
 keymap("n", "<leader>4", ":lua require'dapui'.float_element(\"breakpoints\", {enter=true})<CR>", opts)
 
 --[[ keymap("n", "<leader>i", ":lua require'telescope'.extensions.goimpl.goimpl{}<CR>", opts) ]]
-keymap("n", "<leader>i", ":TSCppDefineClassFunc<CR>", opts)
+-- keymap("n", "<leader>i", ":TSCppDefineClassFunc<CR>", opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)

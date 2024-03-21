@@ -38,6 +38,7 @@ local options = {
 
 vim.opt.shortmess:append "c"
 
+vim.g.have_nerd_font = true
 
 for k, v in pairs(options) do
   vim.opt[k] = v
