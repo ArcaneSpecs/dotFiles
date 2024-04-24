@@ -30,16 +30,29 @@ sudo fc-cache -f -v
 # Download QT themes
 #wget https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1687532960/Bluish-Dark-Kvantum.tar.gz?response-content-disposition=attachment%3B%2520Bluish-Dark-Kvantum.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230713%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230713T095448Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=bdda392ec449548040287520d919f82aca056a512b1250077ebaf032f0dd21e0 -P ~/Downloads/
 
-# Check if yay is installed
-if yay --version &> /dev/null; then
-    echo "yay is already installed"
+# # Check if yay is installed
+# if yay --version &> /dev/null; then
+#     echo "yay is already installed"
+# else
+#     echo "yay is not installed"
+#     # Install yay
+#     git clone --depth 1 https://aur.archlinux.org/yay.git ~/github/yay
+#     cd ~/github/yay
+#     makepkg -si
+#     yay --version
+# fi
+
+# Check if paru is installed
+if paru --version &> /dev/null; then
+    echo "paru is already installed"
 else
-    echo "yay is not installed"
-    # Install yay
-    git clone https://aur.archlinux.org/yay.git ~/github/yay
-    cd ~/github/yay
+    echo "paru is not installed"
+    # Install paru 
+    sudo pacman -S --needed base-devel
+    git clone --depth 1 https://aur.archlinux.org/paru.git ~/github/paru
+    cd ~/github/paru
     makepkg -si
-    yay --version
+    paru --version
 fi
 
 # Hyprland deps

@@ -1,10 +1,16 @@
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-end ---@diagnostic disable-next-line: undefined-field
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
@@ -36,7 +42,63 @@ require("lazy").setup({
             post_hook = nil,
         }
     },
+    -- {
+    --     'preservim/tagbar'
+    -- },
+    {
+        "folke/neodev.nvim",
+    },
+    {
+        "chrisbra/csv.vim"
+    },
+    {
+        "mechatroner/rainbow_csv",
+        ft = {
+            'csv',
+            'tsv',
+            'csv_semicolon',
+            'csv_whitespace',
+            'csv_pipe',
+            'rfc_csv',
+            'rfc_semicolon'
+        },
+        cmd = {
+            'RainbowDelim',
+            'RainbowDelimSimple',
+            'RainbowDelimQuoted',
+            'RainbowMultiDelim'
+        }
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    },
+    {
+        'RaafatTurki/hex.nvim',
+        config = function()
+            require('hex').setup()
+        end
+        -- 'ArcaneSpecs/HexEditor.nvim',
+        -- dir = "/home/patu/dev/HexEditor.nvim",
+        -- config = function()
+        --     require('HexEditor').setup()
+        -- end
+    },
+    {
+        'jbyuki/one-small-step-for-vimkind'
+    },
+    {
+        "ahmedkhalf/project.nvim",
 
+    },
     -- Here is a more advanced example where we pass configuration
     -- options to `gitsigns.nvim`. This is equivalent to the following lua:
     --    require('gitsigns').setup({ ... })
@@ -55,11 +117,39 @@ require("lazy").setup({
         },
     },
     {
+        dir = "/home/patu/dev/WyvernChat.nvim",
+        -- config = function()
+        --     require("WyvernChat").setup()
+        -- end,
+        dependencies = {
+            "nvim-lua/popup.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim",
+            "nvim-telescope/telescope.nvim"
+        },
+
+
+    },
+    -- {
+    --     "jackMort/ChatGPT.nvim",
+    --     config = function()
+    --         require("chatgpt").setup()
+    --     end,
+    --     dependencies = {
+    --         "nvim-lua/popup.nvim",
+    --         "MunifTanjim/nui.nvim",
+    --         "nvim-lua/plenary.nvim",
+    --         "folke/trouble.nvim",
+    --         "nvim-telescope/telescope.nvim"
+    --     },
+    -- },
+    {
         -- Indent lines
-        { 
-            "lukas-reineke/indent-blankline.nvim", 
-            main = "ibl", 
-            opts = { } 
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            main = "ibl",
+            opts = {}
         }
     },
     {
@@ -114,28 +204,37 @@ require("lazy").setup({
         },
     },
     {
-        "nvim-lualine/lualine.nvim",
-        commit = "3362b28f917acc37538b1047f187ff1b5645ecdd",
+        "nvim-lualine/lualine.nvim"
     },
 
     {
         -- Useful lua functions used by lots of plugins
-        "nvim-lua/plenary.nvim",
-        commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9"
+        "nvim-lua/plenary.nvim"
     },
     {
         -- Autopairs, integrates with both cmp and treesitter
         "windwp/nvim-autopairs"
     },
     {
-        "akinsho/toggleterm.nvim",
-        commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8",
+        "akinsho/toggleterm.nvim"
     },
     {
         'simrat39/inlay-hints.nvim'
     },
     {
         "github/copilot.vim",
+        config = function()
+            vim.g.copilot_no_tab_map = true
+            vim.g.copilot_assume_mapped = true
+            vim.g.copilot_tab_fallback = ""
+            vim.cmd [[imap <silent><script><expr> <C-s> copilot#Accept("\<CR>")]]
+            vim.cmd [[highlight CopilotSuggestion guifg=#555555 ctermfg=8]]
+            vim.g.copilot_filetypes = {
+                ["*"] = true,
+                ["xml"] = false,
+                ["json"] = false,
+            }
+        end,
     },
     {
         "mfussenegger/nvim-dap",
@@ -148,6 +247,11 @@ require("lazy").setup({
     },
     {
         "rcarriga/nvim-dap-ui",
+        dependencies =
+        {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        }
     },
     {
         "theHamsta/nvim-dap-virtual-text",
@@ -172,7 +276,6 @@ require("lazy").setup({
     },
     {
         "goolord/alpha-nvim",
-        commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94",
     },
 
     -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -593,14 +696,14 @@ require("lazy").setup({
                         "clangd",
                         "--all-scopes-completion",
                         --[[ "--suggest-missing-includes", ]] -- Obsolete
-                        "--background-index",
-                        "--pch-storage=disk",
+                        --"--background-index",
+                        --"--pch-storage=disk",
                         --[[ "--cross-file-rename", ]] -- Obsolete
-                        "--log=info",
-                        "--completion-style=detailed",
-                        "--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
+                        --"--log=info",
+                        --"--completion-style=detailed",
+                        --"--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
                         "--clang-tidy",
-                        "--offset-encoding=utf-16", --temporary fix for null-ls
+                        --"--offset-encoding=utf-16", --temporary fix for null-ls
                         --[[ "--std=c++17", ]]
                         --[[ "--std=c89" ]]
                         -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
@@ -630,8 +733,9 @@ require("lazy").setup({
                 },
                 -- Javascript lsp
 
+                rust_analyzer = {
 
-                -- rust_analyzer = {},
+                },
                 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
                 --
                 -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -658,7 +762,18 @@ require("lazy").setup({
                         }
                     }
                 },
+                json_lsp = {
+                    settings = {
 
+                    },
+                    filetypes = { "json", "jsonc", "wscene" },
+                },
+                glslls = {
+                    settings = {
+
+                    },
+                    filetypes = { "glsl", "glslh", "frag", "vert" },
+                },
                 lua_ls = {
                     -- cmd = {...},
                     -- filetypes { ...},
@@ -671,8 +786,8 @@ require("lazy").setup({
                                 -- Tells lua_ls where to find all the Lua files that you have loaded
                                 -- for your neovim configuration.
                                 library = {
-                                    "${3rd}/luv/library",
-                                    unpack(vim.api.nvim_get_runtime_file("", true)),
+                                    -- "${3rd}/luv/library",
+                                    -- unpack(vim.api.nvim_get_runtime_file("", true)),
 
                                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                                     [vim.fn.stdpath("config") .. "/lua"] = true,
@@ -686,7 +801,8 @@ require("lazy").setup({
                             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
                             -- diagnostics = { disable = { 'missing-fields' } },
                             diagnostics = {
-                                globals = { 'vim' }
+                                globals = { 'vim' },
+                                disable = { 'missing-fields' }
                             },
                         },
                     },
@@ -908,6 +1024,7 @@ require("lazy").setup({
                     end,
                 },
                 sources = {
+                    { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "luasnip" },
                     { name = "buffer" },
@@ -972,7 +1089,6 @@ require("lazy").setup({
     },
     {
         "nvim-tree/nvim-tree.lua",
-        commit = "08a0aa1a3b7411ee0a7887c8818528b1558cef96",
         config = function() end,
     },
 
@@ -1014,6 +1130,28 @@ require("lazy").setup({
             lazy = "💤 ",
         },
     },
+    defaults = {
+        lazy = false -- Toggle for VSCode
+    },
+    custom_keys = {
+        -- You can define custom key maps here. If present, the description will
+        -- be shown in the help menu.
+        -- To disable one of the defaults, set it to false.
+
+        ["<localleader>7"] = {
+            function()
+                require("lazy").install()
+            end,
+            desc = "Open lazy install menu",
+        },
+
+        ["<localleader>8"] = {
+            function()
+                require("lazy").sync({ wait = true })
+            end,
+            desc = "Lazy sync",
+        },
+    },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
@@ -1022,7 +1160,7 @@ require("lazy").setup({
 ----------------------------------- PACKER ------------------------------------------
 ---- Automatically install packer
 --local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
---if fn.empty(fn.glob(install_path)) > 0 then
+--if fn.empty(fn.glob()) > 0 then
 --    PACKER_BOOTSTRAP = fn.system({
 --        "git",
 --        "clone",

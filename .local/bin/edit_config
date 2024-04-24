@@ -42,6 +42,7 @@ CONFS=(
 "~/github/cfiles/config.h"
 "~/.bashrc"
 "~/.zshrc"
+"~/.local/state/nvim/lsp.log"
 )
 
 # rofi STYLES

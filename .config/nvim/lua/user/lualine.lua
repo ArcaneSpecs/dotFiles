@@ -115,6 +115,33 @@ local function_name = function()
     end
 end
 
+local selection_info = function()
+    local srow, scol, erow, ecol, _ = unpack(vim.fn.getpos("'<"))
+    local _, _, _, ebyte = unpack(vim.fn.getpos("'>"))
+    local lines = erow - srow + 1
+    local bytes = ebyte - scol + 1
+    return string.format("%dL, %dB", lines, bytes)
+end
+
+local search_count = function()
+    local result = vim.fn.searchcount({ recompute = 1, maxcount = 1000 })
+    if result.current == 0 or result.total == 0 then
+        return ''
+    else
+        return string.format('󱢃 %d/%d', result.current, result.total)
+    end
+end
+
+local macro_recording = function()
+    local recording = vim.fn.reg_recording() ~= ''
+    if recording == false then
+        return ''
+    else
+        local to = vim.fn.reg_recording()
+        return 'Macro: ' .. to .. ''
+    end
+end
+
 lualine.setup({
     options = {
         --[[ section_separators = { left = '', right = '' }, ]]
@@ -138,16 +165,17 @@ lualine.setup({
     },
     sections = {
         --[[ lualine_a = { branch, diagnostics, mode}, ]]
-        lualine_a = { branch },
-        lualine_b = { diagnostics },
+        lualine_a = { branch},
+        lualine_b = { diff, diagnostics },
         --[[ lualine_c = { mode }, ]]
         --[[ lualine_c = { diff }, ]]
-        lualine_c = { diff, {require('auto-session.lib').current_session_name} },
+        lualine_c = { search_count,  { require('auto-session.lib').current_session_name }, macro_recording },
 
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         --[[ lualine_x = { filename, diff, spaces, "encoding", filetype }, ]]
-        --[[ lualine_x = { filename, diff, function_name }, ]]
-        lualine_x = { filename, "location"},
+        -- [[ lualine_x = { filename, diff, function_name }, ]]
+        -- lualine_x = { filename, "location", selection_info },
+        lualine_x = { filename, "location" },
         --[[ lualine_x = { filename, diff, filetype }, ]]
         lualine_y = { filetype },
         --[[ lualine_z = { progress }, ]]
@@ -159,8 +187,8 @@ lualine.setup({
         lualine_b = {},
         lualine_c = { diagnostics },
         lualine_x = { filename, "location" },
-        lualine_y = {filetype },
-        lualine_z = { },
+        lualine_y = { filetype },
+        lualine_z = {},
     },
     tabline = {},
     extensions = {},

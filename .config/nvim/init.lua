@@ -26,6 +26,9 @@ require("user.whichkey")
 require("user.autocommands")
 require("user.autosessions")
 require("user.nvim-dap")
+require("user.noice")
+
+require("user.WyvernChatConfig")
 
 --[[ https://github.com/toppair/reach.nvim ]]
 require("user.harpoon")
@@ -38,12 +41,67 @@ require("user.todo_comments")
 -- print("NVIM init called!")
 
 if vim.g.neovide then
-	vim.g.neovide_cursor_trail_legnth = 0
-	vim.g.neovide_cursor_animation_length = 0
-	vim.o.guifont = "Jetbrains Mono"
+    vim.g.neovide_cursor_trail_legnth = 0
+    vim.g.neovide_cursor_animation_length = 0
+    vim.o.guifont = "Jetbrains Mono"
 end
 
 -- Extra settings
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.cmd("highlight Search guibg=#4b9ba8 guifg=#13252B")
+
+vim.api.nvim_create_autocmd({ 'VimEnter', 'SessionLoadPost' }, {
+    callback = function()
+        if vim.g.SessionLoad then return end
+        vim.cmd('NvimTreeOpen')
+        -- vim.cmd('vnew')
+        vim.cmd.wincmd('l')
+        -- vim.cmd('vnew')
+        -- vim.cmd('bd')
+        vim.cmd('NvimTreeClose')
+    end,
+    once = true
+})
+
+
+local rainbow_group = vim.api.nvim_create_augroup("rainbow_csv", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { '*.csv', '*.tsv', "*.csv_semicolon" },
+    group = rainbow_group,
+    callback = function(event)
+        -- vim.notify("Rainbow CSV loaded", vim.log.levels.WARN)
+        local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func,
+                { buffer = event.buf, desc = "LSP: " .. desc })
+        end
+        map('<A-l>', ':RainbowCellGoRight<CR>', "Go right")
+        map('<A-h>', ':RainbowCellGoLeft<CR>', "Go left")
+        map('<A-j>', ':RainbowCellGoDown<CR>', "Go down")
+        map('<A-k>', ':RainbowCellGoUp<CR>', "Go up")
+        map('<A-g>', ':RainbowAlign<CR>', "Align")
+        map('<A-t>', ':RainbowDelim<CR>', "Align")
+        map('<A-y>', ':RainbowDelimSimple<CR>', "Set delimiter")
+        vim.fn.search(',', 'c')
+        vim.cmd('RainbowDelimSimple')
+        vim.cmd('RainbowAlign')
+
+        -- vim.cmd("setfiletype csv")
+    end
+})
+
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+    pattern = '*.dat',
+    group = rainbow_group,
+    callback = function()
+        vim.cmd("set filetype=csv_pipe")
+    end
+})
+
+-- vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+--     pattern = '*.csv',
+--     callback = function()
+--     end
+-- })
+--

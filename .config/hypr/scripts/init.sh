@@ -1,6 +1,7 @@
 #!/bin/bash
 
-whatsapp-for-linux &
+# whatsapp-for-linux &
+whatsapp-electron &
 discord &
 # obs --minimize-to-tray &
 flatpak run com.obsproject.Studio --minimize-to-tray &

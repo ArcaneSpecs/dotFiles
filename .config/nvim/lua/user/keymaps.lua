@@ -35,8 +35,34 @@ vim.cmd([[
   autocmd FileType glsl nnoremap <buffer> <A-o> :lua require('utils.NvimUtilities').switch_shader()<CR>
 ]])
 
+-- vim.cmd([[
+--     autocmd FileType csv nnoremap <buffer> <C-l> :RainbowCellGoRight<CR>
+--     autocmd FileType csv nnoremap <buffer> <C-h> :RainbowCellGoLeft<CR>
+--     autocmd FileType csv nnoremap <buffer> <C-j> :RainbowCellGoDown<CR>
+--     autocmd FileType csv nnoremap <buffer> <C-k> :RainbowCellGoUp<CR>
+--     autocmd FileType csv nnoremap <buffer> <C-g> :RainbowAlign<CR>
+--     autocmd FileType csv nnoremap <buffer> <C-y> :RainbowDelimSimple<CR>
+-- ]])
+
+-- vim.api.nvim_create_augroup('csv_filetype', { clear = true })
+-- vim.api.nvim_create_autocmd('FileType', {
+--     pattern = 'csv_semicolon',
+--     callback = function()
+--         vim.keymap.set('n', '<C-l>', ':RainbowCellGoRight<CR>', { noremap = true, silent = true })
+--         vim.keymap.set('n', '<C-h>', ':RainbowCellGoLeft<CR>', { noremap = true, silent = true })
+--         vim.keymap.set('n', '<C-j>', ':RainbowCellGoDown<CR>', { noremap = true, silent = true })
+--         vim.keymap.set('n', '<C-k>', ':RainbowCellGoUp<CR>', { noremap = true, silent = true })
+--         vim.keymap.set('n', '<C-g>', ':RainbowAlign<CR>', { noremap = true, silent = true })
+--         vim.keymap.set('n', '<C-y>', ':RainbowDelimSimple<CR>', { noremap = true, silent = true })
+--
+--         -- vim.opt.number = true
+--         -- vim.opt.relativenumber = true
+--     end,
+-- })
+
 keymap("n", "<A-o>", ":lua require('utils.NvimUtilities').switch_file_pair()<CR>", opts)
 
+keymap("n", "<leader>Z", ":w<CR>:source %<CR>", opts)
 -- Set tab to tab
 keymap("i", "<Tab>", "<Tab>", opts)
 
@@ -55,10 +81,13 @@ vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, exp
 
 -- Hex editor
 -- To hex
-keymap("n", "<leader>x", ":%!xxd<CR>", opts)
+keymap("n", "<leader>x", ":HexToggle<CR>", opts)
+-- keymap("n", "<leader>x", ":%!xxd<CR>", opts)
 -- From hex to text
-keymap("n", "<leader>xw", ":%!xxd -r<CR>", opts)
-keymap("n", "<leader>X", ":%!xxd -r<CR>", opts)
+-- keymap("n", "<leader>xw", ":%!xxd -r<CR>", opts)
+-- keymap("n", "<leader>X", ":%!xxd -r<CR>", opts)
+-- keymap("n", "<leader>xw", ":%!xxd -r<CR>", opts)
+-- keymap("n", "<leader>X", ":%!xxd -r<CR>", opts)
 
 -- Undotree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
@@ -75,13 +104,22 @@ keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
 -- Preview file in quick fix list
 keymap("n", "<S-Return>", "<CR>:set wrap<CR><C-w>j", opts)
 
+keymap("n", "<leader>0", ":Telescope spell_suggest<CR>", opts)
+-- keymap("n", "<leader>H", ":messages<CR>:wincmd b<CR>ggG", opts)
+keymap("n", "<leader>H", ":Telescope notify<CR>", opts)
+keymap("n", "<leader>K", ":WyvernChatEditWithInstructions<CR>", opts)
+keymap("n", "<leader>k", ":WyvernChat<CR>", opts)
+
+-- Rainbow CSV
+
+
 -- Tagbar
---[[ keymap("n", "<C-d>", ":TagbarToggle<CR>", opts) ]]
+keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
 
 -- Diffs movement
 keymap("n", "<A-2>", "[c", opts)
 keymap("n", "<A-1>", "]c", opts)
-keymap("n", "<C-d>", ":diffthis<CR>", opts)
+    keymap("n", "<C-S-d>", ":diffthis<CR>", opts)
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -91,9 +129,11 @@ keymap("n", "gh", ":Gitsigns preview_hunk_inline<CR>", opts)
 -- Quick paste first register
 keymap("n", "<leader>J", "\"0P", opts)
 keymap("n", "<leader>j", "viw\"0P", opts)
-keymap("n", "<leader>h", "viw\"1P", opts)
+-- keymap("n", "<leader>h", "viw\"1P", opts)
+keymap("n", "<leader>h", "vi\"P", opts)
 keymap("n", "<leader>p", "\"_dP", opts)
 
+-- Open messages and hop into it
 -- DAP keybinds
 --[[ keymap("n", "<F5>", ":call vimspector#Launch()<CR>", opts) ]]
 --[[ keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts) ]]
@@ -106,7 +146,7 @@ keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
 keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
-keymap("n", "<leader>k", ":lua require'dapui'.open()<CR>", opts)
+-- keymap("n", "<leader>k", ":lua require'dapui'.open()<CR>", opts)
 
 keymap("n", "<leader><F3>", ":lua require'dapui'.toggle()<CR>", opts)
 keymap("n", "<leader><F4>", ":lua require'dapui'.toggle(2)<CR>", opts)

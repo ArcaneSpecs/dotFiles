@@ -4,6 +4,16 @@ if not status_ok then
     return
 end
 
+local ok, neodev = pcall(require, "neodev")
+if not ok then
+    print("neodev not loaded!!")
+    return
+end
+
+neodev.setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+})
+
 local operating_system = vim.loop.os_uname().sysname
 
 vim.fn.sign_define('DapBreakpoint', {
@@ -24,6 +34,8 @@ vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31
 vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
 
+vim.api.nvim_command('highlight debugBreakpoint guibg=#C175D8 ctermbg=13')
+
 require("nvim-dap-virtual-text").setup()
 
 local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
@@ -31,8 +43,8 @@ local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
 --[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
 
 dap.defaults.fallback.external_terminal = {
-    command = '/usr/bin/alacritty';
-    args = {'-e'};
+    command = '/usr/bin/alacritty',
+    args = { '-e' },
 }
 
 dap.defaults.fallback.terminal_win_cmd = 'tabnew'
@@ -40,8 +52,6 @@ dap.defaults.fallback.force_external_terminal = true
 
 if (operating_system == "Linux") then
     require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-
-
 elseif (operating_system == "Windows_NT") then
     --[[ python_command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python' ]]
     python_command = "" -- TODO: debugpy on windows
@@ -54,6 +64,32 @@ dap.adapters.python = {
     venv = os.getenv('HOME') .. '/simple_wyvern/Tools/DependencySetup/venv/bin/activate',
     args = { '-m', 'debugpy.adapter' }
 }
+
+dap.configurations.lua = {
+    {
+        type = 'nlua',
+        request = 'attach',
+        name = "Attach to running Neovim instance",
+    }
+}
+
+-- dap.configurations.lua = {
+--   {
+--     name = 'Current file (local-lua-dbg, lua)',
+--     type = 'local-lua',
+--     request = 'launch',
+--     cwd = '${workspaceFolder}',
+--     program = {
+--       lua = 'lua5.1',
+--       file = '${file}',
+--     },
+--     args = {},
+--   },
+-- }
+
+dap.adapters.nlua = function(callback, config)
+    callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+end
 
 dap.configurations.python = {
     {
@@ -84,14 +120,14 @@ if (operating_system == "Windows_NT") then
     -- lldb_path = 'C:/Users/patu/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/lldb/bin/lldb.exe'
 end
 
-dap.adapters.cppdbg = {
-    id = 'cppvsdbg',
-    type = 'executable',
-    command = 'C:/Users/patu/.vscode/extensions/ms-vscode.cpptools-1.14.3-win32-x64/debugAdapters/bin/OpenDebugAD7.exe',
-    options = {
-        detached = false
-    }
-}
+-- dap.adapters.cppdbg = {
+--     id = 'cppvsdbg',
+--     type = 'executable',
+--     command = 'C:/Users/patu/.vscode/extensions/ms-vscode.cpptools-1.14.3-win32-x64/debugAdapters/bin/OpenDebugAD7.exe',
+--     options = {
+--         detached = false
+--     }
+-- }
 
 dap.adapters.lldb = {
     type = 'executable',
@@ -184,7 +220,9 @@ end
 --[[ local tempcwd = '/home/patu/Documents/Wyvern Projects/RPG' ]]
 --[[ local tempcwd = '/home/patu/Documents/Wyvern_Projects/RPG' ]]
 -- local tempcwd = '/home/patu/github/Lumos/Lumos/bin/Debug-linux-x86_64/'
-local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64/'
+-- local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64/'
+-- local tempcwd = '/home/patu/github/GameNetworkingSockets/build/bin'
+local tempcwd = '/home/patu/dev/WyvernChat/build/bin/Debug-linux-x86_64/WyvernChat'
 --[[ local tempcwd = '/home/patu/github/vulkan-base/' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect' ]]
@@ -266,7 +304,9 @@ dap.configurations.cpp = {
         --[[ end, ]]
 
         cwd = tempcwd,
-        console = "externalTerminal",
+        -- console = "externalTerminal",
+        console = 'integratedTerminal',
+
         --[[ internalConsoleOptions = "neverOpen", ]]
         stopOnEntry = false,
         args = {
@@ -426,12 +466,12 @@ dapui.setup {
     --[[     remove = "d" ]]
     --[[ }, ]]
     mappings = {
-      edit = "e",
-      expand = { "<CR>", "<Tab>", "<2-LeftMouse>" },
-      open = "o",
-      remove = "d",
-      repl = "r",
-      toggle = "t"
+        edit = "e",
+        expand = { "<CR>", "<Tab>", "<2-LeftMouse>" },
+        open = "o",
+        remove = "d",
+        repl = "r",
+        toggle = "t"
     },
     floating = {
         border = "single",
@@ -446,7 +486,7 @@ dapui.setup {
                 --[[ 'breakpoints', ]]
                 'watches',
                 'stacks',
-                --[[ 'console', ]]
+                -- 'console',
             },
             size = 65,
             position = 'left',

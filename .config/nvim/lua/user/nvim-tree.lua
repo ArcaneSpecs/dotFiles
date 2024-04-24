@@ -44,6 +44,7 @@ nvim_tree.setup {
             },
         },
     },
+    open_on_setup = false,
     --[[ system_open = { ]]
     --[[   cmd = "kitty +kitten icat ~/.config/Wallpapers/Wallpaper.png", ]]
     --[[   args = {"+kitten", "icat", "~/.config/Wallpapers/Wallpaper.png"} ]]

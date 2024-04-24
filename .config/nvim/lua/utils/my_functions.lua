@@ -7,7 +7,7 @@
 ----------------------------------------------------------------------------
 
 
-workspaceFolder = '/home/patu/simple_wyvern/Projects/DEMO'
+workspaceFolder = '/home/patu/simple_wyvern/Projects/RPG'
 --[[ workspaceFolder = '/home/patu/simple_wyvern' ]]
 
 -- Build command

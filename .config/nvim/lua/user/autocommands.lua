@@ -2,9 +2,9 @@ vim.cmd [[
   augroup _general_settings
     autocmd!
     "Close quickfix windows, help windows and man pages etc. with q"
-    " autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
+    " autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
     "Highlight the area that was yanked"
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
+    " autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
     autocmd BufWinEnter * :set formatoptions-=cro
     "Hides quick fix tabs from tabline"
     autocmd FileType qf set nobuflisted
@@ -24,7 +24,7 @@ vim.cmd [[
 
   augroup _auto_resize
     autocmd!
-    autocmd VimResized * tabdo wincmd = 
+    autocmd VimResized * tabdo wincmd =
   augroup end
 
   augroup _alpha
@@ -33,6 +33,19 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 ]]
+
+-- Get the group (we don't clear if it already exists)
+local mygroup = vim.api.nvim_create_augroup('_general_settings', { clear = false })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'Visual',
+            group = mygroup,
+            timeout = 200,
+            desc = 'Highlight the area that was yanked'
+        })
+    end
+})
 
 -- Autoformat
 -- augroup _lsp

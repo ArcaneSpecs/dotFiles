@@ -35,6 +35,8 @@ alias plan="nvim ~/TimeManagement/Testing.md"
 alias vpn="sudo openconnect vpn.jyu.fi/student"
 # alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
 
+alias yay=paru
+
 alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now; echo 'blacklist wacom' | sudo tee -a /etc/modprobe.d/blacklist.conf; sudo rmmod wacom"
 
@@ -47,6 +49,7 @@ alias history_timestamps='HISTTIMEFORMAT="%Y-%m-%d %T "'
 alias history='history -i'
 alias hs='history -i'
 
+alias code='/usr/bin/code'
 alias kdenlive='flatpak run org.kde.kdenlive'
 
 alias ff='nvim "$(fzf)"'
@@ -69,6 +72,8 @@ alias gen_game='~/dev/simple_wyvern/Scripts/Linux-GenGameMakefile.sh $(realpath 
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
+
+export XDG_CONFIG_HOME=$HOME/.config
 
 alias nuke="cd .. && rm -rf build && mkdir build && cd build && ../Scripts/Linux-GenProjects.sh && make -j32"
 
@@ -94,6 +99,7 @@ export XCURSOR_SIZE=24
 
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export EDITOR=nvim 
+alias nvimm='nvim -m'
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$HOME/.virtualenvs/debugpy/bin/
@@ -102,7 +108,16 @@ export PATH=$PATH:$VULKAN_SDK
 export PATH=$PATH:~/.config/emacs/bin
 
 export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+
 export SHELL=/usr/bin/zsh
+
+if [[ $TERM == "xterm-kitty" ]]; then
+    # echo "kitty window id: " $KITTY_WINDOW_ID
+    # Neovim sockets for wyvern
+    export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+    source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

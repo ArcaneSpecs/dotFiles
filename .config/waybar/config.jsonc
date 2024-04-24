@@ -4,7 +4,8 @@
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
     // "modules-left": ["hyprland/workspaces", "tray"],
-    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner", "custom/launch_actions_runner_stockbrokerage"],
+    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner" ],
+    // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner", "custom/launch_actions_runner_stockbrokerage"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
     // "modules-center": ["clock"],
@@ -98,7 +99,7 @@
     "custom/launch_terminal": {
         // "format": "   ",
         "format": " ",
-        "on-click": "kitty ~",
+        "on-click": "kitty ~; source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate;",
     },
     "custom/launch_actions_runner": {
         // "format": "   ",

@@ -94,6 +94,16 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').find_files({hidden=true, no_ignore=true})<cr>",
 		"Find files",
 	},
+	["R"] = {
+		--[[ "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
+		"<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>",
+		"Grep Open Files",
+	},
+	["d"] = {
+		--[[ "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
+		"<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({})<cr>",
+		"Grep Buffer",
+	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
@@ -173,9 +183,9 @@ local mappings = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+		h = { "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Help tags" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+		r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
