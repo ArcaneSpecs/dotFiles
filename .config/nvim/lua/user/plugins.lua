@@ -42,12 +42,20 @@ require("lazy").setup({
             post_hook = nil,
         }
     },
+    {
+        'Bekaboo/dropbar.nvim',
+        -- optional, but required for fuzzy finder support
+        dependencies = {
+          'nvim-telescope/telescope-fzf-native.nvim'
+        }
+    },
     -- {
     --     'preservim/tagbar'
     -- },
     {
         "folke/neodev.nvim",
     },
+    -- CSV stuff
     {
         "chrisbra/csv.vim"
     },
@@ -93,11 +101,11 @@ require("lazy").setup({
         -- end
     },
     {
+        -- Lua dap adapter
         'jbyuki/one-small-step-for-vimkind'
     },
     {
         "ahmedkhalf/project.nvim",
-
     },
     -- Here is a more advanced example where we pass configuration
     -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -128,8 +136,6 @@ require("lazy").setup({
             "folke/trouble.nvim",
             "nvim-telescope/telescope.nvim"
         },
-
-
     },
     -- {
     --     "jackMort/ChatGPT.nvim",
@@ -144,13 +150,11 @@ require("lazy").setup({
     --         "nvim-telescope/telescope.nvim"
     --     },
     -- },
+    -- Indent lines
     {
-        -- Indent lines
-        {
-            "lukas-reineke/indent-blankline.nvim",
-            main = "ibl",
-            opts = {}
-        }
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {}
     },
     {
         "fei6409/log-highlight.nvim",
@@ -218,24 +222,24 @@ require("lazy").setup({
     {
         "akinsho/toggleterm.nvim"
     },
-    {
-        'simrat39/inlay-hints.nvim'
-    },
-    {
-        "github/copilot.vim",
-        config = function()
-            vim.g.copilot_no_tab_map = true
-            vim.g.copilot_assume_mapped = true
-            vim.g.copilot_tab_fallback = ""
-            vim.cmd [[imap <silent><script><expr> <C-s> copilot#Accept("\<CR>")]]
-            vim.cmd [[highlight CopilotSuggestion guifg=#555555 ctermfg=8]]
-            vim.g.copilot_filetypes = {
-                ["*"] = true,
-                ["xml"] = false,
-                ["json"] = false,
-            }
-        end,
-    },
+    -- {
+    --     'simrat39/inlay-hints.nvim'
+    -- },
+    -- {
+    --     "github/copilot.vim",
+    --     config = function()
+    --         vim.g.copilot_no_tab_map = true
+    --         vim.g.copilot_assume_mapped = true
+    --         vim.g.copilot_tab_fallback = ""
+    --         vim.cmd [[imap <silent><script><expr> <C-s> copilot#Accept("\<CR>")]]
+    --         vim.cmd [[highlight CopilotSuggestion guifg=#555555 ctermfg=8]]
+    --         vim.g.copilot_filetypes = {
+    --             ["*"] = true,
+    --             ["xml"] = false,
+    --             ["json"] = false,
+    --         }
+    --     end,
+    -- },
     {
         "mfussenegger/nvim-dap",
     },
@@ -703,7 +707,7 @@ require("lazy").setup({
                         --"--completion-style=detailed",
                         --"--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
                         "--clang-tidy",
-                        --"--offset-encoding=utf-16", --temporary fix for null-ls
+                        "--offset-encoding=utf-16", -- NOTE: Fixes: https://github.com/neovim/nvim-lspconfig/issues/2184
                         --[[ "--std=c++17", ]]
                         --[[ "--std=c89" ]]
                         -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
@@ -822,6 +826,7 @@ require("lazy").setup({
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 "stylua", -- Used to format lua code
+                "black" -- Used to format python code
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -953,7 +958,7 @@ require("lazy").setup({
                     documentation = {
                         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
                         max_width = 50,
-                        max_height = 50
+                        max_height = 50,
                     }
                 },
                 completion = { completeopt = "menu,menuone,noinsert" },
@@ -974,7 +979,7 @@ require("lazy").setup({
                     }),
                     -- Accept currently selected item. If none selected, `select` first item.
                     -- Set `select` to `false` to only confirm explicitly selected items.
-                    ["<CR>"] = cmp.mapping.confirm { select = false },
+                    --["<CR>"] = cmp.mapping.confirm { select = false },
                     -- ["<Tab>"] = cmp.mapping(function(fallback)
                     --     if cmp.visible() then
                     --         cmp.select_next_item()
@@ -991,18 +996,18 @@ require("lazy").setup({
                     --     "i",
                     --     "s",
                     -- }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, {
-                        "i",
-                        "s",
-                    }),
+                    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    --     if cmp.visible() then
+                    --         cmp.select_prev_item()
+                    --     elseif luasnip.jumpable(-1) then
+                    --         luasnip.jump(-1)
+                    --     else
+                    --         fallback()
+                    --     end
+                    -- end, {
+                    --     "i",
+                    --     "s",
+                    -- }),
                 }),
                 formatting = {
                     fields = { "abbr", "kind", "menu" },

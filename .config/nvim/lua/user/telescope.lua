@@ -18,7 +18,7 @@ telescope.setup {
             '--column',
             '--smart-case',
             '--ignore-file',
-            -- '/home/patu/.config/ignore_telescope/ignore_file.txt'
+            '/home/patu/.config/ignore_telescope/ignore_file.txt'
         },
         prompt_prefix = " ",
         selection_caret = " ",
@@ -131,7 +131,7 @@ telescope.setup {
         -- }
         -- Now the picker_config_key will be applied every time you call this
         find_files = {
-            find_command = { 'rg', '--files', '--color=never', '--no-ignore', '--hidden', '--ignore-file', '/home/patu/.config/ignore_telescope/ignore_file.txt' }
+            find_command = { 'rg', '--files', '--color=never', '--hidden', '--ignore-file', '/home/patu/.config/ignore_telescope/ignore_file.txt' }
         }
     }, -- builtin picker
     extensions = {

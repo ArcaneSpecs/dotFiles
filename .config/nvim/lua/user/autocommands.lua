@@ -32,6 +32,7 @@ vim.cmd [[
     "Hides tabline when alpha is open"
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
 ]]
 
 -- Get the group (we don't clear if it already exists)

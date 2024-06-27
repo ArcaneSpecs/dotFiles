@@ -102,9 +102,20 @@ keymap("n", "J", "mzJ`z", opts)
 -- Replace in all files in quick fix list
 keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
 -- Preview file in quick fix list
-keymap("n", "<S-Return>", "<CR>:set wrap<CR><C-w>j", opts)
+-- keymap("n", "<S-Return>", "<CR>:set wrap<CR><C-w>j", opts)
+
+vim.cmd([[
+augroup my_quickfix
+    autocmd!
+    autocmd FileType qf nnoremap <buffer> <Tab> <CR>:set wrap<CR><C-w>j
+    " autocmd FileType qf nnoremap <buffer> <Tab> :echo "hello"<CR>
+augroup end
+]])
 
 keymap("n", "<leader>0", ":Telescope spell_suggest<CR>", opts)
+keymap("n", "<leader>9", ":set spell!<CR>", opts)
+keymap("n", "<leader>8", ":lua require('dropbar.api').pick()<CR>", opts)
+keymap("n", "<leader>7", ":lua require('dropbar.api').toggle()<CR>", opts)
 -- keymap("n", "<leader>H", ":messages<CR>:wincmd b<CR>ggG", opts)
 keymap("n", "<leader>H", ":Telescope notify<CR>", opts)
 keymap("n", "<leader>K", ":WyvernChatEditWithInstructions<CR>", opts)
@@ -112,14 +123,13 @@ keymap("n", "<leader>k", ":WyvernChat<CR>", opts)
 
 -- Rainbow CSV
 
-
 -- Tagbar
 keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
 
 -- Diffs movement
 keymap("n", "<A-2>", "[c", opts)
 keymap("n", "<A-1>", "]c", opts)
-    keymap("n", "<C-S-d>", ":diffthis<CR>", opts)
+keymap("n", "<C-S-d>", ":diffthis<CR>", opts)
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -132,6 +142,8 @@ keymap("n", "<leader>j", "viw\"0P", opts)
 -- keymap("n", "<leader>h", "viw\"1P", opts)
 keymap("n", "<leader>h", "vi\"P", opts)
 keymap("n", "<leader>p", "\"_dP", opts)
+
+keymap("n", "Q", "gqq", opts)
 
 -- Open messages and hop into it
 -- DAP keybinds

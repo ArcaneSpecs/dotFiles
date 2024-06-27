@@ -166,10 +166,10 @@ lualine.setup({
     sections = {
         --[[ lualine_a = { branch, diagnostics, mode}, ]]
         lualine_a = { branch},
-        lualine_b = { diff, diagnostics },
+        lualine_b = { search_count, diff, diagnostics },
         --[[ lualine_c = { mode }, ]]
         --[[ lualine_c = { diff }, ]]
-        lualine_c = { search_count,  { require('auto-session.lib').current_session_name }, macro_recording },
+        lualine_c = { { require('auto-session.lib').current_session_name }, macro_recording },
 
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         --[[ lualine_x = { filename, diff, spaces, "encoding", filetype }, ]]

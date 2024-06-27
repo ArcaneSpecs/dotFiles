@@ -28,7 +28,7 @@ local options = {
     number = true,                           -- set numbered lines
     relativenumber = true,                   -- set relative numbered lines
     numberwidth = 4,                         -- set number column width to 4 {default 4}
-    -- signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
+    signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
     wrap = false,                            -- display lines as one long line
     scrolloff = 8,                           -- auto scroll
     sidescrolloff = 8,
@@ -36,8 +36,17 @@ local options = {
     foldlevel = 99
 }
 
-vim.opt.shortmess:append "c"
+-- Begin Neovide settings
+-- NOTE: Helper function for transparency formatting
+local alpha = function()
+    return string.format("%x", math.floor((255 * vim.g.transparency) or 0.8))
+end
+vim.g.neovide_transparency = 0.7
+vim.g.transparency = 1.0
+vim.g.neovide_background_color = "#121212" .. alpha()
+-- End Neovide settings
 
+vim.opt.shortmess:append "c"
 vim.g.have_nerd_font = true
 
 for k, v in pairs(options) do
@@ -69,5 +78,3 @@ augroup yaml_syntax
     " autocmd BufNewFile,BufRead *.dat   set filetype=csv_pipe
 augroup END
 ]])
-
-

@@ -38,7 +38,11 @@ vim.api.nvim_command('highlight debugBreakpoint guibg=#C175D8 ctermbg=13')
 
 require("nvim-dap-virtual-text").setup()
 
-local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+local python_command = ""
+
+if (operating_system ~= "Windows_NT") then
+    python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+end
 
 --[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
 
@@ -222,7 +226,10 @@ end
 -- local tempcwd = '/home/patu/github/Lumos/Lumos/bin/Debug-linux-x86_64/'
 -- local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64/'
 -- local tempcwd = '/home/patu/github/GameNetworkingSockets/build/bin'
-local tempcwd = '/home/patu/dev/WyvernChat/build/bin/Debug-linux-x86_64/WyvernChat'
+-- local tempcwd = '/home/patu/dev/WyvernChat/build/bin/Debug-linux-x86_64/WyvernChat'
+-- local tempcwd = '/home/patu/dev/simple_wyvern/build/bin/Debug-linux-x86_64/Sandbox'
+-- local tempcwd = '/home/patu/dev/CPP';
+local tempcwd = '/home/patu/.local/bin/lua';
 --[[ local tempcwd = '/home/patu/github/vulkan-base/' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect' ]]
@@ -310,6 +317,7 @@ dap.configurations.cpp = {
         --[[ internalConsoleOptions = "neverOpen", ]]
         stopOnEntry = false,
         args = {
+            "dashdsakjhdsa"
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO", ]]
             --[[ "DEMO", ]]

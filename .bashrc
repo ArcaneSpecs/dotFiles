@@ -37,6 +37,8 @@ alias vpn="sudo openconnect vpn.jyu.fi/student"
 
 alias yay=paru
 
+export LUA_INIT='@/home/patu/.local/bin/lua/my_lua_functions.lua'
+
 alias tablet="systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now"
 alias tabletinstall="yay -S opentabletdriver-git; systemctl --user daemon-reload; systemctl --user enable opentabletdriver --now; echo 'blacklist wacom' | sudo tee -a /etc/modprobe.d/blacklist.conf; sudo rmmod wacom"
 
@@ -63,6 +65,8 @@ alias ta="tmux attach || tmux new-session"
 
 alias kubectl="minikube kubectl --"
 
+alias spy="source venv/bin/activate"
+
 # Alias to generate Wyvern Runtime makefiles
 # INFO: (run in games build directory)
 # Check the path to engine scripts dir depending what version you want to use
@@ -70,8 +74,21 @@ alias kubectl="minikube kubectl --"
 # (comes in handy when we are developing new links etc.)
 alias gen_game='~/dev/simple_wyvern/Scripts/Linux-GenGameMakefile.sh $(realpath "$(pwd)/..")'
 
+# INFO: Finds process for given $1 argument and calcs the precise memory usage in bytes
+mem() {
+    # Grep ps aux output for process with $1 keyword
+    ID="$(ps aux | grep -i -n --color "$1" | awk '{print $2}' | head --lines 1)"
+    # Check memory usage for process (with ID)
+    MEM="$(awk '{print $2}' /proc/$ID/statm)"
+    # Calc the precise memory usage in bytes and make it easily readable
+    printf "%'d bytes\n" $((MEM*4*1024))
+}
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
+
+# For conda
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 
 export XDG_CONFIG_HOME=$HOME/.config
 
@@ -97,7 +114,9 @@ export PAGER=less
 export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
 
+export HIP_VISIBLE_DEVICES=0
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
+
 export EDITOR=nvim 
 alias nvimm='nvim -m'
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
@@ -107,7 +126,7 @@ export VULKAN_SDK=~/VulkanSDK/1.3.268.0
 export PATH=$PATH:$VULKAN_SDK
 export PATH=$PATH:~/.config/emacs/bin
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=kvantum
 
 export SHELL=/usr/bin/zsh
@@ -119,17 +138,20 @@ if [[ $TERM == "xterm-kitty" ]]; then
     source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate
 fi
 
+# Source miniconda
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+#         . "/usr/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<

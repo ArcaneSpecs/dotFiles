@@ -50,6 +50,10 @@ end
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.cmd("highlight Search guibg=#4b9ba8 guifg=#13252B")
+-- vim.cmd("highlight Visual guifg=#9f3388 guibg=#2e1219")
+-- vim.cmd("highlight Visual guifg=#e678DD guibg=#1e1219")
+vim.cmd("highlight Visual guifg=#b060DD guibg=#1e1219")
+
 
 vim.api.nvim_create_autocmd({ 'VimEnter', 'SessionLoadPost' }, {
     callback = function()
@@ -80,8 +84,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         map('<A-h>', ':RainbowCellGoLeft<CR>', "Go left")
         map('<A-j>', ':RainbowCellGoDown<CR>', "Go down")
         map('<A-k>', ':RainbowCellGoUp<CR>', "Go up")
-        map('<A-g>', ':RainbowAlign<CR>', "Align")
-        map('<A-t>', ':RainbowDelim<CR>', "Align")
+        map('<A-g>', ':RainbowAlign<CR>', "Align") -- NOTE: This can be used to formats the fields
+        map('<A-t>', ':RainbowDelim<CR>', "Align") -- NOTE: This can be used to formats the fields
         map('<A-y>', ':RainbowDelimSimple<CR>', "Set delimiter")
         vim.fn.search(',', 'c')
         vim.cmd('RainbowDelimSimple')
@@ -91,7 +95,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end
 })
 
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = '*.dat',
     group = rainbow_group,
     callback = function()

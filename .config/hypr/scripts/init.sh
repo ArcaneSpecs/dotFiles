@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# flatpak run com.github.wwmm.easyeffects --hide-window &
+flatpak run com.github.wwmm.easyeffects --gapplication-service &
+otd-daemon &
 # whatsapp-for-linux &
 whatsapp-electron &
 discord &
