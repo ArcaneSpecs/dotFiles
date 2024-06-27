@@ -38,11 +38,7 @@ vim.api.nvim_command('highlight debugBreakpoint guibg=#C175D8 ctermbg=13')
 
 require("nvim-dap-virtual-text").setup()
 
-local python_command = ""
-
-if (operating_system ~= "Windows_NT") then
-    python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
-end
+local python_command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
 
 --[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
 
@@ -61,11 +57,18 @@ elseif (operating_system == "Windows_NT") then
     python_command = "" -- TODO: debugpy on windows
 end
 
+local python_adapter_env = ""
+
+if operating_system == "Windows_NT" then
+    python_adapter_env = os.getenv('USERPROFILE') .. '/simple_wyvern/Tools/DependencySetup/venv/bin/activate' or ""
+else
+    python_adapter_env = os.getenv('HOME') .. '/simple_wyvern/Tools/DependencySetup/venv/bin/activate' or ""
+end
 
 dap.adapters.python = {
     type = 'executable',
     command = python_command,
-    venv = os.getenv('HOME') .. '/simple_wyvern/Tools/DependencySetup/venv/bin/activate',
+    venv = python_adapter_env,
     args = { '-m', 'debugpy.adapter' }
 }
 
