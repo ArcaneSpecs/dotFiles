@@ -36,6 +36,9 @@ local options = {
     foldlevel = 99
 }
 
+-- Disable default file explorer
+vim.g.loaded_netrw = 1
+
 -- Begin Neovide settings
 -- NOTE: Helper function for transparency formatting
 local alpha = function()

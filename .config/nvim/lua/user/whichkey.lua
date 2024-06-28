@@ -118,11 +118,17 @@ local mappings = {
 
 	i = {
 		name = "Lazy",
+		-- c = { "<cmd>PackerCompile<cr>", "Compile" },
+		-- i = { "<cmd>PackerInstall<cr>", "Install" },
+		-- s = { "<cmd>PackerSync<cr>", "Sync" },
+		-- S = { "<cmd>PackerStatus<cr>", "Status" },
+		-- u = { "<cmd>PackerUpdate<cr>", "Update" },
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
+		-- i = { "<cmd>lua require 'lazy.util'.float_term({ 'lazygit', 'log'}, { })<cr>", "Install" },
+		i = { "<cmd>lua require 'lazy'.install()<cr>", "Install" },
+		s = { "<cmd>lua require 'lazy'.sync({ wait = true })<cr>", "Sync" },
+		S = { "<cmd>lua require 'lazy'.stats()<cr>", "Status" },
+		u = { "<cmd>lua require 'lazy'.setup()<cr>", "Update" },
 	},
 
 	g = {

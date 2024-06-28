@@ -1,17 +1,28 @@
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- if not (vim.uv or vim.loop).fs_stat(lazypath) then
+--     vim.fn.system({
+--         "git",
+--         "clone",
+--         "--filter=blob:none",
+--         "https://github.com/folke/lazy.nvim.git",
+--         "--branch=stable", -- latest stable release
+--         lazypath,
+--     })
+-- end
+-- vim.opt.rtp:prepend(lazypath)
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
+
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
@@ -46,12 +57,25 @@ require("lazy").setup({
         'Bekaboo/dropbar.nvim',
         -- optional, but required for fuzzy finder support
         dependencies = {
-          'nvim-telescope/telescope-fzf-native.nvim'
+            'nvim-telescope/telescope-fzf-native.nvim'
         }
     },
     -- {
     --     'preservim/tagbar'
     -- },
+    --{
+    --    "folke/lazydev.nvim",
+    --    ft = "lua", -- only load on lua files
+    --    opts = {
+    --      library = {
+    --        -- See the configuration section for more details
+    --        -- Load luvit types when the `vim.uv` word is found
+    --        { path = "luvit-meta/library", words = { "vim%.uv" } },
+    --      },
+    --    },
+    --},
+    --{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+
     {
         "folke/neodev.nvim",
     },
@@ -269,9 +293,9 @@ require("lazy").setup({
     {
         "mbbill/undotree",
     },
-    {
-        "kdheepak/lazygit.nvim",
-    },
+    -- {
+    --     "kdheepak/lazygit.nvim",
+    -- },
     {
         "joshdick/onedark.vim",
     },
@@ -381,7 +405,10 @@ require("lazy").setup({
             { "nvim-telescope/telescope-ui-select.nvim" },
 
             -- Useful for getting pretty icons, but requires a Nerd Font.
-            { "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
+            {
+                "nvim-tree/nvim-web-devicons",
+                enabled = vim.g.have_nerd_font
+            },
         },
         config = function()
             vim.diagnostic.config({
@@ -598,64 +625,64 @@ require("lazy").setup({
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
                 callback = function(event)
-                    -- NOTE: Remember that lua is a real programming language, and as such it is possible
-                    -- to define small helper and utility functions so you don't have to repeat yourself
-                    -- many times.
+                    -- -- NOTE: Remember that lua is a real programming language, and as such it is possible
+                    -- -- to define small helper and utility functions so you don't have to repeat yourself
+                    -- -- many times.
+                    -- --
+                    -- -- In this case, we create a function that lets us more easily define mappings specific
+                    -- -- for LSP related items. It sets the mode, buffer and description for us each time.
+                    -- local map = function(keys, func, desc)
+                    --     vim.keymap.set("n", keys, func,
+                    --         { buffer = event.buf, desc = "LSP: " .. desc })
+                    -- end
                     --
-                    -- In this case, we create a function that lets us more easily define mappings specific
-                    -- for LSP related items. It sets the mode, buffer and description for us each time.
-                    local map = function(keys, func, desc)
-                        vim.keymap.set("n", keys, func,
-                            { buffer = event.buf, desc = "LSP: " .. desc })
-                    end
-
-                    -- Jump to the definition of the word under your cursor.
-                    --  This is where a variable was first declared, or where a function is defined, etc.
-                    --  To jump back, press <C-T>.
-                    map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-                    -- Find references for the word under your cursor.
-                    map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-                    -- Jump to the implementation of the word under your cursor.
-                    --  Useful when your language has ways of declaring types without an actual implementation.
-                    map("gI", require("telescope.builtin").lsp_implementations,
-                        "[G]oto [I]mplementation")
-
-                    -- Jump to the type of the word under your cursor.
-                    --  Useful when you're not sure what type a variable is and you want to see
-                    --  the definition of its *type*, not where it was *defined*.
-                    map("<leader>D", require("telescope.builtin").lsp_type_definitions,
-                        "Type [D]efinition")
-
-                    -- Fuzzy find all the symbols in your current document.
-                    --  Symbols are things like variables, functions, types, etc.
-                    map("<leader>ds", require("telescope.builtin").lsp_document_symbols,
-                        "[D]ocument [S]ymbols")
-
-                    -- Fuzzy find all the symbols in your current workspace
-                    --  Similar to document symbols, except searches over your whole project.
-                    map(
-                        "<leader>ws",
-                        require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                        "[W]orkspace [S]ymbols"
-                    )
-
-                    -- Rename the variable under your cursor
-                    --  Most Language Servers support renaming across files, etc.
-                    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-                    -- Execute a code action, usually your cursor needs to be on top of an error
-                    -- or a suggestion from your LSP for this to activate.
-                    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-                    -- Opens a popup that displays documentation about the word under your cursor
-                    --  See `:help K` for why this keymap
-                    map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-                    -- WARN: This is not Goto Definition, this is Goto Declaration.
-                    --  For example, in C this would take you to the header
-                    map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                    -- -- Jump to the definition of the word under your cursor.
+                    -- --  This is where a variable was first declared, or where a function is defined, etc.
+                    -- --  To jump back, press <C-T>.
+                    -- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+                    --
+                    -- -- Find references for the word under your cursor.
+                    -- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                    --
+                    -- -- Jump to the implementation of the word under your cursor.
+                    -- --  Useful when your language has ways of declaring types without an actual implementation.
+                    -- map("gI", require("telescope.builtin").lsp_implementations,
+                    --     "[G]oto [I]mplementation")
+                    --
+                    -- -- Jump to the type of the word under your cursor.
+                    -- --  Useful when you're not sure what type a variable is and you want to see
+                    -- --  the definition of its *type*, not where it was *defined*.
+                    -- map("<leader>D", require("telescope.builtin").lsp_type_definitions,
+                    --     "Type [D]efinition")
+                    --
+                    -- -- Fuzzy find all the symbols in your current document.
+                    -- --  Symbols are things like variables, functions, types, etc.
+                    -- map("<leader>ds", require("telescope.builtin").lsp_document_symbols,
+                    --     "[D]ocument [S]ymbols")
+                    --
+                    -- -- Fuzzy find all the symbols in your current workspace
+                    -- --  Similar to document symbols, except searches over your whole project.
+                    -- map(
+                    --     "<leader>ws",
+                    --     require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                    --     "[W]orkspace [S]ymbols"
+                    -- )
+                    --
+                    -- -- Rename the variable under your cursor
+                    -- --  Most Language Servers support renaming across files, etc.
+                    -- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+                    --
+                    -- -- Execute a code action, usually your cursor needs to be on top of an error
+                    -- -- or a suggestion from your LSP for this to activate.
+                    -- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+                    --
+                    -- -- Opens a popup that displays documentation about the word under your cursor
+                    -- --  See `:help K` for why this keymap
+                    -- map("K", vim.lsp.buf.hover, "Hover Documentation")
+                    --
+                    -- -- WARN: This is not Goto Definition, this is Goto Declaration.
+                    -- --  For example, in C this would take you to the header
+                    -- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
                     -- The following two autocommands are used to highlight references of the
                     -- word under your cursor when your cursor rests there for a little while.
@@ -826,7 +853,7 @@ require("lazy").setup({
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 "stylua", -- Used to format lua code
-                "black" -- Used to format python code
+                "black"   -- Used to format python code
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -1046,7 +1073,10 @@ require("lazy").setup({
     --  -- change the command in the config to whatever the name of that colorscheme is
     --  --
     --  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    --  "folke/tokyonight.nvim",
+
+    {
+        "folke/tokyonight.nvim"
+    },
     --  lazy = false, -- make sure we load this during startup if it is your main colorscheme
     --  priority = 1000, -- make sure to load this before all the other start plugins
     --  config = function()
@@ -1094,7 +1124,9 @@ require("lazy").setup({
     },
     {
         "nvim-tree/nvim-tree.lua",
-        config = function() end,
+        config = function()
+
+        end,
     },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
@@ -1143,14 +1175,14 @@ require("lazy").setup({
         -- be shown in the help menu.
         -- To disable one of the defaults, set it to false.
 
-        ["<localleader>7"] = {
+        ["<localleader>5"] = {
             function()
                 require("lazy").install()
             end,
             desc = "Open lazy install menu",
         },
 
-        ["<localleader>8"] = {
+        ["<localleader>6"] = {
             function()
                 require("lazy").sync({ wait = true })
             end,
@@ -1158,6 +1190,8 @@ require("lazy").setup({
         },
     },
 })
+
+vim.cmd.colorscheme("tokyonight")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

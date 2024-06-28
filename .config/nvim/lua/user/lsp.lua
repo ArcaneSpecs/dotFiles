@@ -304,6 +304,7 @@ vim.diagnostic.config({
 -- { name = "DiagnosticSignHint",  text = " " },
 -- { name = "DiagnosticSignInfo",  text = " " },
 
+-- FIXME: sign_define() will be Depracated in neovim 0.12
 vim.fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticSignError", text = "", numhl = "DiagnosticSignError" }

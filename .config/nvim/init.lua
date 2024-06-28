@@ -18,7 +18,7 @@ require("user.bufferline")
 require("user.lualine")
 require("user.toggleterm")
 require("user.project")
-require("user.impatient")
+--require("user.impatient")
 require("user.cpp-tools")
 -- require("user.indentline")
 require("user.alpha")
@@ -59,11 +59,11 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'SessionLoadPost' }, {
     callback = function()
         if vim.g.SessionLoad then return end
         vim.cmd('NvimTreeOpen')
-        -- vim.cmd('vnew')
+        vim.cmd('NvimTreeClose')
         vim.cmd.wincmd('l')
         -- vim.cmd('vnew')
+        -- vim.cmd('vnew')
         -- vim.cmd('bd')
-        vim.cmd('NvimTreeClose')
     end,
     once = true
 })
