@@ -1077,6 +1077,12 @@ require("lazy").setup({
     {
         "folke/tokyonight.nvim"
     },
+    {
+        "catppuccin/nvim"
+    },
+    {
+        "sainnhe/sonokai"
+    },
     --  lazy = false, -- make sure we load this during startup if it is your main colorscheme
     --  priority = 1000, -- make sure to load this before all the other start plugins
     --  config = function()
@@ -1191,7 +1197,7 @@ require("lazy").setup({
     },
 })
 
-vim.cmd.colorscheme("tokyonight")
+-- vim.cmd.colorscheme("tokyonight")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -5,6 +5,7 @@ try
     autocmd ColorScheme * highlight Normal guibg=NONE ctermbg=NONE
     autocmd ColorScheme * highlight NonText guibg=NONE ctermbg=NONE 
     colorscheme onedark 
+    " colorscheme sonokai
 
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
