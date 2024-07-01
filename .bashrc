@@ -73,6 +73,8 @@ alias spy="source venv/bin/activate"
 # This alias is useful for manually editing the premake file and not generating one using the engine
 # (comes in handy when we are developing new links etc.)
 alias gen_game='~/dev/simple_wyvern/Scripts/Linux-GenGameMakefile.sh $(realpath "$(pwd)/..")'
+# Generate Wyvern Engine project files for a game project
+alias gen_projects='~/dev/simple_wyvern/Scripts/Linux-GenerateProjectFiles.sh RPG.wproject'
 
 # INFO: Finds process for given $1 argument and calcs the precise memory usage in bytes
 mem() {
@@ -122,7 +124,7 @@ alias nvimm='nvim -m'
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$VULKAN_SDK/x86_64/bin/
 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin/:$HOME/.virtualenvs/debugpy/bin/
-export VULKAN_SDK=~/VulkanSDK/1.3.268.0
+export VULKAN_SDK=~/VulkanSDK/1.3.275.0
 export PATH=$PATH:$VULKAN_SDK
 export PATH=$PATH:~/.config/emacs/bin
 

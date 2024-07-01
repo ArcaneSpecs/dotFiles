@@ -41,6 +41,10 @@ function my_on_attach(bufnr)
         api.node.navigate.git.next_recursive()
     end
 
+    local function jump_to_first_git_back()
+        api.node.navigate.git.prev_recursive()
+    end
+
     local function close_node()
         local node = api.tree.get_node_under_cursor()
 
@@ -80,7 +84,8 @@ function my_on_attach(bufnr)
     -- vim.keymap.set("n", "h", api.tree.close, {})
     -- vim.keymap.set("n", "H", api.tree.collapse_all, {})
     vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-    vim.keymap.set('n', 'g', jump_to_first_git, opts('Open first git'))
+    vim.keymap.set('n', '1', jump_to_first_git, opts('Goto next git edit'))
+    vim.keymap.set('n', '2', jump_to_first_git_back, opts('Goto previous git edit'))
     vim.keymap.set('n', 'l', edit_or_open, opts('Edit or Open'))
     vim.keymap.set('n', 'h', close_node, opts('Collapse node'))
     vim.keymap.set('n', 'L', vsplit_preview, opts('VSplit preview'))
