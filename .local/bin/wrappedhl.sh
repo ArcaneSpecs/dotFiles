@@ -4,6 +4,13 @@
 
 cd ~
 
+
+# For x11 backend
+#export QT_QPA_PLATFORM=xcb 
+
+# For wayland backend
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
 # Variables
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XCURSOR_SIZE=24

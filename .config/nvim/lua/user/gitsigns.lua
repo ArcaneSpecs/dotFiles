@@ -53,3 +53,6 @@ gitsigns.setup {
     --     enable = false,
     -- },
 }
+
+vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
+

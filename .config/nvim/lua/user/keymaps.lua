@@ -152,6 +152,7 @@ keymap("n", "Q", "gqq", opts)
 
 -- Bind F5 to run dapui
 keymap("n", "<F5>", ":lua require'utils.my_functions'.run_my_dapui()<CR>", opts)
+keymap("n", "<S-F5>", ":lua require('dap').run_last()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
 keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
@@ -169,6 +170,7 @@ keymap("n", "<leader>1", ":lua require'dapui'.float_element(\"scopes\", {enter=t
 keymap("n", "<leader>2", ":lua require'dapui'.float_element(\"stacks\", {enter=true})<CR>", opts)
 keymap("n", "<leader>3", ":lua require'dapui'.float_element(\"watches\", {enter=true})<CR>", opts)
 keymap("n", "<leader>4", ":lua require'dapui'.float_element(\"breakpoints\", {enter=true})<CR>", opts)
+keymap("n", "<leader>5", ":DapVirtualTextToggle<CR>", opts)
 
 --[[ keymap("n", "<leader>i", ":lua require'telescope'.extensions.goimpl.goimpl{}<CR>", opts) ]]
 -- keymap("n", "<leader>i", ":TSCppDefineClassFunc<CR>", opts)

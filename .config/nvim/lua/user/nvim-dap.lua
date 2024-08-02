@@ -110,6 +110,10 @@ dap.configurations.python = {
         request = 'launch',
         name = "Launch file",
         program = "${file}",
+        args = {
+            -- "RPG", "RPG", "/home/patu/Documents/Wyvern_Projects/RPG", "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/", "Debug"
+            "build_game", "RPG.wproject", "debug", "true"
+        },
         pythonPath = function()
             --[[ return '/usr/bin/python' ]]
             return os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
@@ -123,7 +127,8 @@ dap.configurations.python = {
 
 -- Check what platform we are on
 -- print(vim.loop.os_uname().sysname)
-local lldb_path = '/usr/bin/lldb-vscode'
+-- local lldb_path = '/usr/bin/lldb-vscode'
+local lldb_path = '/usr/bin/lldb-dap'
 --[[ local lldb_path = '/usr/bin/lldb' ]]
 
 if (operating_system == "Windows_NT") then
@@ -146,6 +151,12 @@ dap.adapters.lldb = {
     type = 'executable',
     command = lldb_path, -- adjust as needed, must be absolute path
     name = 'lldb'
+}
+
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
 }
 
 local cmd = ""
@@ -238,7 +249,13 @@ end
 -- local tempcwd = '/home/patu/dev/WyvernChat/build/bin/Debug-linux-x86_64/WyvernChat'
 -- local tempcwd = '/home/patu/dev/simple_wyvern/build/bin/Debug-linux-x86_64/Sandbox'
 -- local tempcwd = '/home/patu/dev/CPP';
-local tempcwd = '/home/patu/.local/bin/lua';
+-- local tempcwd = '/home/patu/.local/bin/lua';
+-- local tempcwd = '/home/patu/dev/WyvernClock';
+local tempcwd = '/home/patu/dev/WyvernEngine/build/bin/Debug-linux-x86_64/WyvernEditor/';
+-- local tempcwd = '/home/patu/github/Lumos'
+-- local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64';
+-- local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan';
+-- local tempcwd = '/home/patu/dev/WyvernEngine';
 --[[ local tempcwd = '/home/patu/github/vulkan-base/' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm' ]]
 --[[ local tempcwd = '/home/patu/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang-tools-extra/metareflect' ]]
@@ -260,6 +277,7 @@ if (operating_system == "Windows_NT") then
 end
 
 local lastUsedFile = nil -- Define a variable to store the last used file
+local cwd_for_lldb = nil -- The cwd to use when launching random c++ project
 
 -- Our custom lldb launch
 dap.configurations.cpp = {
@@ -267,6 +285,7 @@ dap.configurations.cpp = {
         name = 'Launch lldb',
         type = 'lldb',
         -- type = 'cppdbg',
+        -- type = 'gdb',
         request = 'launch',
         program = function()
             --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/' ]]
@@ -283,13 +302,19 @@ dap.configurations.cpp = {
                 path = lastUsedFile
             end
 
-            local inputPath = vim.fn.input('Path to executable: ', path, 'file')
+            if cwd_for_lldb == nil then
+                cwd_for_lldb = defaultPath
+            end
+
+            inputPath = vim.fn.input('Path to executable: ', path, 'file')
 
             -- Check if inputPath is not empty and store it as the last used file
             if inputPath ~= '' then
                 lastUsedFile = inputPath
             end
 
+            -- Ask for cwd too
+            cwd_for_lldb = vim.fn.input('Path to cwd: ', cwd_for_lldb, 'file')
 
             return inputPath
             --[[
@@ -319,14 +344,13 @@ dap.configurations.cpp = {
         --[[     return vim.fn.getcwd() ]]
         --[[ end, ]]
 
-        cwd = tempcwd,
+        cwd = cwd_for_lldb,
         -- console = "externalTerminal",
         console = 'integratedTerminal',
 
         --[[ internalConsoleOptions = "neverOpen", ]]
         stopOnEntry = false,
         args = {
-            "dashdsakjhdsa"
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO", ]]
             --[[ "DEMO", ]]
@@ -501,8 +525,8 @@ dapui.setup {
             elements = {
                 --[[ 'scopes', ]]
                 --[[ 'breakpoints', ]]
-                'watches',
-                'stacks',
+                -- 'watches',
+                -- 'stacks',
                 -- 'console',
             },
             size = 65,

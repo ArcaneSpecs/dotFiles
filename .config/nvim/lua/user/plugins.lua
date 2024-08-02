@@ -114,15 +114,15 @@ require("lazy").setup({
         }
     },
     {
-        'RaafatTurki/hex.nvim',
-        config = function()
-            require('hex').setup()
-        end
-        -- 'ArcaneSpecs/HexEditor.nvim',
-        -- dir = "/home/patu/dev/HexEditor.nvim",
+        -- 'RaafatTurki/hex.nvim',
         -- config = function()
-        --     require('HexEditor').setup()
+        --     require('hex').setup()
         -- end
+        --'ArcaneSpecs/HexEditor.nvim',
+        --dir = "/home/patu/dev/HexEditor.nvim",
+        --config = function()
+        --    require('HexEditor').setup()
+        --end
     },
     {
         -- Lua dap adapter
@@ -293,9 +293,9 @@ require("lazy").setup({
     {
         "mbbill/undotree",
     },
-    -- {
-    --     "kdheepak/lazygit.nvim",
-    -- },
+    {
+        "kdheepak/lazygit.nvim",
+    },
     {
         "joshdick/onedark.vim",
     },
@@ -420,7 +420,7 @@ require("lazy").setup({
                     focusable = false,
                     style = "minimal",
                     border = "rounded",
-                    source = "always",
+                    source = true,
                     header = "",
                     prefix = "",
                 },

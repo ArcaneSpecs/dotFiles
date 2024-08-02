@@ -61,6 +61,8 @@ todo_comments.setup({
             "--with-filename",
             "--line-number",
             "--column",
+            '--ignore-file',
+            '/home/patu/.config/ignore_telescope/ignore_file.txt'
         },
         -- regex that will be used to match keywords.
         -- don't replace the (KEYWORDS) placeholder

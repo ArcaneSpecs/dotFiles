@@ -35,7 +35,7 @@ alias plan="nvim ~/TimeManagement/Testing.md"
 alias vpn="sudo openconnect vpn.jyu.fi/student"
 # alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
 
-alias yay=paru
+# alias yay=paru
 
 export LUA_INIT='@/home/patu/.local/bin/lua/my_lua_functions.lua'
 
@@ -86,6 +86,37 @@ mem() {
     printf "%'d bytes\n" $((MEM*4*1024))
 }
 
+# Outputs the last edited files (top one is the most recently edited file)
+last_edit() {
+    # Check if $1 exists
+    if [ $# -eq 1 ]; then
+        find "$1" -type f -exec stat --format '%Y %n' "{}" + | sort -nr | awk '{print $2}'
+    else
+        # If not, use the current dir instead
+        find . -type f -exec stat --format '%Y %n' "{}" + | sort -nr | awk '{print $2}'
+    fi
+
+
+}
+
+# Mounts phone to ~/MyPhone
+mount_phone() {
+    mkdir -p ~/MyPhone
+    aft-mtp-mount ~/MyPhone
+    if [ $? -ne 0 ]; then
+        echo "Need to unmount first..."
+        sudo umount -l ~/MyPhone
+        aft-mtp-mount ~/MyPhone&
+    fi
+
+    # NOTE: This one doesn't really work for A52s
+    # simple-mtpfs -v --device 1 ~/MyPhone
+}
+
+check_phone() {
+    simple-mtpfs -l -v
+}
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 
@@ -128,8 +159,9 @@ export VULKAN_SDK=~/VulkanSDK/1.3.275.0
 export PATH=$PATH:$VULKAN_SDK
 export PATH=$PATH:~/.config/emacs/bin
 
-# export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_STYLE_OVERRIDE="kvantum"
+export QTDIR="/home/patu/Qt"
 
 export SHELL=/usr/bin/zsh
 
@@ -137,7 +169,8 @@ if [[ $TERM == "xterm-kitty" ]]; then
     # echo "kitty window id: " $KITTY_WINDOW_ID
     # Neovim sockets for wyvern
     export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-    source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate
+    # source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate
+    source ~/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate
 fi
 
 # Source miniconda

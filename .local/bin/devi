@@ -1,0 +1,6 @@
+#!/bin/bash
+
+stopwatch &
+kitty &
+obsidian &
+

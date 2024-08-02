@@ -17,9 +17,11 @@ telescope.setup {
             '--line-number',
             '--column',
             '--smart-case',
-            -- '--ignore-file',
-            -- '/home/patu/.config/ignore_telescope/ignore_file.txt'
+            '--ignore-file',
+            '/home/patu/.config/ignore_telescope/ignore_file.txt'
         },
+        layout_strategy = 'vertical',
+        layout_config = { height = 0.95 },
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "truncate" },
