@@ -27,7 +27,7 @@ find ~/.config/Wallpapers -maxdepth 1 -type f -exec cp {} .config/Wallpapers \;
 # cp ~/.local/bin/wallpaperselect .local/bin
 # cp ~/.local/bin/screenshot_effect.mp3 .local/bin
 # cp ~/.local/bin/edit_config .local/bin
-cp ~/.local/bin/* .local/bin
+cp -r ~/.local/bin/* .local/bin
 
 # Autostart
 cp -r ~/.config/autostart/ .config

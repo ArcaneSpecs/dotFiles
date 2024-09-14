@@ -85,7 +85,6 @@ dap.configurations.lua = {
         name = "Attach to running Neovim instance",
     }
 }
-
 -- dap.configurations.lua = {
 --   {
 --     name = 'Current file (local-lua-dbg, lua)',
@@ -104,19 +103,44 @@ dap.adapters.nlua = function(callback, config)
     callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
 end
 
+dap.adapters.java = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = 5005
+}
+
+dap.configurations.java = {
+    {
+        type = 'java',
+        request = 'attach',
+        name = 'Debug (Attach)',
+        hostName = '127.0.0.1',
+        port = 5005
+    },
+}
+
 dap.configurations.python = {
     {
         type = 'python',
         request = 'launch',
         name = "Launch file",
         program = "${file}",
+        cwd = '${workspaceFolder}',
         args = {
             -- "RPG", "RPG", "/home/patu/Documents/Wyvern_Projects/RPG", "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/", "Debug"
-            "build_game", "RPG.wproject", "debug", "true"
+            -- "build_game", "RPG.wproject", "debug", "true"
+            -- "testaus",
+            -- "hellou",
+
         },
         pythonPath = function()
             --[[ return '/usr/bin/python' ]]
-            return os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+            -- NOTE: Use the projects venv
+            return 'venv/bin/python'
+
+            -- Use our global dev venv
+            -- return os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'
+
             --[[ return "/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
             --[[ return "/home/patu/github/webui_stable_diffusion/venv/bin/python" ]]
         end,
@@ -154,9 +178,9 @@ dap.adapters.lldb = {
 }
 
 dap.adapters.gdb = {
-  type = "executable",
-  command = "gdb",
-  args = { "-i", "dap" }
+    type = "executable",
+    command = "gdb",
+    args = { "-i", "dap" }
 }
 
 local cmd = ""
@@ -167,7 +191,7 @@ if (operating_system == "Linux") then
 elseif (operating_system == "Windows_NT") then
     --[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
     --[[ local cmd = "/usr/bin/lldb" ]]
-    cmd =  os.getenv("USERPROFILE") .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
+    cmd = os.getenv("USERPROFILE") .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
 end
 
 dap.adapters.codelldb = function(on_adapter)
@@ -251,8 +275,12 @@ end
 -- local tempcwd = '/home/patu/dev/CPP';
 -- local tempcwd = '/home/patu/.local/bin/lua';
 -- local tempcwd = '/home/patu/dev/WyvernClock';
-local tempcwd = '/home/patu/dev/WyvernEngine/build/bin/Debug-linux-x86_64/WyvernEditor/';
+-- local tempcwd = '/home/patu/dev/WyvernEngine/build/bin/Debug-linux-x86_64/WyvernEditor/';
+-- local tempcwd = '/home/patu/github/imgui-node-editor/examples';
+-- local tempcwd = '/home/patu/github/imgui-node-editor/examples/build/bin';
+local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan/build'
 -- local tempcwd = '/home/patu/github/Lumos'
+
 -- local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64';
 -- local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan';
 -- local tempcwd = '/home/patu/dev/WyvernEngine';
@@ -277,7 +305,7 @@ if (operating_system == "Windows_NT") then
 end
 
 local lastUsedFile = nil -- Define a variable to store the last used file
-local cwd_for_lldb = nil -- The cwd to use when launching random c++ project
+cwd_for_lldb = nil       -- The cwd to use when launching random c++ project
 
 -- Our custom lldb launch
 dap.configurations.cpp = {
@@ -316,6 +344,12 @@ dap.configurations.cpp = {
             -- Ask for cwd too
             cwd_for_lldb = vim.fn.input('Path to cwd: ', cwd_for_lldb, 'file')
 
+            if cwd_for_lldb == '' then
+                cwd_for_lldb = defaultPath
+            end
+
+            print("CWD selected: " .. cwd_for_lldb)
+
             return inputPath
             --[[
             if (operating_system == "Windows_NT") then
@@ -344,6 +378,7 @@ dap.configurations.cpp = {
         --[[     return vim.fn.getcwd() ]]
         --[[ end, ]]
 
+        -- cwd = tempcwd,
         cwd = cwd_for_lldb,
         -- console = "externalTerminal",
         console = 'integratedTerminal',
@@ -351,6 +386,8 @@ dap.configurations.cpp = {
         --[[ internalConsoleOptions = "neverOpen", ]]
         stopOnEntry = false,
         args = {
+            -- Khronos vulkan samples args
+            "sample", "swapchain_recreation"
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO", ]]
             --[[ "DEMO", ]]

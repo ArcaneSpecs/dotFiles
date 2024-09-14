@@ -34,6 +34,7 @@ alias meld="GTK_THEME=Arc:dark meld"
 alias plan="nvim ~/TimeManagement/Testing.md"
 alias vpn="sudo openconnect vpn.jyu.fi/student"
 # alias fix="systemctl --user restart pipewire; systemctl --user daemon-reload"
+export GTK_THEME="MyCustom:dark"
 
 # alias yay=paru
 
@@ -117,6 +118,22 @@ check_phone() {
     simple-mtpfs -l -v
 }
 
+# Compiles shaders in current dir using glslc (NOTE: compiles into CompiledShaders dir in cwd)
+# comp_shaders()
+comps()
+{
+    ~/dev/simple_wyvern/WyvernEditor/Assets/Shaders/Linux-BuildShaders.sh $(pwd)
+}
+
+# Debug wyvern engine editor with gdb
+gdb_wyvern()
+{
+    pushd ~/Documents/Wyvern_Projects/RPG > /dev/null
+    gdb --args ~/dev/simple_wyvern/build/bin/Debug-linux-x86_64/WyvernEditor/WyvernEditor "--project_root" "/home/patu/Documents/Wyvern_Projects/RPG" "--project_alias" "RPG" "--engine_assets" "/home/patu/dev/simple_wyvern/WyvernEditor" "--engine_root" "/home/patu/dev/simple_wyvern"
+    popd > /dev/null
+
+}
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 
@@ -125,7 +142,17 @@ export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 
 export XDG_CONFIG_HOME=$HOME/.config
 
-alias nuke="cd .. && rm -rf build && mkdir build && cd build && ../Scripts/Linux-GenProjects.sh && make -j32"
+nuke()
+{
+    if [ -d ../build ]; then
+        cd ..
+        rm -rf build
+        mkdir build
+        cd build
+        ../Scripts/Linux-GenProjects.sh
+        /usr/bin/make -j32
+    fi 
+}
 
 alias ses='tmux-sessionizer'
 
@@ -141,6 +168,8 @@ export MANGOHUD=0
 # Need:  vulkan-radeon and lib32-vulkan-radeon
 #   DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json PROTON_LOG=1 %command%
 #DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json PROTON_LOG=1 %command%
+
+export VK_INSTANCE_LAYERS=VK_LAYER_live_introspection
 
 export PAGER=less
 

@@ -1,0 +1,32 @@
+---
+BasedOnStyle: Microsoft
+SpacesBeforeTrailingComments: '4'
+SpacesInAngles: 'false'
+TabWidth: '4'
+UseTab: Never
+ColumnLimit: '140'
+AccessModifierOffset: '-4'
+IncludeBlocks: 'Preserve' 
+SortIncludes: 'false' 
+AlignConsecutiveAssignments: 'true'
+AlwaysBreakTemplateDeclarations: 'Yes'
+AlignAfterOpenBracket: 'true'
+SpaceAfterTemplateKeyword: 'false' 
+IndentPPDirectives: 'BeforeHash'
+NamespaceIndentation: 'All'
+DerivePointerAlignment: 'false'
+PointerAlignment: 'Left'
+BreakBeforeBraces: Custom
+IndentCaseBlocks: false
+IndentCaseLabels: true
+AllowShortFunctionsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: true 
+  AfterNamespace: true
+  SplitEmptyFunction: false
+  AfterControlStatement: true 
+  AfterCaseLabel: true
+  IndentBraces: false
+...

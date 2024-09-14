@@ -15,8 +15,8 @@
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -60,6 +60,14 @@ require("lazy").setup({
             'nvim-telescope/telescope-fzf-native.nvim'
         }
     },
+
+        -- tabnin
+    {
+        'codota/tabnine-nvim',
+        build = "./dl_binaries.sh"
+    },
+
+
     -- {
     --     'preservim/tagbar'
     -- },
@@ -118,11 +126,11 @@ require("lazy").setup({
         -- config = function()
         --     require('hex').setup()
         -- end
-        --'ArcaneSpecs/HexEditor.nvim',
-        --dir = "/home/patu/dev/HexEditor.nvim",
-        --config = function()
-        --    require('HexEditor').setup()
-        --end
+        'ArcaneSpecs/HexEditor.nvim',
+        dir = "/home/patu/dev/HexEditor.nvim",
+        config = function()
+           require('HexEditor').setup()
+        end
     },
     {
         -- Lua dap adapter
@@ -753,6 +761,9 @@ require("lazy").setup({
                     cmd = { "texlab" },
                     filetypes = { "tex", "bib", "plaintex" },
                 },
+                asm_lsp= {
+                    filetypes = { "asm", "nasm" },
+                },
                 -- gopls = {},
                 pyright = {
                     analysis = {
@@ -793,7 +804,7 @@ require("lazy").setup({
                         }
                     }
                 },
-                json_lsp = {
+                jsonls = {
                     settings = {
 
                     },
@@ -804,6 +815,9 @@ require("lazy").setup({
 
                     },
                     filetypes = { "glsl", "glslh", "frag", "vert" },
+                },
+                jdtls = {
+                    filetypes = { "java", "class"}
                 },
                 lua_ls = {
                     -- cmd = {...},

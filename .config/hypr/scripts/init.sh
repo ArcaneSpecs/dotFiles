@@ -5,7 +5,9 @@ flatpak run com.github.wwmm.easyeffects --gapplication-service &
 otd-daemon &
 # whatsapp-for-linux &
 whatsapp-electron &
-discord &
+# discord &
+dev.vencord.Vesktop &
+
 # obs --minimize-to-tray &
 flatpak run com.obsproject.Studio --minimize-to-tray &
 # easyeffects &

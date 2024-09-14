@@ -73,7 +73,7 @@
             // 󰕿 󰖀 󰕾
             "default": ["󰕿 ", "󰖀 ", "󰕾 "]
         },
-        "on-click": "pavucontrol",
+        "on-click": "env GTK_THEME=\"Adwaita:dark\" pavucontrol",
         "on-click-right": "qpwgraph",
         "on-click-middle": "easyeffects"
     },

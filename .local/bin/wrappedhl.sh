@@ -11,6 +11,9 @@ cd ~
 # For wayland backend
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
+# Fixes pavucontrol theme bug
+export GTK_THEME="MyCustom:dark"
+
 # Variables
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XCURSOR_SIZE=24

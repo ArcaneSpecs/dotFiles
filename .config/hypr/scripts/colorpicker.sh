@@ -7,7 +7,13 @@
 # Switch color picker output type
 PICKER=1
 
-hyprpicker | tr -d '\n' | awk -F '' '{printf "ImVec4(%.1f / 255.f, %.1f / 255.f, %.1f / 255.f, 1.0f)\n", strtonum("0x"$2$3), strtonum("0x"$4$5), strtonum("0x"$6$7)}' | wl-copy
+# For imgui
+# hyprpicker | tr -d '\n' | awk -F '' '{printf "ImVec4(%.1f / 255.f, %.1f / 255.f, %.1f / 255.f, 1.0f)\n", strtonum("0x"$2$3), strtonum("0x"$4$5), strtonum("0x"$6$7)}' | wl-copy
+
+# For normal hex
+hyprpicker | tr -d '\n' | wl-copy
+
+
 # if [ $PICKER == 1]; then
 #     # For ImGui, format example: ImVec4(50.0 / 255.f, 54.0 / 255.f, 57.0 / 255.f, 1.0f)
 # else

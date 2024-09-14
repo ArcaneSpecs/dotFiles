@@ -6,6 +6,15 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
+-- NOTE: Comment out for typing finnish
+-- -- Remap ä to {
+-- keymap("i", "ö", "{", opts);
+-- -- Remap ö to }
+-- keymap("i", "ä", "}", opts);
+-- keymap("i", "Ö", "[", opts);
+-- keymap("i", "Ä", "]", opts);
+
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -107,7 +116,8 @@ keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
 vim.cmd([[
 augroup my_quickfix
     autocmd!
-    autocmd FileType qf nnoremap <buffer> <Tab> <CR>:set wrap<CR><C-w>j
+    " autocmd FileType qf nnoremap <buffer> <Tab> <CR>:set wrap<CR><C-w>j
+    autocmd FileType qf nnoremap <buffer> <Tab> <CR><C-w>j
     " autocmd FileType qf nnoremap <buffer> <Tab> :echo "hello"<CR>
 augroup end
 ]])
@@ -136,12 +146,24 @@ keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
 keymap("n", "gj", ":Gitsigns next_hunk<CR>", opts)
 keymap("n", "gh", ":Gitsigns preview_hunk_inline<CR>", opts)
 
+-- Navigate marks
+keymap("n", "g1", "'1", opts)
+keymap("n", "g2", "'2", opts)
+keymap("n", "g3", "'3", opts)
+keymap("n", "g4", "'4", opts)
+keymap("n", "g5", "'5", opts)
+keymap("n", "g6", "'6", opts)
+
 -- Quick paste first register
 keymap("n", "<leader>J", "\"0P", opts)
 keymap("n", "<leader>j", "viw\"0P", opts)
 -- keymap("n", "<leader>h", "viw\"1P", opts)
 keymap("n", "<leader>h", "vi\"P", opts)
 keymap("n", "<leader>p", "\"_dP", opts)
+
+-- Quick calc
+keymap("i", "<A-3>", "<C-r>=<C-r>\"", opts)
+keymap("i", "<A-4>", "<C-r>=<C-r>\"*2<CR><ESC>_a.<ESC>lyiwo", opts)
 
 keymap("n", "Q", "gqq", opts)
 
@@ -152,7 +174,7 @@ keymap("n", "Q", "gqq", opts)
 
 -- Bind F5 to run dapui
 keymap("n", "<F5>", ":lua require'utils.my_functions'.run_my_dapui()<CR>", opts)
-keymap("n", "<S-F5>", ":lua require('dap').run_last()<CR>", opts)
+keymap("n", "<F6>", ":lua require('dap').run_last()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
 keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
