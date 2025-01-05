@@ -61,12 +61,22 @@ require("lazy").setup({
         }
     },
 
-        -- tabnin
-    {
-        'codota/tabnine-nvim',
-        build = "./dl_binaries.sh"
-    },
+        -- tabnine
+    -- {
+    --     'codota/tabnine-nvim',
+    --     build = "./dl_binaries.sh"
+    -- },
 
+    -- Markdown previewer
+    {
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      build = "cd app && yarn install",
+      init = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
+    },
 
     -- {
     --     'preservim/tagbar'
@@ -157,6 +167,9 @@ require("lazy").setup({
         },
     },
     {
+        "sindrets/diffview.nvim",
+    },
+    {
         dir = "/home/patu/dev/WyvernChat.nvim",
         -- config = function()
         --     require("WyvernChat").setup()
@@ -165,9 +178,23 @@ require("lazy").setup({
             "nvim-lua/popup.nvim",
             "MunifTanjim/nui.nvim",
             "nvim-lua/plenary.nvim",
-            "folke/trouble.nvim",
             "nvim-telescope/telescope.nvim"
         },
+    },
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {},
+        keys = {
+            {
+              "<leader>xQ",
+              "<cmd>Trouble qflist toggle<cr>",
+              desc = "Quickfix List (Trouble)",
+            },
+        },
+        config = function(_, opts)
+            require('trouble').setup(opts)
+        end,
     },
     -- {
     --     "jackMort/ChatGPT.nvim",
@@ -313,7 +340,23 @@ require("lazy").setup({
     {
         "goolord/alpha-nvim",
     },
-
+    {
+        "aaronhallaert/advanced-git-search.nvim",
+        cmd = { "AdvancedGitSearch" },
+        config = function()
+            require("telescope").load_extension("advanced_git_search")
+        end,
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            -- to show diff splits and open commits in browser
+            "tpope/vim-fugitive",
+            -- to open commits in browser with fugitive
+            "tpope/vim-rhubarb",
+            -- optional: to replace the diff from fugitive with diffview.nvim
+            -- (fugitive is still needed to open in browser)
+            "sindrets/diffview.nvim",           --- See dependencies
+        },
+    },
     -- NOTE: Plugins can also be configured to run lua code when they are loaded.
     --
     -- This is often very useful to both group configuration, as well as handle

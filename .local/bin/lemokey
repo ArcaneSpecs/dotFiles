@@ -1,0 +1,10 @@
+#!/bin/bash
+
+chromium https://launcher.lemokey.com/ &
+chromium chrome://device-log/ &
+
+kitty sudo chmod 777 /dev/hidraw4
+chrome://device-log/
+
+
+

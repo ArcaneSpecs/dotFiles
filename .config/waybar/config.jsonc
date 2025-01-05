@@ -4,64 +4,75 @@
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
     // "modules-left": ["hyprland/workspaces", "tray"],
-    "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner" ],
+    "modules-left": [
+        "hyprland/workspaces",
+        "tray",
+        "custom/keybinds_deactivate",
+        "custom/keybinds_activate",
+        "custom/launch_terminal",
+        "custom/launch_actions_runner",
+        "hyprland/window"
+
+    ],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner", "custom/launch_actions_runner_stockbrokerage"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
     // "modules-center": ["clock"],
-    "modules-center": ["hyprland/window"],
+    "modules-center": [
+    ],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
     // "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory", "clock"],
-    "modules-right": [ "pulseaudio", "custom/temp", "cpu", "memory", "clock"],
-
+    "modules-right": [
+        // "pulseaudio",
+        "network",
+        "custom/audio",
+        "custom/temp",
+        "cpu",
+        "memory",
+        "clock"
+    ],
     "hyprland/workspaces": {
         "all-outputs": true,
-        "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace e-1",
         "on-scroll-down": "hyprctl dispatch workspace e+1",
         // "sort-by-number": true,
-		"format": "{icon}",
-		"on-click": "activate",
-		"format-icons": {
-		"1": "一",
-		"2": "二",
-		"3": "三",
-		"4": "四",
-		"5": "五",
-		"1": "一",
-		"2": "二",
-		"3": "三",
-		"4": "四",
-		"5": "五",
-        "6": "六",
-        "7": "七",
-        "8": "八",
-        "9": "九",
-        "10": "十",
-        "11": "十一",
-        "12": "十二",
-        "13": "十三",
-        "14": "十四",
-        "15": "十五",
-        "16": "十六",
-        "17": "十七",
-        "18": "十八",
-        "19": "十九",
-        "20": "二十",
-			// "urgent": "",
-			// "active": "",
-			// "default": "󰧞",
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "11": "十一",
+            "12": "十二",
+            "13": "十三",
+            "14": "十四",
+            "15": "十五",
+            "16": "十六",
+            "17": "十七",
+            "18": "十八",
+            "19": "十九",
+            "20": "二十",
+            // "urgent": "",
+            // "active": "",
+            // "default": "󰧞",
             // "sort-by-number": true
         },
     },
     "mpd": {
-    	"tooltip": false,
+        "tooltip": false,
         "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
         "format-disconnected": "ﳌ",
         "format-stopped": "",
         "state-icons": {
             "playing": "",
-        	"paused": ""
+            "paused": ""
         }
     },
     "pulseaudio": {
@@ -71,19 +82,36 @@
         "format-icons": {
             // "default": ["奄", "奔", "墳"]
             // 󰕿 󰖀 󰕾
-            "default": ["󰕿 ", "󰖀 ", "󰕾 "]
+            "default": [
+                "󰕿 ",
+                "󰖀 ",
+                "󰕾 "
+            ]
         },
-        "on-click": "env GTK_THEME=\"Adwaita:dark\" pavucontrol",
+        "on-click": "env GTK_THEME=\"Adwaita:dark\" pavucontrol --tab=3",
         "on-click-right": "qpwgraph",
         "on-click-middle": "easyeffects"
     },
     "network": {
-        "tooltip": false,
+        "interval": 1,
         "format-wifi": " {essid}",
         // "format-ethernet": " {ipaddr}",
-        "format-ethernet": "󰀂 {ipaddr}",
+        // "format-ethernet": "󰀂 {ipaddr}",
+        // "format-ethernet": "⇑ {bandwidthUpBytes} ⇓ {bandwidthDownBytes}",
+        "format-ethernet": "⇓ {bandwidthDownBytes}",
+        // "format-ethernet": " DISCONNECTED",
+        // "format-ethernet": "⇑ {bandwidthUpBytes}",
+        // "format-ethernet": "󰀂 {bandwidthDownBytes}",
+        // "format-ethernet": "󰀂 {bandwidthTotalBytes}",
         // "format-ethernet": "󰈁 {ipaddr}",
-        "on-click": "kitty nmtui"
+        // "on-click": "kitty nmtui",
+
+        "tooltip": true,
+        "tooltip-format": "⇑ {bandwidthUpBytes}",
+
+        "on-click": "wihotspot",
+        "format-disconnected": " DISCONNECTED"
+        // "max-length": 12
     },
     // For toggling hyperland keybind so that we can use for example a virtual machine without the keybinds
     "custom/keybinds_deactivate": {
@@ -112,25 +140,34 @@
         "on-click": "kitty ~/dev/StockBrokerageRunner/run.sh",
     },
     "cpu": {
-     	"interval": 10,
-     	"format": " {usage}%",
-     	"max-length": 10,
+        "interval": 10,
+        // "format": " {usage}%",
+        "format": "󰒋 {usage}%",
+        "max-length": 10,
         "on-click": "kitty btop",
     },
     "memory": {
-	    "tooltip": true,
-	    "format": " {}%",
+        "tooltip": true,
+        "format": "󰍛 {}%",
+        // "format": "✨ {}%",
+        // "format": " {}%",
         "on-click": "kitty nvtop",
     },
     "hyprland/window": {
-        "max-length": 75,
+        "max-length": 300,
         "separate-outputs": true,
-        "format": "{title}",
+        "format": "{title}"
     },
     "battery": {
         "format": "{capacity}% {icon}",
-	    "interval": "20",
-        "format-icons": ["", "", "", "", ""],
+        "interval": "20",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
         "states": {
             "warning": 50,
             "critical": 25,
@@ -145,41 +182,40 @@
         // "tooltip-format": "{calendar}",
         "interval": 1,
         // "format": "{:󰃭  %Y-%m-%d %a    %I:%M %p %Z}",
-        "timezones": 
-        [
+        "timezones": [
             "Europe/Helsinki"
             // ,"America/New_York",
         ],
         "tooltip": true,
         "tooltip-format": "{calendar}",
         "calendar": {
-            "mode"        : "year",
+            "mode": "year",
             "mode-mon-col": 2,
-            "weeks-pos"   : "",
-            "on-scroll"   : 1,
-            "on-click"    : "mode",
-            "weeks-pos"   : "left",
+            "weeks-pos": "",
+            "on-scroll": 1,
+            "on-click": "mode",
+            "weeks-pos": "left",
             "format": {
-                "months":     "<span color='#ffead3'><b>{}</b></span>",
-                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
         },
         "actions": {
-           "on-click-right": "mode",
-           "on-click-forward": "tz_up",
-           "on-click-backward": "tz_down",
-           "on-scroll-up": "shift_up",
-           "on-scroll-down": "shift_down"
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
         }
     },
     "custom/temp": {
-        "interval": 1,
+        "interval": 2,
         "exec": "~/.config/waybar/scripts/get_cpu_temp.sh",
         "format": " {}°C",
-        "on-click": "kitty watch -n 0.2 sensors",
+        "on-click": "kitty watch -n 0.2 sensors"
     },
     "tray": {
         "spacing": 10,
@@ -193,20 +229,34 @@
         "tooltip": false,
     },
     "backlight": {
-    	"device": "intel_backlight",
-    	"format": "{percent}% {icon}",
-    	"format-icons": ["", ""],
-    	"on-scroll-up": "~/.config/waybar/increase_brightness.sh",
-    	"on-scroll-down": "~/.config/waybar/decrease_brightness.sh",
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "",
+            ""
+        ],
+        "on-scroll-up": "~/.config/waybar/increase_brightness.sh",
+        "on-scroll-down": "~/.config/waybar/decrease_brightness.sh",
     },
     "bluetooth": {
-    	"format": " {status}",
+        "format": " {status}",
         "format-disabled": "",
         "format-connected": " {num_connections} connected",
         "tooltip-format": "{controller_alias}\t{controller_address}",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "blueman-manager"
+    },
+    "custom/audio": {
+        "exec": "~/.config/waybar/scripts/pulseaudio.sh",
+        "interval": 1,
+        "format": "{}",
+        "tooltip": false,
+        "on-click": "env GTK_THEME=\"Adwaita:dark\" pavucontrol --tab=3",
+        "on-click-right": "qpwgraph",
+        "on-click-middle": "easyeffects",
+        "on-scroll-up": "~/.config/waybar/scripts/volume_up.sh",
+        "on-scroll-down": "~/.config/waybar/scripts/volume_down.sh",
     },
     "custom/media": {
         "exec": "python $HOME/.config/waybar/mediaplayer.py",
@@ -222,4 +272,3 @@
         "on-scroll-down": "playerctl previous",
     }
 }
-

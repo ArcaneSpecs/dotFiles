@@ -14,7 +14,6 @@ local keymap = vim.api.nvim_set_keymap
 -- keymap("i", "Ö", "[", opts);
 -- keymap("i", "Ä", "]", opts);
 
-
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -107,6 +106,9 @@ keymap("n", "<leader>m", ":Telescope lsp_document_symbols<CR>", opts)
 -- Make J not jump the cursor
 keymap("n", "J", "mzJ`z", opts)
 
+-- Jump backticks
+keymap('n', '%', [[:%s/^\(\s*```.*\)\n\(\s*\)/\1\n\2/g<CR>:nohlsearch<CR>]], opts)
+
 -- Telescope
 -- Replace in all files in quick fix list
 keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
@@ -154,11 +156,16 @@ keymap("n", "g4", "'4", opts)
 keymap("n", "g5", "'5", opts)
 keymap("n", "g6", "'6", opts)
 
+-- Quick execute q macro
+keymap("n", "<leader>h", "1@q", opts)
+-- Quick execute w macro
+keymap("n", "<leader>N", "1@w", opts)
+
 -- Quick paste first register
 keymap("n", "<leader>J", "\"0P", opts)
 keymap("n", "<leader>j", "viw\"0P", opts)
 -- keymap("n", "<leader>h", "viw\"1P", opts)
-keymap("n", "<leader>h", "vi\"P", opts)
+keymap("n", "<leader>H", "vi\"P", opts)
 keymap("n", "<leader>p", "\"_dP", opts)
 
 -- Quick calc
@@ -178,6 +185,7 @@ keymap("n", "<F6>", ":lua require('dap').run_last()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
 keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<leader><F12>", ":NoiceDismiss<CR>", opts)
 keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
 keymap("n", "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)

@@ -43,6 +43,7 @@ CONFS=(
 "~/.bashrc"
 "~/.zshrc"
 "~/.local/state/nvim/lsp.log"
+"~/.config/ignore_telescope/ignore_file.txt"
 )
 
 # rofi STYLES

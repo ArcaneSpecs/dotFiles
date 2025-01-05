@@ -134,6 +134,28 @@ gdb_wyvern()
 
 }
 
+# Run stable diffusion webui
+sd()
+{
+    cd /github_dir/stable-diffusion-webui
+    brave "http://127.0.0.1:7860/?__theme=dark" &
+    ./webui.sh --no-half --disable-nan-check
+}
+
+# Run wow exe
+wow()
+{
+    WINEPREFIX=~/.wine wine "/mnt/2TB/Vault/wow_ps/1.12.1/World of Warcraft/Wow.exe"
+
+}
+
+hyprland_logs()
+{
+    # watch -n 0.1 "cat "/run/user/1000/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | grep -v "efresh" | grep "rule" | tail -n 40"
+    watch -n 0.1 'cat "/run/user/1000/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tail -n 40'
+}
+
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 

@@ -14,6 +14,11 @@ neodev.setup({
     library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
+function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
 local operating_system = vim.loop.os_uname().sysname
 
 vim.fn.sign_define('DapBreakpoint', {
@@ -34,7 +39,15 @@ vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31
 vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
 
-vim.api.nvim_command('highlight debugBreakpoint guibg=#C175D8 ctermbg=13')
+vim.api.nvim_command('highlight debugBreakpoint cterm=underline guibg=#C175D8 ctermbg=13')
+-- vim.api.nvim_command('highlight clear SpellBad')
+vim.api.nvim_command('highlight SpellBad cterm=undercurl guifg=#ae5555')
+
+-- highlight MyUnderline cterm=underline guifg=Black ctermbg=White guibg=White
+-- hi clear SpellBad
+-- hi SpellBad cterm=underline
+-- " Set style for gVim
+-- hi SpellBad gui=undercurl
 
 require("nvim-dap-virtual-text").setup()
 
@@ -125,8 +138,16 @@ dap.configurations.python = {
         request = 'launch',
         name = "Launch file",
         program = "${file}",
-        cwd = '${workspaceFolder}',
+        cwd = '${workspaceFolder}/GenerateTestBenchmarks',
         args = {
+            -- "runtime",
+            "compile",
+            "clang",
+            "--files=2",
+            "--header",
+            "--framework=1",
+
+            -- "05"
             -- "RPG", "RPG", "/home/patu/Documents/Wyvern_Projects/RPG", "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/", "Debug"
             -- "build_game", "RPG.wproject", "debug", "true"
             -- "testaus",
@@ -136,7 +157,19 @@ dap.configurations.python = {
         pythonPath = function()
             --[[ return '/usr/bin/python' ]]
             -- NOTE: Use the projects venv
-            return 'venv/bin/python'
+            local default_python = 'venv/bin/python'
+            if file_exists(default_python) then
+                return default_python
+            -- Just check couple dirs down if we are in a subdir of the project or something
+            elseif file_exists('../' .. default_python) then
+                return '../' .. default_python
+            elseif file_exists('../../' .. default_python) then
+                return '../../' .. default_python
+            elseif file_exists('../../../' .. default_python) then
+                return '../../../' .. default_python
+            else
+                return '/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python'
+            end
 
             -- Use our global dev venv
             -- return os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python'

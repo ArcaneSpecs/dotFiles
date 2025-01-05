@@ -9,10 +9,10 @@ cd ~
 #export QT_QPA_PLATFORM=xcb 
 
 # For wayland backend
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+#export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # Fixes pavucontrol theme bug
-export GTK_THEME="MyCustom:dark"
+#export GTK_THEME="MyCustom:dark"
 
 # Variables
 export _JAVA_AWT_WM_NONREPARENTING=1

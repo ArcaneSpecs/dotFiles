@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "Building in: $(pwd)"
-cd build
+# cd build
+cd /home/patu/Documents/Wyvern_Projects/RPG/build
 
 # Check if ninja build file exists
 if [ -f build.ninja ]; then
@@ -9,7 +10,8 @@ if [ -f build.ninja ]; then
     exit 0
 fi
 
-if make WyvernServer -j32 config=debug; then
+# if make WyvernServer -j32 config=debug; then
+if make RPG_server -j32 config=debug; then
 # if make -j32 config=release; then
 # if make -j32 config=production; then
     # read -p "Press [Enter]/Q to close..."

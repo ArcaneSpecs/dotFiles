@@ -6,7 +6,8 @@ otd-daemon &
 # whatsapp-for-linux &
 whatsapp-electron &
 # discord &
-dev.vencord.Vesktop &
+# dev.vencord.Vesktop &
+vesktop &
 
 # obs --minimize-to-tray &
 flatpak run com.obsproject.Studio --minimize-to-tray &
@@ -14,7 +15,7 @@ flatpak run com.obsproject.Studio --minimize-to-tray &
 # Telegram &
 
 # pavucontrol &
-sleep 4
+sleep 6
 obs-cmd replay start
 # obs-cli replaybuffer start --host 192.168.1.82 --password teppo --port 4455 &
 # steam &

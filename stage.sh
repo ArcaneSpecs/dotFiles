@@ -37,6 +37,7 @@ cp ~/.xinitrc .
 cp ~/.Xresources .
 cp ~/.zshrc .
 cp ~/.bashrc .
+cp ~/.ideavimrc .
 
 # Files in etc
 cp /etc/default/grub .

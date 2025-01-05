@@ -28,7 +28,7 @@ require("user.autocommands")
 require("user.autosessions")
 require("user.nvim-dap")
 require("user.noice")
-require("user.tabnine")
+-- require("user.tabnine")
 
 
 require("user.WyvernChatConfig")
