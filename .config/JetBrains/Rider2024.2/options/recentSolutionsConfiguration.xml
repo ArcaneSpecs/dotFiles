@@ -1,0 +1,26 @@
+<application>
+  <component name="SolutionConfigurationStore">
+    <option name="configurations">
+      <map>
+        <entry key="/github_dir/UnrealEngine">
+          <value>
+            <ConfigurationInfo />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Documents/Unreal Projects/MyProject/MyProject.uproject">
+          <value>
+            <ConfigurationInfo>
+              <option name="activeConfiguration" value="DebugGame Editor" />
+              <option name="activePlatform" value="Linux" />
+            </ConfigurationInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/dev/simple_wyvern">
+          <value>
+            <ConfigurationInfo />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</application>

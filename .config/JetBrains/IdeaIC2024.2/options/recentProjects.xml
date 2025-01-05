@@ -1,0 +1,43 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/dev/TEKS5466">
+          <value>
+            <RecentProjectMetaInfo frameTitle="TEKS5466 – Average.java" opened="true" projectWorkspaceId="2lWA1McgOTTB3OA4avafFfm81df">
+              <option name="activationTimestamp" value="1725294880004" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-242.20224.419" />
+              <option name="buildTimestamp" value="1724589720000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="3" />
+              </option>
+              <option name="currentBranch" value="master" />
+              <frame x="0" y="28" width="1920" height="1052" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1725286183513" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/dev/simple_wyvern">
+          <value>
+            <RecentProjectMetaInfo frameTitle="simple_wyvern – Editor.cpp [simple_wyvern]" projectWorkspaceId="2YuT5M1zTZBm1ZFVvQsR3ZAyH8h">
+              <option name="activationTimestamp" value="1725286984308" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-242.20224.419" />
+              <option name="buildTimestamp" value="1724589720000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="0" />
+              </option>
+              <option name="currentBranch" value="master" />
+              <frame x="743" y="29" width="1176" height="1050" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1725286841437" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastOpenedProject" value="$USER_HOME$/dev/TEKS5466" />
+  </component>
+</application>

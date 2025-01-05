@@ -1,0 +1,57 @@
+<application>
+  <component name="ActionHistoryManager">
+    <ids>
+      <option value="Images.SetBackgroundImage" />
+      <option value="WelcomeScreen.Plugins" />
+    </ids>
+  </component>
+  <component name="FileEditorProviderManager">{}</component>
+  <component name="LangManager">
+    <option name="languageName" value="JAVA" />
+  </component>
+  <component name="NotRoamableUiSettings">
+    <option name="fontSize" value="12.0" />
+    <option name="presentationModeIdeScale" value="1.75" />
+  </component>
+  <component name="PropertyService"><![CDATA[{
+  "keyToString": {
+    "KEYMAP": "stop\nresume\nrun\ndebug",
+    "MarketplacePluginsSearchHistory": "c++\nclang",
+    "NextRunPlatformUpdateBuild": "IC-243.22562.218",
+    "NextRunPlatformUpdateSelfBuild": "IC-243.21565.193",
+    "NextRunPlatformUpdateVersion": "2024.3.1.1",
+    "RunOnceActivity.VFSInitializationConditionsToFusReporter": "true",
+    "SettingsSearchHistory": "ru\nde\nd",
+    "ask.about.ctrl.y.shortcut.v2": "true",
+    "build.toolwindow.Build Output.selection.state": "com.intellij.build.BuildTreeConsoleView",
+    "decompiler.legal.notice.accepted": "true",
+    "defaultJdkConfigured": "true",
+    "experimental.ui.on.first.startup": "true",
+    "experimental.ui.used.version": "243.21565.193",
+    "fileTypeChangedCounter": "1",
+    "fontSizeToResetConsole": "12.0",
+    "fontSizeToResetEditor": "12.0",
+    "ide.memory.adjusted": "true",
+    "ide.updates.old.dirs.scan.scheduled": "1735894699315",
+    "idea.background.editor": "/home/patu/.config/Wallpapers/space0.jpg,8,scale,middle_right",
+    "ideavim.statistics.timestamp": "1725286536587",
+    "ift.hide.welcome.screen.promo": "true",
+    "installed.kotlin.plugin.version": "243.21565.193-IJ",
+    "last_opened_file_path": "/home/patu/dev/TEKS5466",
+    "migrated.non.roamable.values.from.general.settings": "true",
+    "org.intellij.images.editor.actions.BackgroundImageDialog#recent": "/home/patu/.config/Wallpapers/space0.jpg",
+    "previousColorScheme": "_@user_Dark",
+    "registry.to.advanced.settings.migration.build": "IC-243.21565.193"
+  },
+  "keyToStringList": {
+    "file.chooser.recent.files": [
+      "/home/patu/dev/simple_wyvern",
+      "/home/patu/dev/TEKS5466"
+    ],
+    "fileTypeDetectors": [
+      "com.intellij.ide.scratch.ScratchFileServiceImpl$Detector",
+      "org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector"
+    ]
+  }
+}]]></component>
+</application>

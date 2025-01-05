@@ -1,0 +1,230 @@
+<application>
+  <component name="RiderPerAppToolWindowLayoutV2"><![CDATA[{
+  "layouts": {
+    "Custom": {
+      "v2": [
+        {
+          "id": "Merge Requests",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Learn",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Project",
+          "order": 0,
+          "contentUiType": "COMBO",
+          "weight": 0.21923536,
+          "sideWeight": 0.5004951
+        },
+        {
+          "id": "Commit",
+          "order": 1,
+          "weight": 0.24982283
+        },
+        {
+          "id": "Bookmarks",
+          "order": 2,
+          "weight": 0.21923077,
+          "sideWeight": 0.49950495,
+          "isSplit": true
+        },
+        {
+          "id": "Structure",
+          "order": 2,
+          "weight": 0.24982283,
+          "isSplit": true
+        },
+        {
+          "id": "Pull Requests",
+          "order": 2,
+          "weight": 0.24982283
+        },
+        {
+          "id": "Monitoring",
+          "order": 3,
+          "weight": 0.23252688
+        },
+        {
+          "id": "Database Changes",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "TypeScript",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Dynamic Program Analysis",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "TODO",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Unit Tests",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "dotTrace Profiler",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "File Transfer",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "NuGet",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "dotMemory",
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Version Control",
+          "order": 0,
+          "anchor": "BOTTOM",
+          "weight": 0.32999998
+        },
+        {
+          "id": "Problems",
+          "order": 1,
+          "anchor": "BOTTOM"
+        },
+        {
+          "id": "Problems View",
+          "order": 2,
+          "anchor": "BOTTOM",
+          "weight": 0.330597
+        },
+        {
+          "id": "Terminal",
+          "order": 3,
+          "anchor": "BOTTOM",
+          "weight": 0.3547619
+        },
+        {
+          "id": "Build",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.33049536
+        },
+        {
+          "id": "Debug",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.33049536
+        },
+        {
+          "id": "UnrealBuildTool",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.32999998
+        },
+        {
+          "id": "Run",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.493895
+        },
+        {
+          "id": "UnrealLink",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.493895
+        },
+        {
+          "id": "Services",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "isShowStripeButton": false,
+          "weight": 0.32999998
+        },
+        {
+          "id": "Find",
+          "order": 4,
+          "anchor": "BOTTOM",
+          "weight": 0.493895
+        },
+        {
+          "id": "Endpoints",
+          "anchor": "RIGHT",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "IL",
+          "anchor": "RIGHT",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "documentation.v2",
+          "anchor": "RIGHT",
+          "isShowStripeButton": false,
+          "isSplit": true
+        },
+        {
+          "id": "Coverage",
+          "anchor": "RIGHT",
+          "isShowStripeButton": false,
+          "isSplit": true
+        },
+        {
+          "id": "Test Coverage",
+          "anchor": "RIGHT",
+          "isShowStripeButton": false
+        },
+        {
+          "id": "Notifications",
+          "order": 0,
+          "anchor": "RIGHT",
+          "isShowStripeButton": false,
+          "weight": 0.3302998
+        },
+        {
+          "id": "AIAssistant",
+          "order": 1,
+          "anchor": "RIGHT",
+          "isShowStripeButton": false,
+          "weight": 0.33021933
+        },
+        {
+          "id": "Database",
+          "order": 2,
+          "anchor": "RIGHT",
+          "isShowStripeButton": false,
+          "weight": 0.33021933
+        },
+        {
+          "id": "Gradle",
+          "order": 3,
+          "anchor": "RIGHT",
+          "weight": 0.25
+        },
+        {
+          "id": "Maven",
+          "order": 4,
+          "anchor": "RIGHT",
+          "weight": 0.25
+        }
+      ],
+      "unifiedWeights": {
+        "top": 0.33,
+        "left": 0.21923077,
+        "bottom": 0.493895,
+        "right": 0.3302998
+      }
+    }
+  }
+}]]></component>
+</application>

@@ -1,0 +1,6 @@
+<application>
+  <component name="BhWikilinkConfiguration">
+    <wikilinkStartToken>[[</wikilinkStartToken>
+    <wikilinkEndToken>]]</wikilinkEndToken>
+  </component>
+</application>

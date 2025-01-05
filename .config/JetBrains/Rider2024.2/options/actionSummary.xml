@@ -1,0 +1,406 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="$SelectAll">
+      <i c="4" l="1736062830948" />
+    </e>
+    <e n="ActivateBookmarksToolWindow">
+      <i c="9" l="1736062996762" />
+    </e>
+    <e n="ActivateDebugToolWindow">
+      <i c="32" l="1736062993504" />
+    </e>
+    <e n="ActivateFindToolWindow">
+      <i c="30" l="1736063010840" />
+    </e>
+    <e n="ActivateProjectToolWindow">
+      <i c="11" l="1730042662751" />
+    </e>
+    <e n="ActivateRunToolWindow">
+      <i c="14" l="1736062994834" />
+    </e>
+    <e n="AllRunConfigurationsToggle">
+      <i c="6" l="1729950065806" />
+    </e>
+    <e n="Back">
+      <i c="44" l="1736063384503" />
+    </e>
+    <e n="CancelBuildAction">
+      <i c="2" l="1729952420537" />
+    </e>
+    <e n="ChangeView">
+      <i c="4" l="1729950164537" />
+    </e>
+    <e n="CloseAllEditorsButActive">
+      <i c="1" l="1729954465260" />
+    </e>
+    <e n="ConsoleView.ClearAll">
+      <i c="2" l="1729952843774" />
+    </e>
+    <e n="CopyPaths">
+      <i c="1" l="1730013885596" />
+    </e>
+    <e n="CustomizeModeWidget">
+      <i c="1" l="1729953240727" />
+    </e>
+    <e n="Debug">
+      <i c="18" l="1729955114669" />
+    </e>
+    <e n="EditPropertiesAction">
+      <i c="1" l="1729954717007" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="180" l="1736064024432" />
+    </e>
+    <e n="EditorBreadcrumbsHideBoth">
+      <i c="5" d="5" l="1729954703779" k="1729954703779" />
+    </e>
+    <e n="EditorBreadcrumbsShowAbove">
+      <i c="6" d="6" l="1729954701202" k="1729954701202" />
+    </e>
+    <e n="EditorEnter">
+      <i c="10" l="1736062355007" />
+    </e>
+    <e n="EditorEscape">
+      <i c="83" l="1736064844436" />
+    </e>
+    <e n="EditorLeft">
+      <i c="1" l="1729953352957" />
+    </e>
+    <e n="EditorPaste">
+      <i c="10" l="1736062806899" />
+    </e>
+    <e n="EditorPreviousWordWithSelection">
+      <i c="9" l="1736064370005" />
+    </e>
+    <e n="EditorScrollUp">
+      <i c="1" l="1730042677211" />
+    </e>
+    <e n="EditorTab">
+      <i c="2" l="1729953663026" />
+    </e>
+    <e n="EditorUp">
+      <i c="1" l="1729953346183" />
+    </e>
+    <e n="Exit">
+      <i c="1" l="1729949018906" />
+    </e>
+    <e n="FileChooser.GotoDesktop">
+      <i c="1" l="1729946852792" />
+    </e>
+    <e n="FileChooser.GotoHome">
+      <i c="1" l="1729946779262" />
+    </e>
+    <e n="FileChooser.GotoProject">
+      <i c="2" l="1729946852150" />
+    </e>
+    <e n="FindInPath">
+      <i c="6" l="1730042033286" />
+    </e>
+    <e n="FindUsages">
+      <i c="27" l="1736063805499" />
+    </e>
+    <e n="Forward">
+      <i c="17" l="1736063375236" />
+    </e>
+    <e n="GotoAction">
+      <i c="1" l="1729953527148" />
+    </e>
+    <e n="GotoDeclaration">
+      <i c="85" l="1736064978692" />
+    </e>
+    <e n="GotoFile">
+      <i c="8" l="1736064844765" />
+    </e>
+    <e n="GotoSymbol">
+      <i c="6" l="1730013756286" />
+    </e>
+    <e n="Images.SetBackgroundImage">
+      <i c="5" l="1736062893646" />
+    </e>
+    <e n="MonitoringTool.StartMode.Actions">
+      <i c="1" l="1729949515458" />
+    </e>
+    <e n="MoreRunToolbarActions">
+      <i c="3" l="1729955006194" />
+    </e>
+    <e n="NavBarLocationBottom">
+      <i c="1" l="1729954848741" />
+    </e>
+    <e n="NavBarLocationHide">
+      <i c="4" l="1729954858689" />
+    </e>
+    <e n="NavBarLocationTop">
+      <i c="2" l="1729954846513" />
+    </e>
+    <e n="NextOccurence">
+      <i c="3" l="1729953704490" />
+    </e>
+    <e n="NextTab">
+      <i c="32" l="1736064644285" />
+    </e>
+    <e n="OpenInBrowser">
+      <i c="4" l="1729953420031" />
+    </e>
+    <e n="PasteMultiple">
+      <i c="1" l="1729953638257" />
+    </e>
+    <e n="PreviousOccurence">
+      <i c="2" l="1729953704803" />
+    </e>
+    <e n="PreviousTab">
+      <i c="35" l="1736064644724" />
+    </e>
+    <e n="QuickJavaDoc">
+      <i c="8" l="1736064980086" />
+    </e>
+    <e n="QuickPreview">
+      <i c="1" l="1730042663438" />
+    </e>
+    <e n="RedesignedRunConfigurationSelector">
+      <i c="17" l="1736063030907" />
+    </e>
+    <e n="Refactorings.QuickListPopupAction">
+      <i c="1" l="1729953136240" />
+    </e>
+    <e n="Resume">
+      <i c="2" l="1729954450342" />
+    </e>
+    <e n="RiderLink.UnrealPlaySettings">
+      <i c="5" l="1730043559061" />
+    </e>
+    <e n="RiderOpenSolution">
+      <i c="3" l="1729946797058" />
+    </e>
+    <e n="Run">
+      <i c="1" l="1736064166667" />
+    </e>
+    <e n="RunAnything">
+      <i c="1" l="1729954963178" />
+    </e>
+    <e n="SaveAll">
+      <i c="10" l="1736062369433" />
+    </e>
+    <e n="ScrollPane-scrollHome">
+      <i c="1" l="1729949593040" />
+    </e>
+    <e n="ScrollPaneActions">
+      <i c="1" d="1" l="1729949590947" k="1729949590947" />
+    </e>
+    <e n="SearchEverywhere">
+      <i c="56" l="1736064364925" />
+    </e>
+    <e n="SettingsEntryPoint">
+      <i c="15" l="1736062397188" />
+    </e>
+    <e n="ShowAllInSolutionExplorer">
+      <i c="1" l="1729950267048" />
+    </e>
+    <e n="ShowIntentionActions">
+      <i c="1" l="1729953164447" />
+    </e>
+    <e n="ShowMembersInNavigationBar">
+      <i c="1" l="1729954844103" />
+    </e>
+    <e n="ShowSettings">
+      <i c="34" l="1736062909587" />
+    </e>
+    <e n="ShowSettingsAndFindUsages">
+      <i c="1" l="1729953154519" />
+    </e>
+    <e n="StatusTextModeAction">
+      <i c="13" l="1729954856206" />
+    </e>
+    <e n="Stop">
+      <i c="4" l="1729954454680" />
+    </e>
+    <e n="SwitchHeaderSource">
+      <i c="9" l="1736064797606" />
+    </e>
+    <e n="Switcher">
+      <i c="3" l="1729953706630" />
+    </e>
+    <e n="ToggleCompactMode">
+      <i c="1" l="1729950165671" />
+    </e>
+    <e n="ToolWindowShowNamesAction">
+      <i c="2" l="1736062984191" />
+    </e>
+    <e n="Tree-selectChild">
+      <i c="5" l="1736063787102" />
+    </e>
+    <e n="Tree-selectNext">
+      <i c="37" l="1736063786771" />
+    </e>
+    <e n="Tree-selectParent">
+      <i c="1" l="1730042684293" />
+    </e>
+    <e n="Tree-selectPrevious">
+      <i c="31" l="1736063788059" />
+    </e>
+    <e n="ViewStatusBar">
+      <i c="4" d="4" l="1729954880349" k="1729954880349" />
+    </e>
+    <e n="ViewToolBar">
+      <i c="10" d="10" l="1729950130002" k="1729950130002" />
+    </e>
+    <e n="ViewToolButtons">
+      <i c="5" d="5" l="1729950193598" k="1729950193598" />
+    </e>
+    <e n="VimPluginToggle">
+      <i c="12" l="1729953788925" />
+    </e>
+    <e n="WelcomeScreen.Plugins">
+      <i c="10" d="9" l="1729955160739" k="1729955160739" />
+    </e>
+    <e n="ZoomOutIdeAction">
+      <i c="1" d="1" l="1729953876751" k="1729953876751" />
+    </e>
+    <e n="backgroundImagePlus">
+      <i c="1" d="1" l="1736062836416" k="1736062836416" />
+    </e>
+    <e n="com.intellij.codeInsight.documentation.render.DocRenderer$ToggleRenderingAction">
+      <i c="2" l="1736063937183" />
+    </e>
+    <e n="com.intellij.execution.ui.RunToolbarPopupKt$createRunConfigurationWithInlines$result$1">
+      <i c="1" l="1729946951415" />
+    </e>
+    <e n="com.intellij.find.impl.FindPopupPanel$MyEnterAction">
+      <i c="2" l="1730042038096" />
+    </e>
+    <e n="com.intellij.ide.actions.ToolWindowMoveAction">
+      <i c="1" l="1729950198146" />
+    </e>
+    <e n="com.intellij.ide.actions.searcheverywhere.AbstractGotoSEContributor$doGetActions$1">
+      <i c="1" l="1730013432955" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.PluginsTab$3$1">
+      <i c="1" l="1729955095655" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.TabbedPaneHeaderComponent$3">
+      <i c="1" l="1729949720106" />
+    </e>
+    <e n="com.intellij.ide.startup.importSettings.chooser.productChooser.JbChooserAction">
+      <i c="2" l="1729946429356" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomisedActionGroup">
+      <i c="3" l="1729953205997" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomizableActionsPanel$AddActionActionTreeSelectionAction">
+      <i c="5" l="1729953315835" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomizableActionsPanel$MoveDownAction">
+      <i c="1" l="1729946568222" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomizableActionsPanel$MoveUpAction">
+      <i c="4" l="1729946579624" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomizableActionsPanel$RemoveAction">
+      <i c="4" l="1729953367981" />
+    </e>
+    <e n="com.intellij.ide.ui.customization.CustomizationUtil$MyDumbAction">
+      <i c="8" l="1729953366190" />
+    </e>
+    <e n="com.intellij.notification.NotificationAction$Simple">
+      <i c="6" l="1736062175219" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.AnActionWrapper">
+      <i c="143" l="1736064979519" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.EmptyAction">
+      <i c="2" l="1729953706713" />
+    </e>
+    <e n="com.intellij.openapi.editor.impl.EditorMarkupModelImpl$8">
+      <i c="5" l="1730013026314" />
+    </e>
+    <e n="com.intellij.openapi.editor.impl.EditorMarkupModelImpl$TrafficLightAction">
+      <i c="8" l="1729954608758" />
+    </e>
+    <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
+      <i c="4" l="1729950418500" />
+    </e>
+    <e n="com.intellij.openapi.keymap.impl.ui.KeymapPanel$AddKeyboardShortcutAction">
+      <i c="1" l="1730040152388" />
+    </e>
+    <e n="com.intellij.openapi.keymap.impl.ui.KeymapPanel$FindByShortcutAction">
+      <i c="6" l="1730040131015" />
+    </e>
+    <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
+      <i c="89" l="1736064849102" />
+    </e>
+    <e n="com.intellij.openapi.ui.DialogWrapper$5">
+      <i c="3" l="1730012942794" />
+    </e>
+    <e n="com.intellij.openapi.ui.impl.DialogWrapperPeerImpl$AnCancelAction">
+      <i c="9" l="1736062929971" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.HideAction">
+      <i c="7" l="1729954883974" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.SquareAnActionButton">
+      <i c="87" l="1736063012084" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.customFrameDecorations.header.toolbar.MainMenuButton$ShowMenuAction">
+      <i c="10" l="1736062986661" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.status.widget.HideCurrentWidgetAction">
+      <i c="1" l="1729954616292" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.status.widget.StatusBarWidgetsActionGroup$ToggleWidgetAction">
+      <i c="31" l="1729954845061" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.welcomeScreen.projectActions.ChangeProjectColorAction">
+      <i c="1" l="1729950152926" />
+    </e>
+    <e n="com.intellij.toolWindow.ShowMoreToolWindowsAction">
+      <i c="1" l="1729946631778" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$HideAction">
+      <i c="11" l="1736064180965" />
+    </e>
+    <e n="com.intellij.ui.CommonActionsPanel$AddButton">
+      <i c="1" l="1729946816063" />
+    </e>
+    <e n="com.intellij.ui.ScrollingUtil$ListMoveDownAction">
+      <i c="252" l="1736064848781" />
+    </e>
+    <e n="com.intellij.ui.ScrollingUtil$ListMoveUpAction">
+      <i c="112" l="1736063849497" />
+    </e>
+    <e n="com.intellij.ui.ScrollingUtil$TableMoveDownAction">
+      <i c="4" l="1730042037774" />
+    </e>
+    <e n="com.intellij.ui.components.BasicOptionButtonUI$ActionDelegate">
+      <i c="2" l="1729955167100" />
+    </e>
+    <e n="com.intellij.ui.dsl.builder.components.SegmentedButtonAction">
+      <i c="6" l="1729946366664" />
+    </e>
+    <e n="com.jetbrains.rider.actions.RiderActionUpdateInterceptor$RiderBackendCompositeAction">
+      <i c="49" l="1736064797585" />
+    </e>
+    <e n="com.jetbrains.rider.build.actions.ActiveConfigurationAndPlatformActionGroup$SelectConfigurationAction">
+      <i c="9" l="1729954019326" />
+    </e>
+    <e n="com.jetbrains.rider.build.redesign.WarningsToggleAction">
+      <i c="2" l="1729954181008" />
+    </e>
+    <e n="com.jetbrains.rider.intentions.gutterWrappers.BackendGutterMarkWrapper$getClickAction$1">
+      <i c="2" l="1736063943941" />
+    </e>
+    <e n="com.jetbrains.rider.pencils.PencilsStatusBarWidget$onRightClick$1">
+      <i c="1" l="1729949302131" />
+    </e>
+    <e n="com.jetbrains.rider.pencils.settings.RiderPencilsSettingsPanelFactoryImpl$createComponent$2$linkSelected$1">
+      <i c="1" l="1729954594877" />
+    </e>
+    <e n="com.maddyhome.idea.vim.group.NotificationService$OpenIdeaVimRcAction">
+      <i c="2" l="1729953341462" />
+    </e>
+    <e n="com.maddyhome.idea.vim.ui.ex.ExShortcutKeyAction">
+      <i c="34" l="1736064775273" />
+    </e>
+    <e n="editRunConfigurations">
+      <i c="1" l="1729946814876" />
+    </e>
+  </component>
+</application>

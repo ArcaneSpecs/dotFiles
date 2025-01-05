@@ -1,0 +1,99 @@
+<application>
+  <component name="VimHistorySettings">
+    <history>
+      <history-cmd />
+    </history>
+  </component>
+  <component name="VimJumpsSettings">
+    <project id="TEKS5466-83b8bdee">
+      <jump line="49" column="18" filename="$USER_HOME$/.ideavimrc" protocol="file" />
+      <jump line="15" column="4" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+      <jump line="4" column="0" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+      <jump line="13" column="12" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+      <jump line="16" column="0" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+      <jump line="10" column="1" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+      <jump line="14" column="9" filename="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" protocol="file" />
+    </project>
+    <project id="simple_wyvern-3e5996c4">
+      <jump line="1" column="0" filename="$USER_HOME$/dev/simple_wyvern/WyvernEditor/Source/Editor.cpp" protocol="file" />
+    </project>
+  </component>
+  <component name="VimMarksSettings">
+    <globalmarks />
+    <localmarks>
+      <file name="$USER_HOME$/dev/TEKS5466/venv/lib/python3.12/site-packages/playwright/driver/package/lib/server/android/backendAdb.js" timestamp="1725286688819">
+        <mark key="&quot;" line="171" column="1" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/build/protobuf/src/google/protobuf/compiler/plugin.cc" timestamp="1725286873475">
+        <mark key="&quot;" line="201" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/WyvernEditor/Source/Editor.cpp" timestamp="1725286986184">
+        <mark key="&quot;" line="31" column="30" />
+        <mark key="[" line="0" column="1" />
+        <mark key="]" line="0" column="10" />
+        <mark key="." line="0" column="1" />
+      </file>
+      <file name="$USER_HOME$/dev/TEKS5466/venv/lib/python3.12/site-packages/playwright/driver/package/lib/image_tools/imageChannel.js" timestamp="1725286687997">
+        <mark key="&quot;" line="69" column="36" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/lld/test/MachO/u.s" timestamp="1725286872883">
+        <mark key="&quot;" line="36" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/test/Frontend/plugins.c" timestamp="1725286874048">
+        <mark key="&quot;" line="5" column="0" />
+      </file>
+      <file name="/" timestamp="1725286768311">
+        <mark key="&quot;" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/test/Frontend/plugins-order.c" timestamp="1725286874320">
+        <mark key="&quot;" line="12" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Wyvern/External/toolchain/arm/sysroot/usr/include/linux/un.h" timestamp="1725286872108">
+        <mark key="&quot;" line="28" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/test/Parser/placeholder-recovery.m" timestamp="1725286873075">
+        <mark key="&quot;" line="14" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/test/Interpreter/plugins.cpp" timestamp="1725286874163">
+        <mark key="&quot;" line="13" column="0" />
+      </file>
+      <file name="$USER_HOME$/.ideavimrc" timestamp="1725286691994">
+        <mark key="&quot;" line="74" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/TEKS5466/venv/lib/python3.12/site-packages/robot/libraries/Telnet.py" timestamp="1725286736796">
+        <mark key="&quot;" line="381" column="65" />
+      </file>
+      <file name="$USER_HOME$/dev/simple_wyvern/Tools/WyvernHeaderGenerator/External/llvm/clang/test/Rewriter/undecl-objc-h.m" timestamp="1725286871986">
+        <mark key="&quot;" line="29" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/TEKS5466/venv/lib64/python3.12/site-packages/robot/libraries/Telnet.py" timestamp="1725286736927">
+        <mark key="&quot;" line="381" column="65" />
+      </file>
+      <file name="$USER_HOME$/dev/TEKS5466/venv/lib/python3.12/site-packages/robot/utils/etreewrapper.py" timestamp="1725286691263">
+        <mark key="&quot;" line="84" column="0" />
+      </file>
+      <file name="$USER_HOME$/dev/TEKS5466/exercises/AllGood/Average.java" timestamp="1725286660803">
+        <mark key="]" line="8" column="21" />
+        <mark key="^" line="8" column="21" />
+        <mark key="." line="8" column="20" />
+      </file>
+    </localmarks>
+  </component>
+  <component name="VimRegisterSettings">
+    <registers>
+      <register name="." type="CHARACTER_WISE">
+        <text encoding="base64">SGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8KSGVsbG8K</text>
+      </register>
+    </registers>
+  </component>
+  <component name="VimSearchSettings">
+    <search>
+      <last-offset encoding="base64" />
+      <last-dir encoding="base64">MQ==</last-dir>
+      <show-last encoding="base64">dHJ1ZQ==</show-last>
+    </search>
+  </component>
+  <component name="VimVariables">
+    <vim-variables />
+  </component>
+</application>

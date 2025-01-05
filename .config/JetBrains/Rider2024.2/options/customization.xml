@@ -1,0 +1,6 @@
+<application>
+  <component name="com.intellij.ide.ui.customization.CustomActionsSchema">
+    <action id="CustomizeModeWidget" icon="jar:file:/usr/share/rider/lib/app-client.jar!/expui/toolbar/unknown.svg" />
+    <action id="VimPluginToggle" icon="jar:file:/usr/share/rider/lib/app-client.jar!/expui/toolbar/unknown.svg" />
+  </component>
+</application>

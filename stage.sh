@@ -16,6 +16,10 @@ cp -r ~/.config/firefox .config
 cp -r ~/.config/ranger .config
 cp -r ~/.config/gtk-3.0/ .config
 
+# JetBrains IDE settings
+cp ~/.ideavimrc .
+cp -r ~/.config/JetBrains .config
+
 # Just files but not the mp4s
 find ~/.config/Wallpapers -maxdepth 1 -type f -exec cp {} .config/Wallpapers \;
 # cp -r ~/.config/Wallpapers .config
@@ -37,7 +41,6 @@ cp ~/.xinitrc .
 cp ~/.Xresources .
 cp ~/.zshrc .
 cp ~/.bashrc .
-cp ~/.ideavimrc .
 
 # Files in etc
 cp /etc/default/grub .

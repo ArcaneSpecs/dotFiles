@@ -1,0 +1,11 @@
+<application>
+  <component name="TrustedSolutionStore">
+    <option name="trustedLocations">
+      <set>
+        <option value="/github_dir/UnrealEngine" />
+        <option value="$USER_HOME$/Documents/Unreal Projects/MyProject/.idea/.idea.MyProject.dir" />
+        <option value="$USER_HOME$/dev/simple_wyvern" />
+      </set>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,19 @@
+<keymap version="1" name="Visual Studio copy" parent="Visual Studio">
+  <action id="ActivateDebugToolWindow">
+    <keyboard-shortcut first-keystroke="alt 3" />
+  </action>
+  <action id="ActivateFindToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl alt f12" />
+  </action>
+  <action id="CompileDirty" />
+  <action id="Debug">
+    <keyboard-shortcut first-keystroke="f5" />
+  </action>
+  <action id="NextDiff">
+    <keyboard-shortcut first-keystroke="f8" />
+  </action>
+  <action id="Stop">
+    <keyboard-shortcut first-keystroke="shift f5" />
+    <keyboard-shortcut first-keystroke="f7" />
+  </action>
+</keymap>

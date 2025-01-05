@@ -1,0 +1,13 @@
+<scheme name="_@user_Dark" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="ide">Rider</property>
+    <property name="ideVersion">2024.2.7.0.0</property>
+    <property name="originalScheme">Dark</property>
+    <property name="partialSave">true</property>
+    <property name="pluginId">com.intellij</property>
+  </metaInfo>
+  <colors>
+    <option name="ScrollBar.hoverThumbColor" value="a6a6a60" />
+    <option name="ScrollBar.thumbColor" value="ffffff0" />
+  </colors>
+</scheme>

@@ -1,0 +1,59 @@
+<application>
+  <component name="RiderRecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="/github_dir/UnrealEngine">
+          <value>
+            <RecentProjectMetaInfo displayName="UnrealEngine" frameTitle="UnrealEngine – ~/Documents/Unreal Projects/MyProject/MyProject.code-workspace" projectWorkspaceId="2nyXqurs90FAVHQpUU6O4rck81D">
+              <option name="activationTimestamp" value="1729949020100" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="RD-242.23726.100" />
+              <option name="buildTimestamp" value="1729617600000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="1" />
+              </option>
+              <frame x="1" y="29" width="956" height="1050" />
+              <option name="metadata" value="UnrealEngine|" />
+              <option name="productionCode" value="RD" />
+              <option name="projectOpenTimestamp" value="1729946484371" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Documents/Unreal Projects/MyProject/MyProject.uproject">
+          <value>
+            <RecentProjectMetaInfo frameTitle="MyProject – GameInstance.cpp" opened="true" projectWorkspaceId="2nyYV0JoEbsXi6mz3nfitxBfvQZ">
+              <option name="activationTimestamp" value="1736065272200" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="RD-242.23726.100" />
+              <option name="buildTimestamp" value="1729617600000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="4" />
+              </option>
+              <frame x="0" y="28" width="1920" height="1052" />
+              <option name="productionCode" value="RD" />
+              <option name="projectOpenTimestamp" value="1729946802891" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/dev/simple_wyvern">
+          <value>
+            <RecentProjectMetaInfo displayName="simple_wyvern" frameTitle="Application.cpp" projectWorkspaceId="2YuT5M1zTZBm1ZFVvQsR3ZAyH8h">
+              <option name="activationTimestamp" value="1730012937884" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="RD-242.23726.100" />
+              <option name="buildTimestamp" value="1729617600000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="0" />
+              </option>
+              <frame x="963" y="29" width="956" height="1050" />
+              <option name="metadata" value="simple_wyvern|" />
+              <option name="productionCode" value="RD" />
+              <option name="projectOpenTimestamp" value="1729954958810" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastOpenedProject" value="$USER_HOME$/Documents/Unreal Projects/MyProject/MyProject.uproject" />
+  </component>
+</application>

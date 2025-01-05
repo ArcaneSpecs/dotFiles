@@ -1,0 +1,25 @@
+<application>
+  <component name="GeneralSettings">
+    <option name="confirmOpenNewProject2" value="-1" />
+  </component>
+  <component name="Registry">
+    <entry key="moved.to.new.ui" value="true" />
+    <entry key="ide.experimental.ui" value="true" />
+    <entry key="i18n.locale" value="" />
+  </component>
+  <component name="StatusBar">
+    <option name="widgets">
+      <map>
+        <entry key="CodeStyleStatusBarWidget" value="false" />
+        <entry key="CwmWireStatsWidgetFactory" value="false" />
+        <entry key="Encoding" value="false" />
+        <entry key="IdeaVimMode" value="false" />
+        <entry key="LineSeparator" value="false" />
+        <entry key="TypeScriptInfo" value="false" />
+        <entry key="com.jetbrains.rider.roslyn.RoslynStatusBarWidgetFactory" value="false" />
+        <entry key="dotCoverIndicator" value="false" />
+        <entry key="webDeployment.default.server.widget" value="false" />
+      </map>
+    </option>
+  </component>
+</application>

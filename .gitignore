@@ -43,6 +43,9 @@ luac.out
 *.x86_64
 *.hex
 
+# Database files
+*.db
+*.ldb
 
 .config/nvim/lua/user/plugin/packer_compiled.lua
 .config/copilot
@@ -51,6 +54,17 @@ luac.out
 .config/nvim/node_modules
 .config/nvim/package.json
 .config/nvim/package-lock.json
+
+# Unnecessary JetBrains IDE files
+JetBrains/*/workspace/
+JetBrains/*/tasks/
+JetBrains/*/ssl/
+JetBrains/*/resharper-host/
+JetBrains/*/event-log-metadata/
+JetBrains/*/extensions/
+
+# Rider License key
+*.key
 
 
 

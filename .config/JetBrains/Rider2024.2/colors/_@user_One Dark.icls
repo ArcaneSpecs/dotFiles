@@ -1,0 +1,36 @@
+<scheme name="_@user_One Dark" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="ide">Rider</property>
+    <property name="ideVersion">2024.2.7.0.0</property>
+    <property name="originalScheme">One Dark</property>
+    <property name="partialSave">true</property>
+    <property name="pluginId">com.markskelton.one-dark-theme</property>
+  </metaInfo>
+  <attributes>
+    <option name="DEFAULT_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="e0e2ea" />
+      </value>
+    </option>
+    <option name="ReSharper.CPP_CLASS_FIELD_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="56b6c2" />
+      </value>
+    </option>
+    <option name="ReSharper.CPP_STATIC_FIELD_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="56b6c2" />
+      </value>
+    </option>
+    <option name="ReSharper.CPP_STRUCT_FIELD_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="56b6c2" />
+      </value>
+    </option>
+    <option name="ReSharper.CPP_UNION_MEMBER_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="56b6c2" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

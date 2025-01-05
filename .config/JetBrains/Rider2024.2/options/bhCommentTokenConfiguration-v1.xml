@@ -1,0 +1,30 @@
+<application>
+  <component name="BhCommentHighlightConfiguration">
+    <tokens>
+      <list>
+        <CommentTokenDescriptor>
+          <token>!</token>
+          <severity>TEXT</severity>
+        </CommentTokenDescriptor>
+        <CommentTokenDescriptor>
+          <token>?</token>
+          <severity>TEXT</severity>
+        </CommentTokenDescriptor>
+        <CommentTokenDescriptor>
+          <token>*</token>
+          <severity>TEXT</severity>
+        </CommentTokenDescriptor>
+        <CommentTokenDescriptor>
+          <isLineHighlight>true</isLineHighlight>
+          <token>End</token>
+          <severity>TEXT</severity>
+        </CommentTokenDescriptor>
+        <CommentTokenDescriptor>
+          <isLineHighlight>true</isLineHighlight>
+          <token>Region</token>
+          <severity>TEXT</severity>
+        </CommentTokenDescriptor>
+      </list>
+    </tokens>
+  </component>
+</application>

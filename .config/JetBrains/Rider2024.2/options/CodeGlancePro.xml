@@ -1,0 +1,11 @@
+<application>
+  <component name="CodeGlance Pro">
+    <option name="consoleWidth" value="30" />
+    <option name="diffWidth" value="30" />
+    <option name="editorSize" value="Fit" />
+    <option name="mainWidth" value="30" />
+    <option name="pixelsPerLine" value="1" />
+    <option name="previewWidth" value="30" />
+    <option name="unTypedWidth" value="30" />
+  </component>
+</application>

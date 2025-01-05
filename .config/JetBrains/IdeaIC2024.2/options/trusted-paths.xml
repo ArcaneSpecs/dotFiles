@@ -1,0 +1,10 @@
+<application>
+  <component name="Trusted.Paths">
+    <option name="TRUSTED_PROJECT_PATHS">
+      <map>
+        <entry key="$USER_HOME$/dev/TEKS5466" value="true" />
+        <entry key="$USER_HOME$/dev/simple_wyvern" value="true" />
+      </map>
+    </option>
+  </component>
+</application>
