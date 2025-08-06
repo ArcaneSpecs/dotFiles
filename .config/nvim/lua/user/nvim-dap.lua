@@ -14,9 +14,14 @@ neodev.setup({
     library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
-function file_exists(name)
-   local f=io.open(name,"r")
-   if f~=nil then io.close(f) return true else return false end
+local function file_exists(name)
+    local f = io.open(name, "r")
+    if f ~= nil then
+        io.close(f)
+        return true
+    else
+        return false
+    end
 end
 
 local operating_system = vim.loop.os_uname().sysname
@@ -61,14 +66,6 @@ end
 
 --[[ local python_command = "source /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate && /home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/bin/python" ]]
 
-dap.defaults.fallback.external_terminal = {
-    command = '/usr/bin/alacritty',
-    args = { '-e' },
-}
-
-dap.defaults.fallback.terminal_win_cmd = 'tabnew'
-dap.defaults.fallback.force_external_terminal = true
-
 if (operating_system == "Linux") then
     require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 elseif (operating_system == "Windows_NT") then
@@ -91,13 +88,13 @@ dap.adapters.python = {
     args = { '-m', 'debugpy.adapter' }
 }
 
-dap.configurations.lua = {
-    {
-        type = 'nlua',
-        request = 'attach',
-        name = "Attach to running Neovim instance",
-    }
-}
+-- dap.configurations.lua = {
+--     {
+--         type = 'nlua',
+--         request = 'attach',
+--         name = "Attach to running Neovim instance",
+--     }
+-- }
 -- dap.configurations.lua = {
 --   {
 --     name = 'Current file (local-lua-dbg, lua)',
@@ -111,6 +108,26 @@ dap.configurations.lua = {
 --     args = {},
 --   },
 -- }
+dap.configurations.lua = {
+    {
+        name = 'Current file (local-lua-dbg, lua)',
+        type = 'local-lua',
+        request = 'launch',
+        cwd = '${workspaceFolder}',
+        program = {
+            lua = 'lua5.1',
+            file = '${file}',
+        },
+        args = {},
+    },
+}
+
+dap.defaults.fallback.terminal_win_cmd = 'tabnew'
+dap.defaults.fallback.force_external_terminal = true
+dap.defaults.fallback.external_terminal = {
+    command = '/usr/bin/kitty',
+    args = { '-e' },
+}
 
 dap.adapters.nlua = function(callback, config)
     callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
@@ -132,20 +149,24 @@ dap.configurations.java = {
     },
 }
 
+-- Python launch configuration
+-- NOTE: Use to set args is needed for python
 dap.configurations.python = {
     {
         type = 'python',
         request = 'launch',
         name = "Launch file",
         program = "${file}",
-        cwd = '${workspaceFolder}/GenerateTestBenchmarks',
+        -- cwd = '${workspaceFolder}/GenerateTestBenchmarks',
+        cwd = '${workspaceFolder}',
         args = {
+            "https://runeapps.org/apps/alt1/afkscape/appconfig.json"
             -- "runtime",
-            "compile",
-            "clang",
-            "--files=2",
-            "--header",
-            "--framework=1",
+            -- "compile",
+            -- "clang",
+            -- "--files=2",
+            -- "--header",
+            -- "--framework=1",
 
             -- "05"
             -- "RPG", "RPG", "/home/patu/Documents/Wyvern_Projects/RPG", "/home/patu/Documents/Wyvern_Projects/RPG/PackagedGame/", "Debug"
@@ -160,7 +181,7 @@ dap.configurations.python = {
             local default_python = 'venv/bin/python'
             if file_exists(default_python) then
                 return default_python
-            -- Just check couple dirs down if we are in a subdir of the project or something
+                -- Just check couple dirs down if we are in a subdir of the project or something
             elseif file_exists('../' .. default_python) then
                 return '../' .. default_python
             elseif file_exists('../../' .. default_python) then
@@ -186,6 +207,7 @@ dap.configurations.python = {
 -- print(vim.loop.os_uname().sysname)
 -- local lldb_path = '/usr/bin/lldb-vscode'
 local lldb_path = '/usr/bin/lldb-dap'
+
 --[[ local lldb_path = '/usr/bin/lldb' ]]
 
 if (operating_system == "Windows_NT") then
@@ -204,27 +226,41 @@ end
 --     }
 -- }
 
-dap.adapters.lldb = {
+-- dap.adapters.lldb = {
+--     type = 'executable',
+--     command = lldb_path, -- adjust as needed, must be absolute path
+--     name = 'lldb'
+-- }
+
+dap.adapters.cpptools = {
     type = 'executable',
-    command = lldb_path, -- adjust as needed, must be absolute path
-    name = 'lldb'
+    name = "cpptools",
+    command = vim.fn.stdpath('data') .. '/mason/bin/OpenDebugAD7',
+    args = {},
+    attach = {
+        pidProperty = "processId",
+        pidSelect = "ask"
+    },
 }
 
 dap.adapters.gdb = {
     type = "executable",
     command = "gdb",
-    args = { "-i", "dap" }
+    name = "gdb",
+    -- args = { "-i", "dap" }
 }
 
-local cmd = ""
+local lldb_cmd = ""
 
 if (operating_system == "Linux") then
-    cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb"
+    -- lldb_cmd = os.getenv("HOME") .. "/.config/nvim/data/debug/tools/extension/adapter/codelldb"
+    lldb_cmd = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/codelldb"
     -- print("Linux!")
 elseif (operating_system == "Windows_NT") then
     --[[ local cmd = "/home/patu/.local/share/nvim/mason/bin/codelldb" ]]
     --[[ local cmd = "/usr/bin/lldb" ]]
-    cmd = os.getenv("USERPROFILE") .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
+    lldb_cmd = os.getenv("USERPROFILE") ..
+    "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe"
 end
 
 dap.adapters.codelldb = function(on_adapter)
@@ -246,7 +282,7 @@ dap.adapters.codelldb = function(on_adapter)
     local pid_or_err
     handle, pid_or_err =
         vim.loop.spawn(
-            cmd,
+            lldb_cmd,
             opts,
             function(code)
                 stdout:close()
@@ -311,7 +347,8 @@ end
 -- local tempcwd = '/home/patu/dev/WyvernEngine/build/bin/Debug-linux-x86_64/WyvernEditor/';
 -- local tempcwd = '/home/patu/github/imgui-node-editor/examples';
 -- local tempcwd = '/home/patu/github/imgui-node-editor/examples/build/bin';
-local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan/build'
+-- local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan/build'
+-- local tempcwd = '/home/patu/github/imgui-node-editor/build/bin'
 -- local tempcwd = '/home/patu/github/Lumos'
 
 -- local tempcwd = '/home/patu/github/Lumos/bin/Debug-linux-x86_64';
@@ -332,23 +369,29 @@ local tempcwd = '/home/patu/github/imgui/examples/example_glfw_vulkan/build'
 --[[ local tempcwd = '${workspaceFolder}/build/bin/Debug-linux-x86_64/StopWatch' ]]
 --[[ local tempcwd = '${workspaceFolder}/../build-linux/bin/' ]]
 --[[ local tempcwd = '${workspaceFolder}/build' ]]
+local tempcwd = '/github_dir/imgui-node-editor/build/bin/'
 
 if (operating_system == "Windows_NT") then
     tempcwd = '${workspaceFolder}/build/bin/Debug-windows-x86_64/WyvernEditor'
 end
 
-local lastUsedFile = nil -- Define a variable to store the last used file
-cwd_for_lldb = nil       -- The cwd to use when launching random c++ project
+local lastUsedFile     = nil -- Last used cpp executable file path
+local lastUsedCwd      = nil -- Last used cpp cwd
+local cwd_for_lldb     = nil -- The cwd to use when launching random c++ project
 
--- Our custom lldb launch
+-- Our custom launch config
 dap.configurations.cpp = {
     {
-        name = 'Launch lldb',
-        type = 'lldb',
+        name = 'Launch',
+        -- type = 'lldb',
+        type = 'cpptools',
         -- type = 'cppdbg',
         -- type = 'gdb',
         request = 'launch',
-        program = function()
+
+        -- cwd = tempcwd,
+        -- cwd = cwd_for_lldb,
+        cwd = function()
             --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/' ]]
             --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Release-linux-x86_64/' ]]
             local defaultPath = vim.fn.getcwd() .. '/build/bin/'
@@ -359,29 +402,19 @@ dap.configurations.cpp = {
 
             local path = defaultPath
 
-            if lastUsedFile ~= nil then
-                path = lastUsedFile
+            -- Set last used path if needed
+            if lastUsedCwd ~= nil then
+                path = lastUsedCwd
             end
 
-            if cwd_for_lldb == nil then
-                cwd_for_lldb = defaultPath
-            end
-
-            inputPath = vim.fn.input('Path to executable: ', path, 'file')
+            local inputPath = vim.fn.input('Path to cwd: ', path, 'file')
 
             -- Check if inputPath is not empty and store it as the last used file
             if inputPath ~= '' then
-                lastUsedFile = inputPath
+                lastUsedCwd = inputPath
             end
 
-            -- Ask for cwd too
-            cwd_for_lldb = vim.fn.input('Path to cwd: ', cwd_for_lldb, 'file')
-
-            if cwd_for_lldb == '' then
-                cwd_for_lldb = defaultPath
-            end
-
-            print("CWD selected: " .. cwd_for_lldb)
+            print("CWD selected: " .. inputPath)
 
             return inputPath
             --[[
@@ -405,22 +438,56 @@ dap.configurations.cpp = {
             ]]
             --
         end,
+        program = function()
+            --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-linux-x86_64/' ]]
+            --[[ local defaultPath = vim.fn.getcwd() .. '/build/bin/Release-linux-x86_64/' ]]
+            local defaultPath = vim.fn.getcwd() .. '/build/bin/'
 
-        --[[ cwd = function() ]]
-        --[[     print(vim.fn.getcwd()) ]]
-        --[[     return vim.fn.getcwd() ]]
-        --[[ end, ]]
+            if (operating_system == "Windows_NT") then
+                defaultPath = vim.fn.getcwd() .. '/build/bin/Debug-windows-x86_64/WyvernEditor/'
+            end
 
-        -- cwd = tempcwd,
-        cwd = cwd_for_lldb,
-        -- console = "externalTerminal",
-        console = 'integratedTerminal',
+            local path = defaultPath
+
+            -- Set last used path if needed
+            if lastUsedFile ~= nil then
+                path = lastUsedFile
+            end
+
+            local inputPath = vim.fn.input('Path to executable: ', path, 'file')
+
+            -- Check if inputPath is not empty and store it as the last used file
+            if inputPath ~= '' then
+                lastUsedFile = inputPath
+            end
+
+            -- -- Set last used path if needed
+            -- if cwd_for_lldb == nil then
+            --     cwd_for_lldb = defaultPath
+            -- end
+            -- -- Ask for cwd too
+            -- cwd_for_lldb = vim.fn.input('Path to cwd: ', cwd_for_lldb, 'file')
+            -- if cwd_for_lldb == '' then
+            --     cwd_for_lldb = defaultPath
+            -- end
+            -- print("CWD selected: " .. cwd_for_lldb)
+
+            return inputPath
+        end,
+
+        console = 'externalTerminal',
+        -- console = 'integratedTerminal',
 
         --[[ internalConsoleOptions = "neverOpen", ]]
         stopOnEntry = false,
         args = {
+            -- HackAssembler
+            -- "Tests/Examples/Asm/Pong.asm",
+            -- "Tests/Pong.hack"
+
+
             -- Khronos vulkan samples args
-            "sample", "swapchain_recreation"
+            -- "sample", "swapchain_recreation"
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO/PackagedGame/DEMO/Binaries/Debug-linux-x86_64", ]]
             --[[ "/home/patu/dev/simple_wyvern/Projects/DEMO", ]]
             --[[ "DEMO", ]]
@@ -480,10 +547,10 @@ dap.configurations.cpp = {
         --[[     command = 'cd build && make', ]]
         --[[     type = 'shell', ]]
         --[[ }, ]]
-    },
+    }
 }
 
-local DEBUGGER_PATH = vim.fn.stdpath "data" .. "/site/pack/packer/opt/vscode-js-debug"
+local DEBUGGER_PATH    = vim.fn.stdpath "data" .. "/site/pack/packer/opt/vscode-js-debug"
 
 require("dap-vscode-js").setup {
     node_path = "node",
@@ -527,23 +594,24 @@ for _, language in ipairs { "typescript", "javascript" } do
     }
 end
 
-local status_ok, dapui = pcall(require, "dapui")
-if not status_ok then
+local dapui_status_ok, dapui = pcall(require, "dapui")
+if not dapui_status_ok then
     print("dapui not loaded!!")
     return
 end
 
--- Automaticly open and close dapui when starting and stopping to debug
+-- Automatically close dapui when starting and stopping to debug
 dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
+    -- dapui.close()
 end
 
+-- Automatically open dapui when starting and stopping to debug
 dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
+    -- dapui.open()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
+    -- dapui.close()
 end
 
 dapui.setup {
@@ -605,7 +673,7 @@ dapui.setup {
         {
             elements = {
                 'repl',
-                --[[ 'console', ]]
+                -- 'console',
                 --[[ 'watches' ]]
             },
             size = 16,

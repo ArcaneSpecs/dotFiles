@@ -7,14 +7,13 @@ end
 local opts = {
     disable_auto_comment = true,
     accept_keymap = "<C-s>",
-    dismiss_keymap = "<C-]>",
+    dismiss_keymap = "<C-d>",
     max_num_results = 20,
     debounce_ms = 600,
     suggestion_color = { gui = "#1cd7ff", cterm = 244 },
     exclude_filetypes = { "TelescopePrompt", "NvimTree" },
     log_file_path = nil, -- absolute path to Tabnine log file
     ignore_certificate_errors = false,
-
 }
 
 tabnine.setup(opts)

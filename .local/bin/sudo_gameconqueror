@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo xhost /bin/env WAYLAND_DISPLAY="$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" XAUTHORITY=/home/patu/.Xauthority XDG_RUNTIME_DIR=/user/run/0 gameconqueror

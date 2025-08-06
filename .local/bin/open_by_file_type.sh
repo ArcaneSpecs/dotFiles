@@ -4,7 +4,7 @@
 file_type=$(file -b --mime-type "$1")
 
 TEXT_EDITOR="nvim"
-IMAGE_VIEWER="viewnior"
+IMAGE_VIEWER="gwenview"
 VIDEO_PLAYER="mpv"
 FILE_MANAGER="ranger"
 

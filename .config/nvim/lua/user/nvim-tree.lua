@@ -74,7 +74,12 @@ function my_on_attach(bufnr)
         -- Finally refocus on tree if it was lost
         api.tree.focus()
     end
-
+    local function cd_into()
+        local node = api.tree
+        node.change_root_to_node()
+    end
+    local function nothing_func()
+    end
 
     api.config.mappings.default_on_attach(bufnr)
 
@@ -84,8 +89,10 @@ function my_on_attach(bufnr)
     -- vim.keymap.set("n", "h", api.tree.close, {})
     -- vim.keymap.set("n", "H", api.tree.collapse_all, {})
     vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+    vim.keymap.set('n', '<C-t>', nothing_func, opts('New tab is disabled'))
     vim.keymap.set('n', '1', jump_to_first_git, opts('Goto next git edit'))
     vim.keymap.set('n', '2', jump_to_first_git_back, opts('Goto previous git edit'))
+    vim.keymap.set('n', '3', cd_into, opts('CD'))
     vim.keymap.set('n', 'l', edit_or_open, opts('Edit or Open'))
     vim.keymap.set('n', 'h', close_node, opts('Collapse node'))
     vim.keymap.set('n', 'L', vsplit_preview, opts('VSplit preview'))
@@ -95,7 +102,7 @@ nvim_tree.setup {
     on_attach = my_on_attach,
     update_focused_file = {
         enable = true,
-        update_cwd = true,
+        update_cwd = false,
     },
     renderer = {
         root_folder_modifier = ":t",

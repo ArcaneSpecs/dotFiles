@@ -6,13 +6,13 @@ qt5-base wayland-protocols ninja
 
 yes | sudo pacman -S qt5-base libxcb libxinerama wget tar unzip zip
 
-mkdir -p ~/vulkan
-cd ~/vulkan
+mkdir -p ~/VulkanSDK
+cd ~/VulkanSDK
 wget https://sdk.lunarg.com/sdk/download/latest/linux/vulkan-sdk.tar.gz
 tar -xf vulkan-sdk.tar.gz
 rm vulkan-sdk.tar.gz*
 
-source ~/vulkan/1.*.*.*/setup-env.sh
+source ~/VulkanSDK/1.*.*.*/setup-env.sh
 
 sudo cp -r $VULKAN_SDK/include/vulkan/ /usr/local/include/
 

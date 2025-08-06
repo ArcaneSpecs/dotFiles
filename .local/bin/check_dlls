@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat /proc/"$1"/maps | awk '{print $6}' | grep '\.so' | sort | uniq 
+

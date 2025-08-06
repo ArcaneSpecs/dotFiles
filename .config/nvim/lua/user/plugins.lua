@@ -54,28 +54,147 @@ require("lazy").setup({
         }
     },
     {
+        "julianolf/nvim-dap-lldb",
+        dependencies = { "mfussenegger/nvim-dap" },
+        opts = {
+            codelldb_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/codelldb"
+        },
+        config = function()
+
+        end
+    },
+    -- Dap repl highlighting
+    {
+        "LiadOz/nvim-dap-repl-highlights",
+        config = function()
+        end
+    },
+    -- Comment generation snippets
+    {
+        "danymat/neogen",
+        config = function()
+            require 'neogen'.setup()
+        end,
+        snippet_engine = "luasnip",
+
+        -- enable_placeholders = true,
+        -- placeholders_text = {
+        --     ["description"] = "[TODO:description]",
+        --     ["tparam"] = "[TODO:tparam]",
+        --     ["parameter"] = "[TODO:parameter]",
+        --     ["return"] = "[TODO:return]",
+        --     ["class"] = "[TODO:class]",
+        --     ["throw"] = "[TODO:throw]",
+        --     ["varargs"] = "[TODO:varargs]",
+        --     ["type"] = "[TODO:type]",
+        --     ["attribute"] = "[TODO:attribute]",
+        --     ["args"] = "[TODO:args]",
+        --     ["kwargs"] = "[TODO:kwargs]",
+        -- },
+
+        -- Uncomment next line if you want to follow only stable versions
+        -- version = "*"
+
+    },
+    -- "gx" to open urls
+    {
+        "chrishrb/gx.nvim",
+        keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+        -- keys = { { "gx", "<cmd>!~/.local/bin/brave_minimal.sh<cr>", mode = { "n", "x" } } },
+        cmd = { "Browse" },
+        init = function()
+            vim.g.netrw_nogx = 1                    -- disable netrw gx
+        end,
+        dependencies = { "nvim-lua/plenary.nvim" }, -- Required for Neovim < 0.10.0
+        submodules = false,                         -- not needed, submodules are required only for tests
+
+        -- you can specify also another config if you want
+        config = function()
+            require("gx").setup {
+                open_browser_app = "brave-nightly",     -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
+                open_browser_args = { "--background" }, -- specify any arguments, such as --background for macOS' "open".
+                handlers = {
+                    plugin = true,                      -- open plugin links in lua (e.g. packer, lazy, ..)
+                    github = true,                      -- open github issues
+                    brewfile = true,                    -- open Homebrew formulaes and casks
+                    package_json = true,                -- open dependencies from package.json
+                    search = true,                      -- search the web/selection on the web if nothing else is found
+                    go = true,                          -- open pkg.go.dev from an import statement (uses treesitter)
+                    jira = {                            -- custom handler to open Jira tickets (these have higher precedence than builtin handlers)
+                        name = "jira",                  -- set name of handler
+                        handle = function(mode, line, _)
+                            local ticket = require("gx.helper").find(line, mode, "(%u+-%d+)")
+                            if ticket and #ticket < 20 then
+                                return "http://jira.company.com/browse/" .. ticket
+                            end
+                        end,
+                    },
+                    rust = {                     -- custom handler to open rust's cargo packages
+                        name = "rust",           -- set name of handler
+                        filetype = { "toml" },   -- you can also set the required filetype for this handler
+                        filename = "Cargo.toml", -- or the necessary filename
+                        handle = function(mode, line, _)
+                            local crate = require("gx.helper").find(line, mode, "(%w+)%s-=%s")
+
+                            if crate then
+                                return "https://crates.io/crates/" .. crate
+                            end
+                        end,
+                    },
+                },
+                handler_options = {
+                    search_engine = "duckduckgo",           -- you can select between google, bing, duckduckgo, ecosia and yandex
+                    -- search_engine = "https://search.brave.com/search?q=", -- or you can pass in a custom search engine
+                    select_for_search = false,              -- if your cursor is e.g. on a link, the pattern for the link AND for the word will always match. This disables this behaviour for default so that the link is opened without the select option for the word AND link
+
+                    git_remotes = { "upstream", "origin" }, -- list of git remotes to search for git issue linking, in priority
+                    -- git_remotes = function(fname)             -- you can also pass in a function
+                    --     if fname:match("myproject") then
+                    --         return { "mygit" }
+                    --     end
+                    --     return { "upstream", "origin" }
+                    -- end,
+
+                    git_remote_push = false, -- use the push url for git issue linking,
+                    -- git_remote_push = function(fname) -- you can also pass in a function
+                    --     return fname:match("myproject")
+                    -- end,
+                },
+            }
+        end,
+    },
+
+    -- Breadcrumbs
+    {
         'Bekaboo/dropbar.nvim',
         -- optional, but required for fuzzy finder support
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim'
-        }
+        },
+        config = function()
+        end
     },
 
-        -- tabnine
-    -- {
-    --     'codota/tabnine-nvim',
-    --     build = "./dl_binaries.sh"
-    -- },
+    -- tabnine
+    {
+        'codota/tabnine-nvim',
+        build = "./dl_binaries.sh"
+    },
+
+    -- Suda, read and write files with sudo
+    {
+        "lambdalisue/vim-suda"
+    },
 
     -- Markdown previewer
     {
-      "iamcco/markdown-preview.nvim",
-      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-      build = "cd app && yarn install",
-      init = function()
-        vim.g.mkdp_filetypes = { "markdown" }
-      end,
-      ft = { "markdown" },
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     },
 
     -- {
@@ -139,7 +258,7 @@ require("lazy").setup({
         'ArcaneSpecs/HexEditor.nvim',
         dir = "/home/patu/dev/HexEditor.nvim",
         config = function()
-           require('HexEditor').setup()
+            require('HexEditor').setup()
         end
     },
     {
@@ -181,21 +300,21 @@ require("lazy").setup({
             "nvim-telescope/telescope.nvim"
         },
     },
-    {
-        "folke/trouble.nvim",
-        cmd = "Trouble",
-        opts = {},
-        keys = {
-            {
-              "<leader>xQ",
-              "<cmd>Trouble qflist toggle<cr>",
-              desc = "Quickfix List (Trouble)",
-            },
-        },
-        config = function(_, opts)
-            require('trouble').setup(opts)
-        end,
-    },
+    -- {
+    --     "folke/trouble.nvim",
+    --     cmd = "Trouble",
+    --     opts = {},
+    --     keys = {
+    --         {
+    --           -- "<leader>xQ",
+    --           "<cmd>Trouble qflist toggle<cr>",
+    --           desc = "Quickfix List (Trouble)",
+    --         },
+    --     },
+    --     config = function(_, opts)
+    --         require('trouble').setup(opts)
+    --     end,
+    -- },
     -- {
     --     "jackMort/ChatGPT.nvim",
     --     config = function()
@@ -244,10 +363,15 @@ require("lazy").setup({
     {
         -- Surround
         "kylechui/nvim-surround",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        event = "VimEnter",
         config = function()
             require("nvim-surround").setup({
                 -- Configuration here, or leave empty to use defaults
+                keymaps = {
+                    normal = "<leader>x",
+                }
+
             })
         end
     },
@@ -354,7 +478,7 @@ require("lazy").setup({
             "tpope/vim-rhubarb",
             -- optional: to replace the diff from fugitive with diffview.nvim
             -- (fugitive is still needed to open in browser)
-            "sindrets/diffview.nvim",           --- See dependencies
+            "sindrets/diffview.nvim", --- See dependencies
         },
     },
     -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -600,14 +724,14 @@ require("lazy").setup({
             vim.keymap.set("n", "gw", function()
                 vim.lsp.buf.workspace_symbol()
             end)
-            vim.keymap.set("n", "<M-g>", function()
+            vim.keymap.set("n", "<M-f>", function()
                 vim.diagnostic.open_float()
             end)
             vim.keymap.set("n", "<M-e>", function()
-                vim.diagnostic.goto_next()
+                vim.diagnostic.jump({ count = 1 })
             end)
             vim.keymap.set("n", "<M-d>", function()
-                vim.diagnostic.goto_prev()
+                vim.diagnostic.jump({ count = -1 })
             end)
             vim.keymap.set("n", "ga", function()
                 vim.lsp.buf.code_action()
@@ -786,6 +910,7 @@ require("lazy").setup({
                         --"--enable-config",          -- clangd 11+ supports reading from .clangd configuration file
                         "--clang-tidy",
                         "--offset-encoding=utf-16", -- NOTE: Fixes: https://github.com/neovim/nvim-lspconfig/issues/2184
+                        "--header-insertion=never",
                         --[[ "--std=c++17", ]]
                         --[[ "--std=c89" ]]
                         -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
@@ -793,6 +918,16 @@ require("lazy").setup({
                         -- "--header-insertion=never",
                         -- "--query-driver=<list-of-white-listed-complers>"
                     }
+                },
+                -- Odin 
+                ols = {
+                    cmd = { "ols", "-strict-style" },
+		            checker_args = "-strict-style",
+                    enable_references = true
+                    -- enable_document_symbols = true,
+                    -- enable_inlay_hints = true,
+                    -- enable_hover = true, 
+                    -- enable_snippets = true
                 },
                 -- Vue lsp
                 vue_ls = {
@@ -804,7 +939,7 @@ require("lazy").setup({
                     cmd = { "texlab" },
                     filetypes = { "tex", "bib", "plaintex" },
                 },
-                asm_lsp= {
+                asm_lsp = {
                     filetypes = { "asm", "nasm" },
                 },
                 -- gopls = {},
@@ -860,7 +995,7 @@ require("lazy").setup({
                     filetypes = { "glsl", "glslh", "frag", "vert" },
                 },
                 jdtls = {
-                    filetypes = { "java", "class"}
+                    filetypes = { "java", "class" }
                 },
                 lua_ls = {
                     -- cmd = {...},
@@ -1019,6 +1154,7 @@ require("lazy").setup({
                 TypeParameter = "",
             }
 
+
             -- find more here: https://www.nerdfonts.com/cheat-sheet
             local check_backspace = function()
                 local col = vim.fn.col "." - 1
@@ -1052,46 +1188,47 @@ require("lazy").setup({
                 --
                 -- No, but seriously. Please read `:help ins-completion`, it is really good!
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-                    ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-                    ["<C-l>"] = cmp.mapping.confirm({ select = true }),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+                    ["<C-k>"] = cmp.mapping.select_prev_item(),
+                    ["<C-j>"] = cmp.mapping.select_next_item(),
+                    ["<C-l>"] = cmp.mapping.confirm { select = false },
+                    ["<A-Space>"] = cmp.mapping.complete(), -- Opens the cmp window
+                    ["<C-y>"] = cmp.config.disable,         -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
                     ["<C-e>"] = cmp.mapping({
                         i = cmp.mapping.abort(),
                         c = cmp.mapping.close(),
                     }),
+
                     -- Accept currently selected item. If none selected, `select` first item.
                     -- Set `select` to `false` to only confirm explicitly selected items.
-                    --["<CR>"] = cmp.mapping.confirm { select = false },
-                    -- ["<Tab>"] = cmp.mapping(function(fallback)
-                    --     if cmp.visible() then
-                    --         cmp.select_next_item()
-                    --     elseif luasnip.expandable() then
-                    --         luasnip.expand()
-                    --     elseif luasnip.expand_or_jumpable() then
-                    --         luasnip.expand_or_jump()
-                    --     elseif check_backspace() then
-                    --         fallback()
-                    --     else
-                    --         fallback()
-                    --     end
-                    -- end, {
-                    --     "i",
-                    --     "s",
-                    -- }),
-                    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    --     if cmp.visible() then
-                    --         cmp.select_prev_item()
-                    --     elseif luasnip.jumpable(-1) then
-                    --         luasnip.jump(-1)
-                    --     else
-                    --         fallback()
-                    --     end
-                    -- end, {
-                    --     "i",
-                    --     "s",
-                    -- }),
+                    ["<CR>"] = cmp.mapping.confirm { select = false },
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expandable() then
+                            luasnip.expand()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif check_backspace() then
+                            fallback()
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
                 }),
                 formatting = {
                     fields = { "abbr", "kind", "menu" },
@@ -1114,10 +1251,10 @@ require("lazy").setup({
                 },
                 sources = {
                     { name = "nvim_lsp" },
+                    { name = "path" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "luasnip" },
                     { name = "buffer" },
-                    { name = "path" },
                 },
             })
         end,
@@ -1185,12 +1322,46 @@ require("lazy").setup({
             --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
         end,
     },
+
+    -- File explorers
     {
         "nvim-tree/nvim-tree.lua",
         config = function()
 
         end,
     },
+
+    -- Oil
+    -- {
+    --     'stevearc/oil.nvim',
+    --     ---@module 'oil'
+    --     ---@type oil.SetupOpts
+    --     opts = {
+    --         keymaps = {
+    --             ["g?"] = { "actions.show_help", mode = "n" },
+    --             ["<Tab>"] = "actions.select",
+    --             ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+    --             ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+    --             ["<C-t>"] = { "actions.select", opts = { tab = true } },
+    --             ["<C-p>"] = "actions.preview",
+    --             ["<C-c>"] = { "actions.close", mode = "n" },
+    --             ["<C-l>"] = "actions.refresh",
+    --             ["-"] = { "actions.parent", mode = "n" },
+    --             ["_"] = { "actions.open_cwd", mode = "n" },
+    --             ["`"] = { "actions.cd", mode = "n" },
+    --             ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+    --             ["gs"] = { "actions.change_sort", mode = "n" },
+    --             ["gx"] = "actions.open_external",
+    --             ["g."] = { "actions.toggle_hidden", mode = "n" },
+    --             ["g\\"] = { "actions.toggle_trash", mode = "n" },
+    --         },
+    --     },
+    --     -- Optional dependencies
+    --     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    --     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    --     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    --     lazy = false,
+    -- },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and

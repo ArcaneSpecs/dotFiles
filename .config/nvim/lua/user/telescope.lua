@@ -17,8 +17,10 @@ telescope.setup {
             '--line-number',
             '--column',
             '--smart-case',
+            '--follow', -- .WyvernEngine has symbolic links for the engine that we want to follow
+            '--hidden', -- NOTE: WyvernEngine is hidden dir in project dir
             '--ignore-file',
-            '/home/patu/.config/ignore_telescope/ignore_file.txt'
+            '/home/patu/.config/ignore_telescope/ignore_file.txt',
         },
         layout_strategy = 'vertical',
         layout_config = { height = 0.95 },
@@ -133,7 +135,16 @@ telescope.setup {
         -- }
         -- Now the picker_config_key will be applied every time you call this
         find_files = {
-            find_command = { 'rg', '--files', '--color=never', '--hidden', '--ignore-file', '/home/patu/.config/ignore_telescope/ignore_file.txt' }
+            find_command = {
+                'rg',
+                '--files',
+                '--color=never',
+                '--hidden',
+                '--follow', -- .WyvernEngine has symbolic links for the engine that we want to follow
+                '--hidden', -- NOTE: WyvernEngine is hidden dir in project dir
+                '--ignore-file',
+                '/home/patu/.config/ignore_telescope/ignore_file.txt',
+            }
         }
     }, -- builtin picker
     extensions = {

@@ -1,7 +1,9 @@
 #!/bin/bash
 
-chromium https://launcher.lemokey.com/ &
-chromium chrome://device-log/ &
+brave-nightly https://launcher.lemokey.com/ &
+brave-nightly chrome://device-log/ &
+# chromium https://launcher.lemokey.com/ &
+# chromium chrome://device-log/ &
 
 kitty sudo chmod 777 /dev/hidraw4
 chrome://device-log/

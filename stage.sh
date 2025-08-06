@@ -15,6 +15,7 @@ cp -r ~/.config/firefox .config
 # cp -r ~/.config/zsh .config
 cp -r ~/.config/ranger .config
 cp -r ~/.config/gtk-3.0/ .config
+cp ~/.config/gwenviewrc .config
 
 # JetBrains IDE settings
 cp ~/.ideavimrc .

@@ -2,5 +2,7 @@
 
 stopwatch &
 kitty &
-obsidian &
+kitty -e nvim ~/MyDoc/MyDocumentation -S &
+# obsidian &
+# spotube &
 

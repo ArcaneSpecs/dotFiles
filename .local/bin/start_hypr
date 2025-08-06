@@ -1,0 +1,3 @@
+#!/bin/bash
+
+startx /usr/share/xsessions/hypr.desktop

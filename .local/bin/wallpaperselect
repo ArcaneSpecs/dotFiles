@@ -1,5 +1,8 @@
 #!/bin/bash
 
+killall rofi
+killall wofi
+
 # Wallpaper program
 wallpaper_program="mpvpaper"
 

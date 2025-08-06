@@ -1,6 +1,5 @@
 require "utils.my_functions"
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 -- Shorten function name
@@ -84,12 +83,12 @@ keymap("n", "<F6>", ":lua require'utils.my_functions'.run_wyvern_engine()<CR>", 
 --[[ keymap("n", "<C-b>", ":lua require'utils.my_functions'.run_build_in_current_game_cwd()<CR>", opts) ]]
 
 -- Copilot
-vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "<A-j>", "copilot#Next()", { silent = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "<A-k>", "copilot#Previous()", { silent = true, expr = true })
 
 -- Hex editor
 -- To hex
-keymap("n", "<leader>x", ":HexToggle<CR>", opts)
+keymap("n", "<leader>X", ":HexToggle<CR>", opts)
 -- keymap("n", "<leader>x", ":%!xxd<CR>", opts)
 -- From hex to text
 -- keymap("n", "<leader>xw", ":%!xxd -r<CR>", opts)
@@ -130,18 +129,21 @@ keymap("n", "<leader>8", ":lua require('dropbar.api').pick()<CR>", opts)
 keymap("n", "<leader>7", ":lua require('dropbar.api').toggle()<CR>", opts)
 -- keymap("n", "<leader>H", ":messages<CR>:wincmd b<CR>ggG", opts)
 keymap("n", "<leader>H", ":Telescope notify<CR>", opts)
-keymap("n", "<leader>K", ":WyvernChatEditWithInstructions<CR>", opts)
-keymap("n", "<leader>k", ":WyvernChat<CR>", opts)
+
+-- Wyvern chat keybinds
+-- keymap("n", "<leader>K", ":WyvernChatEditWithInstructions<CR>", opts)
+-- keymap("n", "<leader>k", ":WyvernChat<CR>", opts)
 
 -- Rainbow CSV
 
 -- Tagbar
-keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
+-- keymap("n", "<C-d>", ":TagbarToggle<CR>", opts)
 
 -- Diffs movement
-keymap("n", "<A-2>", "[c", opts)
-keymap("n", "<A-1>", "]c", opts)
+keymap("n", "<C-A-j>", "]c", opts)
+keymap("n", "<C-A-k>", "[c", opts)
 keymap("n", "<C-S-d>", ":diffthis<CR>", opts)
+-- keymap("n", "<C-S-d>", ":set diff!<CR>", opts)
 
 -- Navigate git hunks
 keymap("n", "gk", ":Gitsigns prev_hunk<CR>", opts)
@@ -157,20 +159,41 @@ keymap("n", "g5", "'5", opts)
 keymap("n", "g6", "'6", opts)
 
 -- Quick execute q macro
-keymap("n", "<leader>h", "1@q", opts)
+keymap("n", "<leader>h", "1@qj", opts)
+
 -- Quick execute w macro
-keymap("n", "<leader>N", "1@w", opts)
+-- keymap("n", "<leader>N", "1@w", opts)
 
--- Quick paste first register
-keymap("n", "<leader>J", "\"0P", opts)
+-- Quick pasting yanks and deletions
 keymap("n", "<leader>j", "viw\"0P", opts)
--- keymap("n", "<leader>h", "viw\"1P", opts)
-keymap("n", "<leader>H", "vi\"P", opts)
-keymap("n", "<leader>p", "\"_dP", opts)
+keymap("n", "<leader>J", "viw\"ap", opts)
+keymap("v", "<leader>a", "\"ad", opts)
+keymap("v", "<leader>s", "\"ap", opts)
 
--- Quick calc
-keymap("i", "<A-3>", "<C-r>=<C-r>\"", opts)
-keymap("i", "<A-4>", "<C-r>=<C-r>\"*2<CR><ESC>_a.<ESC>lyiwo", opts)
+-- keymap("n", "<leader>J", "\"0P", opts)
+
+-- Quick pasting registers
+keymap("v", "<leader>1", "\"bd", opts)
+keymap("n", "<leader><leader>1", "\"bp", opts)
+keymap("v", "<leader>2", "\"cd", opts)
+keymap("n", "<leader><leader>2", "\"cp", opts)
+keymap("v", "<leader>3", "\"dd", opts)
+keymap("n", "<leader><leader>3", "\"dp", opts)
+keymap("v", "<leader>4", "\"ed", opts)
+keymap("n", "<leader><leader>4", "\"ep", opts)
+
+-- Hotkey for registers
+keymap("n", "<leader><leader>", "\"", opts)
+
+-- Paste inside
+keymap("n", "<leader>k", "vi\"P<Right>f\"", opts)
+
+-- Paste inside "" and go down
+-- keymap("n", "<leader>k", "vi\"Pj", opts)
+
+keymap("n", "<leader>k", "vi\"P", opts)
+-- keymap("n", "<leader>H", "vi\"P", opts)
+-- keymap("n", "<leader>p", "\"_dP", opts)
 
 keymap("n", "Q", "gqq", opts)
 
@@ -246,9 +269,15 @@ keymap("n", "<leader>C", ":bufdo bwipeout<CR>", opts)
 keymap("n", "<A-k>", "<Esc>:m -2<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m +1<CR>", opts)
 
+-- Quick calc
+keymap("n", "<A-c>", ":lua print()<Left>", opts)
+
 -- Todo comments
 keymap("n", "<leader>t", ":TodoTelescope<CR>", opts)
 keymap("n", "<leader>T", ":TodoLocList cwd=Wyvern/Source<CR>", opts)
+
+-- Neogen
+keymap("n", "<leader>N", ":lua require('neogen').generate()<CR>", opts)
 
 -- Move current line / block with Alt-j/k ala vscode.
 --[[ ["<A-j>"] = "<Esc>:m .+1<CR>==gi", ]]

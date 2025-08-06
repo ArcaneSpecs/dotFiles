@@ -26,11 +26,17 @@ then
     # Take a screenshot and copy it to the clipboard
     # grim -g "$(slurp)" - | swappy -f - -o ~/Pictures/screenshots/$filename | pngquant - 
     # grim -g "$(slurp)" - | kolourpaint ~/Pictures/screenshots/$filename | pngquant - 
-    grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
+    # grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename
+    my_hyprshot -m region -f $filename 
+
+    if [ $? -eq 0 ]; then
+        play ~/.local/bin/sounds/screenshot_effect.mp3
+        org.kde.krita --nosplash ~/Pictures/screenshots/$filename 
+        # xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    fi
+
     # kolourpaint ~/Pictures/screenshots/$filename 
-    krita ~/Pictures/screenshots/$filename 
-    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
-    # play ~/.local/bin/screenshot_effect.mp3
+    # play ~/.local/bin/sounds/screenshot_effect.mp3
     exit 0
 elif [[ $1 == "-s" || $1 == "--select" ]];
 then
@@ -38,9 +44,14 @@ then
     filename=$(date +%d-%m-%Y_%H-%M-%S.png)
 
     # Take a screenshot and copy it to the clipboard
-    grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
-    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
-    play ~/.local/bin/screenshot_effect.mp3
+    # grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
+    my_hyprshot -m region -f ~/Pictures/screenshots/$filename 
+
+    if [ "$?" -eq 0 ]; then
+        play ~/.local/bin/sounds/screenshot_effect.mp3
+        xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    fi
+
     exit 0
 else 
     # Fullscreen screenshot
@@ -50,7 +61,10 @@ else
     # mkdir -p ~/Pictures/screenshots
     # Take a screenshot and copy it to the clipboard
     grim -g "0,0 1920x1080" ~/Pictures/screenshots/$filename 
-    xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
-    play ~/.local/bin/screenshot_effect.mp3
+    if [ $? -eq 0 ]; then
+        play ~/.local/bin/sounds/screenshot_effect.mp3
+        org.kde.krita --nosplash ~/Pictures/screenshots/$filename 
+        xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    fi
     exit 0
 fi

@@ -1,33 +1,35 @@
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
+    vim.notify("lspconfig not loaded!", vim.log.levels.WARN)
     return
 end
-
-
 
 --[[ require "user.lsp.configs" ]]
 --[[ require("user.lsp.handlers").setup() ]]
 --[[ require "user.lsp.null-ls" ]]
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+    vim.notify("luasnip not loaded!", vim.log.levels.WARN)
     return
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-
-local lsp = require("lsp-zero")
+local lsp_status_ok, lsp = pcall(require, "lsp-zero")
+if not lsp_status_ok then
+    vim.notify("lsp-zero not loaded!", vim.log.levels.WARN)
+    return
+end
 
 lsp.extend_lspconfig()
-
 lsp.preset("recommended")
-
 lsp.setup_servers({
     'tsserver',
     'rust_analyzer',
     'clangd',
     'lua_ls',
     'texlab',
+    'yamlls',
 })
 
 --[[
@@ -47,6 +49,20 @@ lsp.set_preferences({
 lsp.use('tsserver', {
     settings = {
     }
+})
+
+lsp.use('yamlls', {
+    filetypes = { 'yaml', 'yaml.docker-compose', 'yml' },
+    settings = {
+        yaml = {
+            format = {
+                enable = true,
+            },
+            schemaStore = {
+                enable = true,
+            },
+        },
+    },
 })
 
 --[[ lsp.configure('lua-language-server', { ]]
@@ -88,7 +104,9 @@ lsp.use('clangd', {
     }
 })
 
-lsp.use('pyright', {
+lsp.use('basedpyright', {
+    -- lsp.use('pyright', {
+    -- lsp.use('pylsp', {
     settings = {
         python = {
             analysis = {
@@ -96,6 +114,13 @@ lsp.use('pyright', {
             },
             format = {
                 enable = false
+            }
+        },
+        basedpyright = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true
             }
         }
     }
@@ -161,9 +186,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     }),
 })
 
---[[ cmp_mappings['<Tab>'] = nil ]]
---[[ cmp_mappings['<S-Tab>'] = nil ]]
 --   פּ ﯟ   some other good icons
+
+-- See: https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
     Text = "",
     --[[ Method = "m", ]]
@@ -192,13 +217,12 @@ local kind_icons = {
     Operator = "",
     TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+-- local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
-    mapping = cmp_mappings,
+    -- mapping = cmp_mappings,
+    mapping = {},
     window = {
         completion = cmp.config.window.bordered(),
         documentation = {
@@ -235,7 +259,8 @@ cmp.setup({
     },
 })
 
-lsp.on_attach(function(client, bufnr)
+-- lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
     --[[ lsp.default_keymaps({buffer = bufnr}) ]]
     local opts = { buffer = bufnr, noremap = true, silent = true }
 

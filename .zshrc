@@ -361,7 +361,7 @@ alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
 alias whichvga="/usr/local/bin/arcolinux-which-vga"
 
 #free
-alias free="free -mt"
+# alias free="free -mt"
 
 #continue download
 alias wget="wget -c"
@@ -509,7 +509,6 @@ alias rg="rg --sort path"
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-#nano for important configuration files
 #know what you do in these files
 alias nlxdm="sudo $EDITOR /etc/lxdm/lxdm.conf"
 alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
@@ -583,11 +582,11 @@ alias sysfailed="systemctl list-units --failed"
 #alias sr="reboot"
 
 #update betterlockscreen images
-alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
+# alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 #give the list of all installed desktops - xsessions desktops
-alias xd="ls /usr/share/xsessions"
-alias xdw="ls /usr/share/wayland-sessions"
+# alias xd="ls /usr/share/xsessions"
+# alias xdw="ls /usr/share/wayland-sessions"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
@@ -617,19 +616,19 @@ ex ()
 }
 
 #wayland aliases
-alias wsimplescreen="wf-recorder -a"
-alias wsimplescreenrecorder="wf-recorder -a -c h264_vaapi -C aac -d /dev/dri/renderD128 --file=recording.mp4"
+# alias wsimplescreen="wf-recorder -a"
+# alias wsimplescreenrecorder="wf-recorder -a -c h264_vaapi -C aac -d /dev/dri/renderD128 --file=recording.mp4"
 
 #btrfs aliases
-alias btrfsfs="sudo btrfs filesystem df /"
-alias btrfsli="sudo btrfs su li / -t"
+# alias btrfsfs="sudo btrfs filesystem df /"
+# alias btrfsli="sudo btrfs su li / -t"
 
 #snapper aliases
-alias snapcroot="sudo snapper -c root create-config /"
-alias snapchome="sudo snapper -c home create-config /home"
-alias snapli="sudo snapper list"
-alias snapcr="sudo snapper -c root create"
-alias snapch="sudo snapper -c home create"
+# alias snapcroot="sudo snapper -c root create-config /"
+# alias snapchome="sudo snapper -c home create-config /home"
+# alias snapli="sudo snapper list"
+# alias snapcr="sudo snapper -c root create"
+# alias snapch="sudo snapper -c home create"
 
 #Leftwm aliases
 alias lti="leftwm-theme install"

@@ -30,20 +30,29 @@ CONFS=(
 "~/MyDoc/MyDocumentation/university/todo.md" 
 "~/MyDoc/notes/TODO.md" 
 "~/.config/hypr/hyprland.conf" 
+"~/.config/hypr/hypr.conf" 
 "~/.config/hypr/keybinds.conf"
 "~/.config/kitty/kitty.conf"
 "~/.config/waybar/config.jsonc"
 "~/.local/bin/wallpaperselect"
 "~/.local/bin/edit_config"
+"~/.config/WyvernEngine/WyvernEditor.conf"
 "~/.config/hypr/scripts/colorpicker.sh"
 "~/.config/hypr/scripts/init.sh"
+"~/.config/alacritty/alacritty.toml"
 "~/.config/gtk-3.0/bookmarks"
 "~/.config/ranger/rc.conf"
+"~/.config/niri/config.kdl"
 "~/github/cfiles/config.h"
 "~/.bashrc"
 "~/.zshrc"
+"~/.config/kitty/build.sh"
 "~/.local/state/nvim/lsp.log"
 "~/.config/ignore_telescope/ignore_file.txt"
+"~/MyDoc/MyDocumentation/Wyvern/TODO.md"
+"~/MyDoc/MyDocumentation/Wyvern/Dev\ Time\ Log.md"
+"~/dev/simple_wyvern"
+"~/"
 )
 
 # rofi STYLES
@@ -51,8 +60,11 @@ CONFIG="$HOME/.config/rofi/global"
 STYLE="$HOME/.config/rofi/global/rofi.css"
 
 ## rofi Command
+## NOTE: -i for case insensitive
+# rofi_command="rofi -dmenu \
 rofi_command="wofi --show dmenu \
-            --prompt choose... \
+            -i \
+            --prompt ChooseConfigFile... \
 			--width=$WIDTH% --height=$HEIGHT% \
 			--hide-scroll --no-actions \
 			--cache-file=/dev/null \
@@ -85,12 +97,12 @@ main() {
     #echo "File path is $file_path"
 
     # Evaluate the actual file path
-    eval file_path=$file_path
+    eval file_path="$file_path"
     # Get the directory of file_path
-    dir_path=$(dirname $file_path)
+    dir_path=$(dirname "$file_path")
     #echo "$editor_command $switches $file_path"
     #cd $dir_path && $editor_command $switches $file_path
-    cd ~/ && $editor_command $switches $file_path
+    cd ~/ && $editor_command $switches "$file_path"
 }
 
 # Check if rofi is already running

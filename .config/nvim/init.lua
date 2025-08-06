@@ -7,10 +7,11 @@ require("user.options")
 require("user.keymaps")
 require("user.plugins")
 require("user.colorscheme")
-require("user.copilot")
+-- require("user.copilot")
 -- require "user.cmp"
 -- require("user.lsp")
 require("user.telescope")
+require("nvim-dap-repl-highlights").setup()
 require("user.treesitter")
 require("user.autopairs")
 require("user.gitsigns")
@@ -28,8 +29,7 @@ require("user.autocommands")
 require("user.autosessions")
 require("user.nvim-dap")
 require("user.noice")
--- require("user.tabnine")
-
+require("user.tabnine")
 
 require("user.WyvernChatConfig")
 
@@ -38,6 +38,8 @@ require("user.harpoon")
 -- require "user.vimspector"
 require("user.undotree")
 require("user.todo_comments")
+require("user.dap-lldb")
+
 
 --[[ require "user.glslview" ]]
 

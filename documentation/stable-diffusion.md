@@ -4,6 +4,7 @@
 git clone --depth 1 --recursive git@github.com:AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui
 python3.11 -m venv venv
+spy # NOTE: Source the venv
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.1
 HSA_OVERRIDE_GFX_VERSION=11.0.0 python launch.py --precision full --no-half --opt-sub-quad-attention --lowvram --disable-nan-check
 ```

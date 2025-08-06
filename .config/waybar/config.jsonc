@@ -1,25 +1,27 @@
 {
     "layer": "top",
+    // "height": 20, 
+    // "spacing": 9,
     // "modules-left": ["wlr/workspaces", "mpd", "custom/waybar-media", "tray"],
     // "modules-left": ["wlr/workspaces", "custom/media", "tray"],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds",],
     // "modules-left": ["hyprland/workspaces", "tray"],
     "modules-left": [
+        "niri/workspaces",
         "hyprland/workspaces",
         "tray",
         "custom/keybinds_deactivate",
         "custom/keybinds_activate",
         "custom/launch_terminal",
         "custom/launch_actions_runner",
-        "hyprland/window"
-
+        "hyprland/window",
+        "niri/window"
     ],
     // "modules-left": ["hyprland/workspaces", "tray", "custom/keybinds_deactivate", "custom/keybinds_activate", "custom/launch_terminal", "custom/launch_actions_runner", "custom/launch_actions_runner_stockbrokerage"],
     // "modules-left": ["wlr/workspaces", "custom/waybar-media", "tray"],
     // "modules-center": ["hyprland/window", "clock"],
     // "modules-center": ["clock"],
-    "modules-center": [
-    ],
+    "modules-center": [],
     // "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "backlight", "battery", "bluetooth", "idle_inhibitor"],
     // "modules-right": ["custom/keybinds", "network", "pulseaudio", "custom/temp", "cpu", "memory", "clock"],
     "modules-right": [
@@ -28,7 +30,8 @@
         "custom/audio",
         "custom/temp",
         "cpu",
-        "memory",
+        // "memory",
+        "custom/memory",
         "clock"
     ],
     "hyprland/workspaces": {
@@ -58,12 +61,46 @@
             "17": "十七",
             "18": "十八",
             "19": "十九",
-            "20": "二十",
+            "20": "二十"
             // "urgent": "",
             // "active": "",
             // "default": "󰧞",
             // "sort-by-number": true
-        },
+        }
+    },
+    "niri/workspaces": {
+        "all-outputs": true,
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        // "sort-by-number": true,
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "11": "十一",
+            "12": "十二",
+            "13": "十三",
+            "14": "十四",
+            "15": "十五",
+            "16": "十六",
+            "17": "十七",
+            "18": "十八",
+            "19": "十九",
+            "20": "二十"
+            // "urgent": "",
+            // "active": "",
+            // "default": "󰧞",
+            // "sort-by-number": true
+        }
     },
     "mpd": {
         "tooltip": false,
@@ -105,10 +142,8 @@
         // "format-ethernet": "󰀂 {bandwidthTotalBytes}",
         // "format-ethernet": "󰈁 {ipaddr}",
         // "on-click": "kitty nmtui",
-
         "tooltip": true,
         "tooltip-format": "⇑ {bandwidthUpBytes}",
-
         "on-click": "wihotspot",
         "format-disconnected": " DISCONNECTED"
         // "max-length": 12
@@ -117,43 +152,63 @@
     "custom/keybinds_deactivate": {
         // "format": "   ",
         "format": "󰐼 ",
-        "on-click": "~/.config/hypr/scripts/deactivate_keybinds.sh",
+        "on-click": "~/.config/hypr/scripts/deactivate_keybinds.sh"
     },
     "custom/keybinds_activate": {
         // "format": "   ",
         "format": " ",
-        "on-click": "~/.config/hypr/scripts/activate_keybinds.sh",
+        "on-click": "~/.config/hypr/scripts/activate_keybinds.sh"
     },
     "custom/launch_terminal": {
         // "format": "   ",
         "format": " ",
-        "on-click": "kitty ~; source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate;",
+        "on-click": "kitty ~; source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate;"
     },
     "custom/launch_actions_runner": {
         // "format": "   ",
         "format": " ",
-        "on-click": "kitty ~/dev/wyvern_engine_actions_runner/run.sh",
+        "on-click": "kitty ~/dev/wyvern_engine_actions_runner/run.sh"
     },
     "custom/launch_actions_runner_stockbrokerage": {
         // "format": "   ",
         "format": " ",
-        "on-click": "kitty ~/dev/StockBrokerageRunner/run.sh",
+        "on-click": "kitty ~/dev/StockBrokerageRunner/run.sh"
     },
     "cpu": {
         "interval": 10,
         // "format": " {usage}%",
         "format": "󰒋 {usage}%",
         "max-length": 10,
-        "on-click": "kitty btop",
+        "on-click": "kitty btop"
     },
     "memory": {
         "tooltip": true,
-        "format": "󰍛 {}%",
+        "format": "󰍛 {used}GiB",
+        // "format": "✨ {}%",
+        // "format": " {}%",
+        "on-click": "kitty nvtop"
+    },
+    "custom/memory": {
+        "exec": "$HOME/.local/bin/top_memory_usage.sh 2> /dev/null",
+        "format": "󰍛 {} GiB",
+        "tooltip": true,
+        "tooltip-format": "{alt}", 
+        "max-length": 80,
+        "tooltip-max-length": 200,
+        "interval": 5,
+        "escape": true,
         // "format": "✨ {}%",
         // "format": " {}%",
         "on-click": "kitty nvtop",
+        "on-click-right": "kitty top",
+        "return-type": "json"
     },
     "hyprland/window": {
+        "max-length": 300,
+        "separate-outputs": true,
+        "format": "{title}"
+    },
+    "niri/window": {
         "max-length": 300,
         "separate-outputs": true,
         "format": "{title}"
@@ -170,8 +225,8 @@
         ],
         "states": {
             "warning": 50,
-            "critical": 25,
-        },
+            "critical": 25
+        }
     },
     "clock": {
         // "format": "{: %R ⌛ %Ss  %d.%m.%Y}",
@@ -191,7 +246,6 @@
         "calendar": {
             "mode": "year",
             "mode-mon-col": 2,
-            "weeks-pos": "",
             "on-scroll": 1,
             "on-click": "mode",
             "weeks-pos": "left",
@@ -218,15 +272,15 @@
         "on-click": "kitty watch -n 0.2 sensors"
     },
     "tray": {
-        "spacing": 10,
+        "spacing": 10
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "Π",
-            "deactivated": "Σ",
+            "deactivated": "Σ"
         },
-        "tooltip": false,
+        "tooltip": false
     },
     "backlight": {
         "device": "intel_backlight",
@@ -236,7 +290,7 @@
             ""
         ],
         "on-scroll-up": "~/.config/waybar/increase_brightness.sh",
-        "on-scroll-down": "~/.config/waybar/decrease_brightness.sh",
+        "on-scroll-down": "~/.config/waybar/decrease_brightness.sh"
     },
     "bluetooth": {
         "format": " {status}",
@@ -256,7 +310,7 @@
         "on-click-right": "qpwgraph",
         "on-click-middle": "easyeffects",
         "on-scroll-up": "~/.config/waybar/scripts/volume_up.sh",
-        "on-scroll-down": "~/.config/waybar/scripts/volume_down.sh",
+        "on-scroll-down": "~/.config/waybar/scripts/volume_down.sh"
     },
     "custom/media": {
         "exec": "python $HOME/.config/waybar/mediaplayer.py",
@@ -269,6 +323,6 @@
         "on-click-right": "playerctl stop",
         // "smooth-scrolling-threshold": 10,
         "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous",
+        "on-scroll-down": "playerctl previous"
     }
 }

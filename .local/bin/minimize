@@ -1,2 +1,4 @@
 #!/bin/bash
 xdotool windowunmap $(xdotool getactivewindow)
+
+if [ ! -f \"%{cfg.targetdir}/hot/libWyvern.so\" ]; then {copyfile} %{cfg.targetdir}/libWyvern.so %{cfg.targetdir}/hot/libWyvern.so fi

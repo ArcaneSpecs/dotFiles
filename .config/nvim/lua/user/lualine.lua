@@ -90,6 +90,7 @@ local colors = {
     red    = '#cc3189',
     violet = '#d183e8',
     grey   = '#343434',
+    dark   = '#303030',
 }
 
 local one_theme = {
@@ -123,6 +124,15 @@ local selection_info = function()
     return string.format("%dL, %dB", lines, bytes)
 end
 
+local function selectionCount()
+    local isVisualMode = vim.fn.mode():find("[Vv]")
+    if not isVisualMode then return "" end
+    local starts = vim.fn.line("v")
+    local ends = vim.fn.line(".")
+    local lines = starts <= ends and ends - starts + 1 or starts - ends + 1
+    return tostring(vim.fn.wordcount().visual_chars) .. "C  " .. tostring(lines) .. "L "
+end
+
 local search_count = function()
     local result = vim.fn.searchcount({ recompute = 1, maxcount = 1000 })
     if result.current == 0 or result.total == 0 then
@@ -153,8 +163,8 @@ lualine.setup({
         --[[ component_separators = { left = ' ', right = ' ' }, ]]
         --[[ component_separators = { left = '', right = '' }, ]]
         -- component_separators = { left = ' 󰞇', right = ' ' },
-        component_separators = { left = '󰞇 ', right = '󰞇  ' },
-        --[[ component_separators = { left = ' ', right = ' ' }, ]]
+        -- component_separators = { left = '󰞇 ', right = '󰞇  ' },
+        component_separators = { left = ' ', right = ' ' },
         section_separators = { left = '  ', right = ' ' },
         --[[ component_separators = { left = '', right = ''}, ]]
         --[[ section_separators = { left = '', right = ''}, ]]
@@ -165,7 +175,7 @@ lualine.setup({
     },
     sections = {
         --[[ lualine_a = { branch, diagnostics, mode}, ]]
-        lualine_a = { branch},
+        lualine_a = { branch },
         lualine_b = { search_count, diff, diagnostics },
         --[[ lualine_c = { mode }, ]]
         --[[ lualine_c = { diff }, ]]
@@ -175,7 +185,7 @@ lualine.setup({
         --[[ lualine_x = { filename, diff, spaces, "encoding", filetype }, ]]
         -- [[ lualine_x = { filename, diff, function_name }, ]]
         -- lualine_x = { filename, "location", selection_info },
-        lualine_x = { filename, "location" },
+        lualine_x = { selectionCount, filename, "location" },
         --[[ lualine_x = { filename, diff, filetype }, ]]
         lualine_y = { filetype },
         --[[ lualine_z = { progress }, ]]

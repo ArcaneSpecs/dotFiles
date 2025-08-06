@@ -11,6 +11,8 @@ vim.cmd('autocmd BufRead,BufNewFile *.glslh set filetype=glsl')
 vim.cmd('autocmd BufRead,BufNewFile *.glsl set filetype=glsl')
 vim.cmd('autocmd BufRead,BufNewFile *.hlsl set filetype=hlsl')
 
+vim.cmd('autocmd BufRead,BufNewFile dap-repl set syntax=lua')
+
 configs.setup({
 	ensure_installed = "all", -- one of "all" or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing

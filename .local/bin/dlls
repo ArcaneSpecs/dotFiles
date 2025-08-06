@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Monitors loaded dlls for a process by pid
+watch -n 0.1 check_dlls "$1"
+

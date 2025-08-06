@@ -6,7 +6,6 @@
 -- or any other location that nvim searches for lua scripts
 ----------------------------------------------------------------------------
 
-
 workspaceFolder = '/home/patu/simple_wyvern/Projects/RPG'
 --[[ workspaceFolder = '/home/patu/simple_wyvern' ]]
 
@@ -46,14 +45,15 @@ function build_game()
         direction = 'horizontal',
         close_on_exit = false
         -- env = {
-            
+
         -- },
     })
-    
+
     --[[ toggleterm:toggle() ]]
     toggleterm:open()
     -- os.execute('devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build')
 end
+
 function build()
     -- Get current working directory
     local current_working_directory = vim.fn.getcwd()
@@ -70,10 +70,10 @@ function build()
         direction = 'horizontal',
         close_on_exit = false
         -- env = {
-            
+
         -- },
     })
-    
+
     --[[ toggleterm:toggle() ]]
     toggleterm:open()
     -- os.execute('devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build')
@@ -93,10 +93,10 @@ function build_wyvern_engine()
         direction = '',
         close_on_exit = false
         -- env = {
-            
+
         -- },
     })
-    
+
     toggleterm:toggle()
 
     -- os.execute('devenv ' .. workspaceFolder .. '/build/WyvernEngine.sln /Build')

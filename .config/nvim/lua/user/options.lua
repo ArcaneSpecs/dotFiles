@@ -33,7 +33,8 @@ local options = {
     scrolloff = 8,                           -- auto scroll
     sidescrolloff = 8,
     guifont = "monospace:h17",               -- the font used in graphical neovim applications
-    foldlevel = 99
+    foldlevel = 99,
+    shellcmdflag="-ic"
 }
 
 -- Disable default file explorer
@@ -62,12 +63,10 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 vim.cmd([[
 augroup yaml_syntax
     autocmd!
-    " autocmd BufNewFile,BufRead *.conf setfiletype yaml
-    " autocmd BufNewFile,BufRead *.conf setsyntax yaml
-    autocmd BufNewFile,BufRead *.conf set filetype=yaml
-    autocmd BufNewFile,BufRead *.conf set syntax=yaml
-    autocmd BufNewFile,BufRead *.conf set filetype=yaml
-    autocmd BufNewFile,BufRead *.conf set syntax=yaml
+    " autocmd BufNewFile,BufRead *.conf set filetype=yaml
+    autocmd BufNewFile,BufRead *.conf set syntax=hyprlang
+    autocmd BufNewFile,BufRead *.conf set filetype=hyprlang
+    " autocmd BufNewFile,BufRead *.conf set syntax=yaml
     autocmd BufNewFile,BufRead *.make set filetype=make
     autocmd BufNewFile,BufRead *.make set syntax=make
     autocmd BufNewFile,BufRead *.xml set filetype=xml

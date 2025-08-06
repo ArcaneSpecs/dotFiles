@@ -5,13 +5,15 @@
 
 * {
 	border: none;
+    /* height: 8px; */
 	/* border-radius: var(--custom_border); */
 	border-radius: 0px; 
 
 	font-family: MesloLGM Nerd Font;
 
 	font-size: 14px;
-	min-height: 20px;
+	/* min-height: 20px; */
+	/* max-height: 22px; */
 }
 
 window#waybar {
@@ -38,6 +40,8 @@ window#waybar.hidden {
     color: #1494d7;
 
 	background: transparent;
+    
+    /* max-height: 100%; */
     /* background: #282a36; */
 }
 
@@ -199,7 +203,7 @@ window#waybar.PCSX2 #window {
 	/* background: #282a36; */
 }
 
-#memory {
+#custom-memory {
     /* border: 1px; */
     border-style: solid;
 	border-radius: 0px; /* Border-radius */
