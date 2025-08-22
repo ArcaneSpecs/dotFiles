@@ -181,6 +181,77 @@ require("lazy").setup({
         build = "./dl_binaries.sh"
     },
 
+    -- .vscode/tasks.json task support
+    {
+        'stevearc/overseer.nvim',
+        config = function()
+            local opts = {
+                strategy = {
+                    "terminal",
+                    close_on_exit = true,
+                    quit_on_exit = true,
+                    opts = {
+                        -- Strategy opts
+                        close_on_exit = true,
+                        quit_on_exit = true,
+                    }
+                },
+                close_on_exit = true,
+                task_list = {
+                    -- Default detail level for tasks. Can be 1-3.
+                    default_detail = 1,
+                    -- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+                    -- min_width and max_width can be a single value or a list of mixed integer/float types.
+                    -- max_width = {100, 0.2} means "the lesser of 100 columns or 20% of total"
+                    max_width = { 100, 0.2 },
+                    -- min_width = {40, 0.1} means "the greater of 40 columns or 10% of total"
+                    min_width = { 40, 0.1 },
+                    -- optionally define an integer/float for the exact width of the task list
+                    width = nil,
+                    max_height = { 20, 0.1 },
+                    min_height = 10,
+                    height = nil,
+                    -- String that separates tasks
+                    separator = "────────────────────────────────────────",
+                    -- Default direction. Can be "left", "right", or "bottom"
+                    direction = "bottom",
+                    -- Set keymap to false to remove default behavior
+                    -- You can add custom keymaps here as well (anything vim.keymap.set accepts)
+                    bindings = {
+                        ["?"] = "ShowHelp",
+                        ["g?"] = "ShowHelp",
+                        ["<CR>"] = "RunAction",
+                        ["<C-e>"] = "Edit",
+                        ["o"] = "Open",
+                        ["<C-v>"] = "OpenVsplit",
+                        ["<C-s>"] = "OpenSplit",
+                        ["<C-f>"] = "OpenFloat",
+                        ["<C-q>"] = "OpenQuickFix",
+                        ["p"] = "TogglePreview",
+                        -- ["<C-l>"] = "IncreaseDetail",
+                        -- ["<C-h>"] = "DecreaseDetail",
+                        ["L"] = "IncreaseAllDetail",
+                        ["H"] = "DecreaseAllDetail",
+                        ["["] = "DecreaseWidth",
+                        ["]"] = "IncreaseWidth",
+                        ["{"] = "PrevTask",
+                        ["}"] = "NextTask",
+                        ["<C-k>"] = "<C-w>k",
+                        ["<C-j>"] = "<C-w>j",
+                        ["<C-h>"] = "<C-w>h",
+                        ["<C-l>"] = "<C-w>l",
+                        -- ["<C-k>"] = ":wincmd k<CR>",
+                        -- ["<C-j>"] = ":wincmd j<CR>",
+                        -- ["<C-h>"] = ":wincmd h<CR>",
+                        -- ["<C-l>"] = ":wincmd l<CR>",
+                        ["q"] = "Close",
+                    }
+                }
+            }
+            require('overseer').setup(opts)
+        end
+    },
+
     -- Suda, read and write files with sudo
     {
         "lambdalisue/vim-suda"
@@ -919,14 +990,14 @@ require("lazy").setup({
                         -- "--query-driver=<list-of-white-listed-complers>"
                     }
                 },
-                -- Odin 
+                -- Odin
                 ols = {
                     cmd = { "ols", "-strict-style" },
-		            checker_args = "-strict-style",
+                    checker_args = "-strict-style",
                     enable_references = true
                     -- enable_document_symbols = true,
                     -- enable_inlay_hints = true,
-                    -- enable_hover = true, 
+                    -- enable_hover = true,
                     -- enable_snippets = true
                 },
                 -- Vue lsp
@@ -1324,6 +1395,7 @@ require("lazy").setup({
     },
 
     -- File explorers
+    -- Nvim tree
     {
         "nvim-tree/nvim-tree.lua",
         config = function()
@@ -1332,36 +1404,36 @@ require("lazy").setup({
     },
 
     -- Oil
-    -- {
-    --     'stevearc/oil.nvim',
-    --     ---@module 'oil'
-    --     ---@type oil.SetupOpts
-    --     opts = {
-    --         keymaps = {
-    --             ["g?"] = { "actions.show_help", mode = "n" },
-    --             ["<Tab>"] = "actions.select",
-    --             ["<C-s>"] = { "actions.select", opts = { vertical = true } },
-    --             ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-    --             ["<C-t>"] = { "actions.select", opts = { tab = true } },
-    --             ["<C-p>"] = "actions.preview",
-    --             ["<C-c>"] = { "actions.close", mode = "n" },
-    --             ["<C-l>"] = "actions.refresh",
-    --             ["-"] = { "actions.parent", mode = "n" },
-    --             ["_"] = { "actions.open_cwd", mode = "n" },
-    --             ["`"] = { "actions.cd", mode = "n" },
-    --             ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-    --             ["gs"] = { "actions.change_sort", mode = "n" },
-    --             ["gx"] = "actions.open_external",
-    --             ["g."] = { "actions.toggle_hidden", mode = "n" },
-    --             ["g\\"] = { "actions.toggle_trash", mode = "n" },
-    --         },
-    --     },
-    --     -- Optional dependencies
-    --     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    --     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    --     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    --     lazy = false,
-    -- },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {
+            keymaps = {
+                ["g?"] = { "actions.show_help", mode = "n" },
+                ["<Tab>"] = "actions.select",
+                ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+                ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+                ["<C-t>"] = { "actions.select", opts = { tab = true } },
+                ["<C-p>"] = "actions.preview",
+                ["<C-c>"] = { "actions.close", mode = "n" },
+                ["<C-r>"] = "actions.refresh",
+                ["-"] = { "actions.parent", mode = "n" },
+                ["_"] = { "actions.open_cwd", mode = "n" },
+                ["`"] = { "actions.cd", mode = "n" },
+                ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+                ["gs"] = { "actions.change_sort", mode = "n" },
+                ["gx"] = "actions.open_external",
+                ["g."] = { "actions.toggle_hidden", mode = "n" },
+                ["g\\"] = { "actions.toggle_trash", mode = "n" },
+            },
+        },
+        -- Optional dependencies
+        -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and

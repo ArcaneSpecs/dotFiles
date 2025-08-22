@@ -19,7 +19,23 @@ def hext(num : int):
     return hex(tera(num))
 # =====================================
 
+# =====================================
+# Graphics helpers
+import struct
 
+def hex_to_f32(hex_str : str):
+    hex_str = hex_str.strip().replace("0x", "")
+    byte_array = bytes.fromhex(hex_str)
+    float_num : float = struct.unpack('!f', byte_array)[0]
+    return float_num
 
+# =====================================
 
+def main():
+    hex_to_test = "0x428bFAE1"
+    converted : str = hex_to_f32(hex_to_test)
+    print(converted)
+
+if __name__ == "__main__":
+    main()
 

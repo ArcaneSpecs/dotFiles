@@ -174,6 +174,14 @@ cloc_wyvern()
     popd > /dev/null
 }
 
+cloc_odin_wyvern()
+{
+    pushd ~/dev/WyvernEngineOdin > /dev/null
+    cloc *.sh *.bat engine/source/* source/* tools/project_generator/project_generator.odin scripts projects
+    # Tools/Blender 
+    popd > /dev/null
+}
+
 # Run stable diffusion webui
 sd()
 {
@@ -248,6 +256,13 @@ resolve()
     /opt/resolve/bin/resolve
 }
 
+backup_chat()
+{
+    TIME=$(date +"%d-%-m-%y_%H-%M-%S")
+    cp /home/patu/.local/share/nvim/lazy/tabnine-nvim/chat_state.json ~/.config/tabnine_chat_history/chat_$TIME.json
+}
+
+
 # dlls_no_less()
 # {
 #     cat /proc/"$1"/maps | awk '{print $6}' | grep '\.so' | sort | uniq 
@@ -284,7 +299,7 @@ export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export EDITOR=nvim 
 alias nvimm='nvim -m'
 # export VULKAN_SDK=~/VulkanSDK/1.3.275.0
-export VULKAN_SDK=~/VulkanSDK/1.4.313.0
+export VULKAN_SDK=~/VulkanSDK/1.4.321.1
 export PATH=$HOME/.local/bin:/opt/rocm/bin:${VULKAN_SDK}/x86_64/bin:$PATH
 export PATH=$PATH:~/AppImages
 

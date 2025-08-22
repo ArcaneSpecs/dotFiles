@@ -99,6 +99,19 @@ keymap("n", "<leader>X", ":HexToggle<CR>", opts)
 -- Undotree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
+-- Overseer
+keymap("n", "<C-B>", ":OverseerRun<CR>", opts)
+-- keymap("n", "<C-S-B>", ":OverseerQuickAction restart<CR>:OverseerClose<CR>", opts)
+keymap("n", "<C-S-B>", ":OverseerQuickAction restart<CR>", opts)
+keymap("n", "<leader>xs", ":OverseerRun<CR>", opts)
+keymap("n", "<leader>xa", ":OverseerToggle<CR>", opts)
+
+-- TODO: fix navigation out of overseer list
+-- keymap("n", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+-- keymap("n", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+-- keymap("n", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+-- keymap("n", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
 -- Go to method
 keymap("n", "<leader>m", ":Telescope lsp_document_symbols<CR>", opts)
 
@@ -228,10 +241,15 @@ keymap("n", "<leader>5", ":DapVirtualTextToggle<CR>", opts)
 --[[ keymap("n", "<leader>i", ":lua require'telescope'.extensions.goimpl.goimpl{}<CR>", opts) ]]
 -- keymap("n", "<leader>i", ":TSCppDefineClassFunc<CR>", opts)
 
+-- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+-- keymap("n", "<C-h>", ":wincmd h<CR>", opts)
+-- keymap("n", "<C-j>", ":wincmd j<CR>", opts)
+-- keymap("n", "<C-l>", ":wincmd l<CR>", opts)
+-- keymap("n", "<C-k>", ":wincmd k<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -309,10 +327,11 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-

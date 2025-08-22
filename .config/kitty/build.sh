@@ -4,8 +4,8 @@ echo "Building in: $(pwd)"
 
 if [ -d build ]; then
     cd build
-else
-    mkdir build
+# else
+#     mkdir build
 fi
 
 # /home/patu/dev/WyvernEngineOdin/build_hot_reload.sh

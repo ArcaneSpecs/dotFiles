@@ -66,5 +66,6 @@ JetBrains/*/extensions/
 # Rider License key
 *.key
 
-
+/__pycache__/
+__pycache__/
 

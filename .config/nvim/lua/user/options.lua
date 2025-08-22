@@ -66,6 +66,8 @@ augroup yaml_syntax
     " autocmd BufNewFile,BufRead *.conf set filetype=yaml
     autocmd BufNewFile,BufRead *.conf set syntax=hyprlang
     autocmd BufNewFile,BufRead *.conf set filetype=hyprlang
+    autocmd BufNewFile,BufRead *.wproject set syntax=hyprlang
+    autocmd BufNewFile,BufRead *.wproject set filetype=hyprlang
     " autocmd BufNewFile,BufRead *.conf set syntax=yaml
     autocmd BufNewFile,BufRead *.make set filetype=make
     autocmd BufNewFile,BufRead *.make set syntax=make

@@ -14,7 +14,7 @@ local setup = {
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-            operators = true,   -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
             motions = true,      -- adds help for motions
             text_objects = true, -- help for text objects triggered after entering an operator
             windows = true,      -- default bindings on <c-w>
@@ -116,22 +116,22 @@ local opts_visual = {
 }
 
 which_key.add({
-    { "<leader>F",  "<cmd>Telescope live_grep theme=ivy use_regex=true<cr>",                                                                         desc = "Find Text",               nowait = true, remap = false },
+    { "<leader>F",  "<cmd>Telescope live_grep theme=ivy use_regex=true<cr>",                                                          desc = "Find Text",               nowait = true, remap = false },
     { "<leader>P",  "<cmd>lua require('telescope').extensions.projects.projects()<cr>",                                               desc = "Projects",                nowait = true, remap = false },
     { "<leader>R",  "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>",                                    desc = "Grep Open Files",         nowait = true, remap = false },
     -- Could also use this to delete existing buffer without checking changes
     -- { "<leader>c",  "<cmd>bdelete!<CR>",                                                                                              desc = "Close Buffer",            nowait = true, remap = false },
-    { "<leader>c",  "<cmd>bdelete<CR>",                                                                                              desc = "Close Buffer",            nowait = true, remap = false },
+    { "<leader>c",  "<cmd>bdelete<CR>",                                                                                               desc = "Close Buffer",            nowait = true, remap = false },
     { "<leader>d",  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({})<cr>",                                        desc = "Grep Buffer",             nowait = true, remap = false },
     { "<leader>e",  "<cmd>NvimTreeToggle<cr>",                                                                                        desc = "Explorer",                nowait = true, remap = false },
     -- { "<leader>e",  "<cmd>Oil<cr>",                                                                                        desc = "Explorer",                nowait = true, remap = false },
-    { "<leader>E",  "<cmd>lua require'oil'.toggle_float('.')<cr>",                                                                                        desc = "Explorer",                nowait = true, remap = false },
+    { "<leader>E",  "<cmd>lua require'oil'.toggle_float('.')<cr>",                                                                    desc = "Explorer",                nowait = true, remap = false },
     { "<leader>f",  "<cmd>lua require('telescope.builtin').find_files({hidden=true, no_ignore=true})<cr>",                            desc = "Find files",              nowait = true, remap = false },
     { "<leader>g",  group = "Git",                                                                                                    nowait = true,                    remap = false },
     { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",                                                                 desc = "Reset Buffer",            nowait = true, remap = false },
     { "<leader>gb", "<cmd>Telescope git_branches<cr>",                                                                                desc = "Checkout branch",         nowait = true, remap = false },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>",                                                                                 desc = "Checkout commit",         nowait = true, remap = false },
-    { "<leader>gd", "<cmd>DiffviewOpen<cr>",                                                                                     desc = "Diff",                    nowait = true, remap = false },
+    { "<leader>gd", "<cmd>DiffviewOpen<cr>",                                                                                          desc = "Diff",                    nowait = true, remap = false },
     -- { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                                                                                     desc = "Diff",                    nowait = true, remap = false },
     { "<leader>gg", "<cmd>LazyGit<CR>",                                                                                               desc = "Lazygit",                 nowait = true, remap = false },
     { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>",                                                                    desc = "Next Hunk",               nowait = true, remap = false },
@@ -154,7 +154,7 @@ which_key.add({
     { "<leader>iu", "<cmd>lua require 'lazy'.setup()<cr>",                                                                            desc = "Update",                  nowait = true, remap = false },
     { "<leader>l",  group = "LSP",                                                                                                    nowait = true,                    remap = false },
     { "<leader>lI", "<cmd>LspInstallInfo<cr>",                                                                                        desc = "Installer Info",          nowait = true, remap = false },
-    { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",                                                               desc = "Workspace Symbols",       nowait = true, remap = false },
+    { "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",                                                               desc = "Workspace Symbols",       nowait = true, remap = false },
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                                                                         desc = "Code Action",             nowait = true, remap = false },
     { "<leader>ld", "<cmd>Telescope diagnostics<cr>",                                                                                 desc = "Document Diagnostics",    nowait = true, remap = false },
     { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",                                                                    desc = "Format",                  nowait = true, remap = false },
@@ -163,9 +163,8 @@ which_key.add({
     { "<leader>lk", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",                                                                    desc = "Prev Diagnostic",         nowait = true, remap = false },
     { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",                                                                            desc = "CodeLens Action",         nowait = true, remap = false },
     { "<leader>lq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",                                                                  desc = "Quickfix",                nowait = true, remap = false },
-    { "<leader>lr", "<cmd>LspRestart<cr>",                                                                              desc = "Rename",                  nowait = true, remap = false },
-    { "<leader>ls", "<cmd>LspStop<cr>",                                                                        desc = "Document Symbols",        nowait = true, remap = false },
-    { "<leader>ln", "<cmd>LspStop<cr>",                                                                                               desc = "Stop LSP",                nowait = true, remap = false },
+    { "<leader>lr", "<cmd>LspRestart<cr>",                                                                                            desc = "Rename",                  nowait = true, remap = false },
+    { "<leader>lS", "<cmd>LspStop<cr>",                                                                                               desc = "Stop LSP",                nowait = true, remap = false },
     { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>",                                                                   desc = "Workspace Diagnostics",   nowait = true, remap = false },
     { "<leader>n",  "<cmd>set nohlsearch!<CR>",                                                                                       desc = "Toggle search highlight", nowait = true, remap = false },
     { "<leader>r",  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Buffers",                 nowait = true, remap = false },

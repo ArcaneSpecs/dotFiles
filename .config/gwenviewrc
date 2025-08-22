@@ -143,26 +143,6 @@ MenuBar=Disabled
 Gwenview_Volume=1
 
 [Recent Files]
-File1[$e]=$HOME/.local/share/icons/telegram.png
-File10[$e]=$HOME/dev/WyvernEngineOdin/build/release/assets/round_cat.png
-File2[$e]=$HOME/.local/share/icons/distrobox/fedora.png
-File3[$e]=$HOME/.local/share/icons/hicolor/100x100/apps/95F8_HorizonForbiddenWest.0.png
-File4[$e]=$HOME/dev/simple_wyvern/AndroidProto/app/src/main/res/mipmap-hdpi/ic_launcher.png
-File5[$e]=$HOME/dev/simple_wyvern/AndroidProto/app/src/main/res/mipmap-mdpi/ic_launcher.png
-File6[$e]=$HOME/dev/simple_wyvern/AndroidProto/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-File7[$e]=$HOME/dev/simple_wyvern/AndroidProto/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-File8[$e]=$HOME/dev/simple_wyvern/AndroidProto/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
-File9[$e]=$HOME/dev/OdinWyvernEngine/assets/round_cat.png
-Name1[$e]=telegram.png
-Name10[$e]=round_cat.png
-Name2[$e]=fedora.png
-Name3[$e]=95F8_HorizonForbiddenWest.0.png
-Name4[$e]=ic_launcher.png
-Name5[$e]=ic_launcher.png
-Name6[$e]=ic_launcher.png
-Name7[$e]=ic_launcher.png
-Name8[$e]=ic_launcher.png
-Name9[$e]=round_cat.png
 
 [SideBar]
 InformationSplitterSizes=218,257
@@ -173,7 +153,7 @@ SideBarSplitterSizes=173,1743
 AutoplayVideos=true
 SortDescending=true
 Sorting=Sorting::Date
-ThumbnailSize=500
+ThumbnailSize=408
 
 [WM]
 activeBackground=22,26,30
