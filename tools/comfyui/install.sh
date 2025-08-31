@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# NOTE: Run in conda envs and comfyui root dir if we get error loading this ↓
+# find . \( -name "libhiprtc.so" -o -name "libamdhip64.so" \) -exec patchelf --clear-execstack {} \;
+
 rm -rf venv
 python -m venv venv
 if [ $? -eq 0 ]; then
