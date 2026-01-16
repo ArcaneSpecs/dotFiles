@@ -270,17 +270,24 @@ require("lazy").setup({
 		commit = "2c23513a4fd3a3be0459b3b62996fb0732c2fd7e",
 		tag = "v1.6.0",
 		config = function()
+			-- Default: auto-open quickfix
+			vim.g.overseer_auto_open_qf = false
+			-- Add the toggle command
+			vim.api.nvim_create_user_command("ToggleErrorJump", function()
+				vim.g.overseer_auto_open_qf = not vim.g.overseer_auto_open_qf
+				vim.notify("Quickfix auto-open " .. (vim.g.overseer_auto_open_qf and "enabled" or "disabled"))
+			end, {})
 			require("overseer").add_template_hook({
-				-- Target Odin builds (adjust condition as needed)
-				-- module = "^odin$", -- Matches tasks with "odin" in name/cmd
+				-- module = "^odin$", -- Uncomment to limit to Odin tasks
 			}, function(task_defn, util)
-				-- Add quickfix parsing and auto-open for Odin output
-				util.add_component(
-					task_defn,
-					{ "on_output_quickfix", errorformat = "|| %f(%l:%c) Error: %m", open = true, open_height = 10 }
-				)
-
-				-- Custom jump component (defined below)
+				-- Add quickfix parsing with toggleable auto-open
+				util.add_component(task_defn, {
+					"on_output_quickfix",
+					errorformat = "|| %f(%l:%c) Error: %m",
+					open = vim.g.overseer_auto_open_qf, -- Use the toggle variable
+					open_height = 10,
+				})
+				-- Custom jump component
 				util.add_component(task_defn, "jump_to_first_error")
 			end)
 			local opts = {
