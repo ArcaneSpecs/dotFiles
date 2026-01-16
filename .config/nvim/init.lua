@@ -6,7 +6,8 @@
 require("user.options")
 require("user.keymaps")
 require("user.plugins")
-require("user.colorscheme")
+-- require("user.colorscheme")
+require("colors.wyvern_colors").colorscheme()
 -- require("user.copilot")
 -- require "user.cmp"
 -- require("user.lsp")
@@ -29,9 +30,8 @@ require("user.autocommands")
 require("user.autosessions")
 require("user.nvim-dap")
 require("user.noice")
--- require("user.tabnine")
 
-require("user.WyvernChatConfig")
+-- require("user.WyvernChatConfig")
 
 --[[ https://github.com/toppair/reach.nvim ]]
 require("user.harpoon")
@@ -54,25 +54,29 @@ end
 -- Extra settings
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.cmd("highlight Search guibg=#4b9ba8 guifg=#13252B")
+-- Old highlights
+-- vim.cmd("highlight Search guibg=#4b9ba8 guifg=#13252B")
+-- vim.cmd("highlight Visual guifg=#b060DD guibg=#1e1219")
+
+vim.cmd("highlight Search guibg=#2b5c63 guifg=#13252B")
+vim.cmd("highlight Visual guifg=#b060DD guibg=#1e1219")
+vim.cmd("highlight CurSearch guifg=#223355 guibg=#80aaec")
+
 -- vim.cmd("highlight Visual guifg=#9f3388 guibg=#2e1219")
 -- vim.cmd("highlight Visual guifg=#e678DD guibg=#1e1219")
-vim.cmd("highlight Visual guifg=#b060DD guibg=#1e1219")
 
-
-vim.api.nvim_create_autocmd({ 'VimEnter', 'SessionLoadPost' }, {
-    callback = function()
-        if vim.g.SessionLoad then return end
-        vim.cmd('NvimTreeOpen')
-        vim.cmd('NvimTreeClose')
-        vim.cmd.wincmd('l')
-        -- vim.cmd('vnew')
-        -- vim.cmd('vnew')
-        -- vim.cmd('bd')
-    end,
-    once = true
-})
-
+-- vim.api.nvim_create_autocmd({ 'VimEnter', 'SessionLoadPost' }, {
+    -- callback = function()
+    --     if vim.g.SessionLoad then return end
+    --     vim.cmd('NvimTreeOpen')
+    --     vim.cmd('NvimTreeClose')
+    --     vim.cmd.wincmd('l')
+    --     -- vim.cmd('vnew')
+    --     -- vim.cmd('vnew')
+    --     -- vim.cmd('bd')
+    -- end,
+    -- once = true
+-- })
 
 local rainbow_group = vim.api.nvim_create_augroup("rainbow_csv", { clear = true })
 

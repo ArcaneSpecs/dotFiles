@@ -298,6 +298,26 @@ window#waybar.PCSX2 #window {
 	/* background: #282a36; */
 }
 
+#custom-launch_reload_hyprland {
+    /* border: 1px; */
+    border-style: solid;
+	border-radius: 0px; /* Border-radius */
+
+	margin-top: 4px;
+	margin-left: 8px;
+	/* margin-right: 12px; */
+	margin-bottom: 4px;
+
+	padding-left: 20px;
+	padding-right: 16px;
+
+	transition: none;
+	/* color: #14efe7; */
+	color: #14cad7;
+	background: rgba(48, 48, 48, 0.5);
+	/* background: #282a36; */
+}
+
 #custom-launch_actions_runner {
     /* border: 1px; */
     border-style: solid;

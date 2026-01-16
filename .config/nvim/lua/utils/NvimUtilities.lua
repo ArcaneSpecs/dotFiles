@@ -13,9 +13,11 @@ function M.switch_file_pair()
   if filetype == 'glsl' then
     M.switch_shader()
   elseif filetype == 'cpp' then
-    vim.cmd("ClangdSwitchSourceHeader")
+    vim.cmd("LspClangdSwitchSourceHeader")
+  elseif filetype == 'c' then
+    vim.cmd("LspClangdSwitchSourceHeader")
   elseif filetype == 'h' then
-    vim.cmd("ClangdSwitchSourceHeader")
+    vim.cmd("LspClangdSwitchSourceHeader")
   else
     print('filetype ' .. filetype .. ' is not supported')
   end

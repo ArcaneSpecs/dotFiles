@@ -13,7 +13,8 @@
         "custom/keybinds_deactivate",
         "custom/keybinds_activate",
         "custom/launch_terminal",
-        "custom/launch_actions_runner",
+		"custom/launch_reload_hyprland",
+        // "custom/launch_actions_runner",
         "hyprland/window",
         "niri/window"
     ],
@@ -163,6 +164,11 @@
         // "format": "   ",
         "format": " ",
         "on-click": "kitty ~; source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate;"
+    },
+    "custom/launch_reload_hyprland": {
+        // "format": "   ",
+        "format": " ",
+        "on-click": "kitty -e hyprctl reload"
     },
     "custom/launch_actions_runner": {
         // "format": "   ",

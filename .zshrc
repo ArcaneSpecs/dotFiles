@@ -650,10 +650,6 @@ alias atm="arcolinux-tellme"
 alias avs="arcolinux-vbox-share"
 alias awa="arcolinux-welcome-app"
 
-#git
-alias rmgitcache="rm -r ~/.cache/git"
-# alias grh="git reset --hard"
-
 #pamac
 alias pamac-unlock="sudo rm /var/tmp/pamac/dbs/db.lock"
 
@@ -685,3 +681,6 @@ alias personal='cp -Rf /personal/* ~'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source ~/.bashrc
+
+# opencode
+export PATH=/home/patu/.opencode/bin:$PATH

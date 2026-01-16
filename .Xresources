@@ -13,6 +13,9 @@
 !!URxvt*transparent:	true
 !!URxvt*shading:	20
 
+xterm*faceSize: 18
+xterm*background: black
+xterm*foreground: lightgray
 
 !! special
 !*.foreground:   #F8F8F2
@@ -52,7 +55,6 @@
 !*.color15:    #E6E6E6
 Xcursor.theme: Adwaita
 Xcursor.size: 24
-
 
 
 

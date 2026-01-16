@@ -24,7 +24,7 @@ end
 lsp.extend_lspconfig()
 lsp.preset("recommended")
 lsp.setup_servers({
-    'tsserver',
+    -- 'tsserver',
     'rust_analyzer',
     'clangd',
     'lua_ls',
@@ -45,11 +45,11 @@ lsp.set_preferences({
     }
 })
 ]]
---
-lsp.use('tsserver', {
-    settings = {
-    }
-})
+
+-- lsp.use('tsserver', {
+--     settings = {
+--     }
+-- })
 
 lsp.use('yamlls', {
     filetypes = { 'yaml', 'yaml.docker-compose', 'yml' },

@@ -2,6 +2,10 @@
 # ~/.bashrc
 #
 
+export BAKE_HOME=~/workspace/ns-allinone-3.29/bake
+export PATH=$PATH:$BAKE_HOME:$BAKE_HOME/build/bin
+export PYTHONPATH=$PYTHONPATH:$BAKE_HOME:$BAKE_HOME/build/lib
+
 # FIXME: Remove after debugging wyvern editor runtime
 # export MALLOC_CHECK_=1 
 
@@ -13,12 +17,22 @@
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 # PS1='[\u@\h \W]\$ '
+alias javac="/usr/lib/jvm/java-25-openjdk/bin/javac"
+alias fixaudio="systemctl --user restart pipewire wireplumber"
 
 alias ncdu='gdu'
 alias make='make -j32'
 alias ls='eza --icons --color=auto'
 alias grep='grep --color=auto'
 alias ll='eza --icons --grid --all --color=auto'
+
+# Git commands
+alias rmgitcache="rm -r ~/.cache/git"
+alias gm="git commit"
+alias gs="git status"
+alias gp="git push"
+alias lg="lazygit"
+# alias grh="git reset --hard"
 
 memscan()
 {
@@ -187,7 +201,7 @@ sd()
 {
     cd /github_dir/stable-diffusion-webui
     brave-nightly "http://127.0.0.1:7860/?__theme=dark" &
-# source venv/bin/activate  # commented out by conda initialize
+    source venv/bin/activate
     ./webui.sh --no-half --disable-nan-check
 }
 
@@ -299,9 +313,11 @@ export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export EDITOR=nvim 
 alias nvimm='nvim -m'
 # export VULKAN_SDK=~/VulkanSDK/1.3.275.0
-export VULKAN_SDK=~/VulkanSDK/1.4.321.1
+# export VULKAN_SDK=~/VulkanSDK/1.4.321.1
+export VULKAN_SDK=~/VulkanSDK/1.4.335.0
 export PATH=$HOME/.local/bin:/opt/rocm/bin:${VULKAN_SDK}/x86_64/bin:$PATH
 export PATH=$PATH:~/AppImages
+export ROCM_HOME=/opt/rocm
 
 export PATH=$PATH:$HOME/.local/bin:/opt/rocm/bin:$HOME/.virtualenvs/debugpy/bin
 export PATH=$PATH:$VULKAN_SDK
@@ -334,15 +350,15 @@ export SHELL=/usr/bin/zsh
 #     # FIXME: Why can't we run this on multiple neovim instances
 #     # export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket # NOTE: Comment out for Wyvern Editor neovim support
 #     # source ~/dev/WyvernLauncher/NeovimServer/venv/bin/activate
-#     source ~/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate  # commented out by conda initialize
+#     source ~/dev/simple_wyvern/Tools/DependencySetup/venv/bin/activate
 # fi
 
 # NOTE: uncomment for conda
 # # Source miniconda
 # [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 #
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
 # __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
@@ -354,4 +370,4 @@ export SHELL=/usr/bin/zsh
 #     fi
 # fi
 # unset __conda_setup
-# # <<< conda initialize <<<
+# <<< conda initialize <<<
