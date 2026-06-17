@@ -232,6 +232,17 @@ end
 --     name = 'lldb'
 -- }
 
+-- dap.adapters.cppdbg = {
+--     type = 'executable',
+--     name = "cppdbg",
+--     attach = {
+--         pidProperty = "processId",
+--         pidSelect = "ask"
+--     },
+--     command = '/usr/bin/gdb',
+--     args = { '-i', 'mi' },
+-- }
+
 dap.adapters.cpptools = {
     type = 'executable',
     name = "cpptools",
@@ -244,10 +255,13 @@ dap.adapters.cpptools = {
 }
 
 dap.adapters.gdb = {
+	id = "gdb",
     type = "executable",
     command = "gdb",
     name = "gdb",
-    -- args = { "-i", "dap" }
+    -- args = { "-i", "dap" },
+    args = { "--quiet", "--interpreter=dap" },
+    console = 'externalTerminal',
 }
 
 local lldb_cmd = ""
@@ -681,7 +695,7 @@ dapui.setup {
         },
         {
             elements = {
-                --[[ 'watches' ]]
+                'watches'
             },
             size = 20,
             position = 'right'

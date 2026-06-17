@@ -124,6 +124,8 @@ keymap('n', '%', [[:%s/^\(\s*```.*\)\n\(\s*\)/\1\n\2/g<CR>:nohlsearch<CR>]], opt
 -- Telescope
 -- Replace in all files in quick fix list
 keymap("n", "<leader>a", ":cdo %s///g<Left><Left><Left>", opts)
+keymap("n", "<leader>A", ":%s///g<Left><Left><Left>", opts)
+keymap("v", "<leader>A", ":s//g<Left><Left>", opts)
 -- Preview file in quick fix list
 -- keymap("n", "<S-Return>", "<CR>:set wrap<CR><C-w>j", opts)
 

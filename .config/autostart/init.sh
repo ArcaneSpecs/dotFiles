@@ -1,5 +1,6 @@
 #!/bin/bash
 
+xset r rate 200 200
 whatsapp-for-linux &
 discord &
 obs --minimize-to-tray &

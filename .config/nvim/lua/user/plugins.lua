@@ -52,6 +52,14 @@ require("lazy").setup({
 			post_hook = nil,
 		},
 	},
+	-- Attempt to make lsp not lag the editor after a while
+	{
+		"zeioth/garbage-day.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- your options here
+		},
+	},
 	{
 		"julianolf/nvim-dap-lldb",
 		dependencies = { "mfussenegger/nvim-dap" },
@@ -170,16 +178,16 @@ require("lazy").setup({
 	},
 
 	-- Color support
-	{
-		"catgoose/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup({
-				css = false,
-				names = false,
-				mode = "background",
-			})
-		end,
-	},
+	-- {
+	-- 	"catgoose/nvim-colorizer.lua",
+	-- 	config = function()
+	-- 		require("colorizer").setup({
+	-- 			css = false,
+	-- 			names = false,
+	-- 			mode = "background",
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- Opencode
 	{
@@ -211,7 +219,7 @@ require("lazy").setup({
 			end, { desc = "Toggle opencode" })
 
 			vim.keymap.set({ "n", "x" }, "<leader>or", function()
-				return require("opencode").operator("@this ", { submit = true })
+				return require("opencode").operator("@this ", { submit = false })
 			end, { expr = true, desc = "Add range to opencode" })
 			vim.keymap.set("n", "<leader>of", function()
 				return require("opencode").operator("@this ") .. "_"
@@ -264,6 +272,17 @@ require("lazy").setup({
 	-- 	}
 	-- },
 
+	-- Better git blame visualizer
+	{
+		"FabijanZulj/blame.nvim",
+		lazy = false,
+		config = function()
+			require("blame").setup({})
+		end,
+		opts = {
+			blame_options = { "-w" },
+		},
+	},
 	-- .vscode/tasks.json task support
 	{
 		"stevearc/overseer.nvim",
@@ -393,27 +412,30 @@ require("lazy").setup({
 		"folke/neodev.nvim",
 	},
 	-- CSV stuff
+	-- {
+	-- 	"chrisbra/csv.vim",
+	-- },
 	{
-		"chrisbra/csv.vim",
+		"hat0uma/csvview.nvim",
 	},
-	{
-		"mechatroner/rainbow_csv",
-		ft = {
-			"csv",
-			"tsv",
-			"csv_semicolon",
-			"csv_whitespace",
-			"csv_pipe",
-			"rfc_csv",
-			"rfc_semicolon",
-		},
-		cmd = {
-			"RainbowDelim",
-			"RainbowDelimSimple",
-			"RainbowDelimQuoted",
-			"RainbowMultiDelim",
-		},
-	},
+	-- {
+	-- 	"mechatroner/rainbow_csv",
+	-- 	ft = {
+	-- 		"csv",
+	-- 		"tsv",
+	-- 		"csv_semicolon",
+	-- 		"csv_whitespace",
+	-- 		"csv_pipe",
+	-- 		"rfc_csv",
+	-- 		"rfc_semicolon",
+	-- 	},
+	-- 	cmd = {
+	-- 		"RainbowDelim",
+	-- 		"RainbowDelimSimple",
+	-- 		"RainbowDelimQuoted",
+	-- 		"RainbowMultiDelim",
+	-- 	},
+	-- },
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -544,9 +566,9 @@ require("lazy").setup({
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
-				keymaps = {
-					normal = "<leader>x",
-				},
+				-- keymaps = {
+				-- 	normal = "<leader>x",
+				-- },
 			})
 		end,
 	},
@@ -735,7 +757,8 @@ require("lazy").setup({
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
-		branch = "0.1.x",
+		-- branch = "0.1.x",
+		branch = "master",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for install instructions
@@ -1118,9 +1141,16 @@ require("lazy").setup({
 					filetypes = { "asm", "nasm" },
 				},
 				-- gopls = {},
-				pyright = {
+				basedpyright = {
 					analysis = {
-						extraPaths = { "/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/include" },
+						-- extraPaths = {
+						-- 	"/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/include",
+						-- 	"./venv/lib/python3.14/site-packages/",
+						-- },
+						autoSearchPaths = true,
+						typeCheckingMode = "off",
+						useLibraryCodeForTypes = true,
+						diagnosticMode = "workspace",
 					},
 					format = {
 						enable = false,
@@ -1159,9 +1189,12 @@ require("lazy").setup({
 					settings = {},
 					filetypes = { "json", "jsonc", "wscene" },
 				},
-				glslls = {
-					settings = {},
-					filetypes = { "glsl", "glslh", "frag", "vert" },
+				glsl_analyzer = {
+					-- settings = {},
+					-- filetypes = { "glsl", "glslh", "frag", "vert" },
+					on_attach = function(client, _)
+						client.server_capabilities.semanticTokensProvider = nil
+					end,
 				},
 				jdtls = {
 					filetypes = { "java", "class" },
@@ -1348,8 +1381,12 @@ require("lazy").setup({
 						max_height = 50,
 					},
 				},
-				completion = { completeopt = "menu,menuone,noinsert" },
-
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+					autocomplete = {
+						require("cmp.types").cmp.TriggerEvent.TextChanged,
+					},
+				},
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
 				--
@@ -1400,7 +1437,8 @@ require("lazy").setup({
 				formatting = {
 					fields = { "abbr", "kind", "menu" },
 					format = function(entry, vim_item)
-						vim_item.abbr = string.format("%.30s", vim_item.abbr) -- Limit the tooltip length
+						-- vim_item.abbr = string.format("%.80s", vim_item.abbr) -- Limit the tooltip length
+						vim_item.abbr = vim_item.abbr -- Unlimited
 
 						-- Kind icons
 						-- This concatonates the icons with the name of the item kind
@@ -1418,10 +1456,12 @@ require("lazy").setup({
 				},
 				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "path" },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "luasnip" },
-					{ name = "buffer" },
+					-- { name = "path" },
+					-- { name = "nvim_lsp_signature_help" },
+					-- { name = "luasnip" },
+					-- { name = "buffer" },
+					-- { name = "omni" },
+					{ name = "vfs", priority = 1000 },
 				},
 			})
 		end,
@@ -1467,19 +1507,46 @@ require("lazy").setup({
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		-- build = ":TSUpdate",
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 			-- parser_install_dir = "$HOME/.local/share/nvim/lazy/nvim-treesitter/parser",
 
 			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
-				-- Autoinstall languages that are not installed
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
+			-- require("nvim-treesitter").setup({
+			-- 	ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
+			-- 	-- Autoinstall languages that are not installed
+			-- 	auto_install = true,
+			-- 	highlight = { enable = true },
+			-- 	indent = { enable = true },
+			-- })
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					-- Enable treesitter highlighting and disable regex syntax
+					pcall(vim.treesitter.start)
+					-- Enable treesitter-based indentation
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
 			})
+			local ensureInstalled = {
+				"bash",
+				"c",
+				"html",
+				"lua",
+				"markdown",
+				"vim",
+				"vimdoc",
+				"odin",
+			}
+			local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+			local parsersToInstall = vim.iter(ensureInstalled)
+				:filter(function(parser)
+					return not vim.tbl_contains(alreadyInstalled, parser)
+				end)
+				:totable()
+			require("nvim-treesitter").install(parsersToInstall)
+			require("nvim-treesitter").highlights = false
 
 			-- There are additional nvim-treesitter modules that you can use to interact
 			-- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -1796,3 +1863,5 @@ require("lazy").setup({
 --    --[[ use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters ]]
 --    use("nvim-treesitter/nvim-treesitter")
 --end)
+
+vim.lsp.set_log_level("off")

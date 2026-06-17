@@ -128,6 +128,7 @@ which_key.add({
     { "<leader>E",  "<cmd>lua require'oil'.toggle_float('.')<cr>",                                                                    desc = "Explorer",                nowait = true, remap = false },
     { "<leader>f",  "<cmd>lua require('telescope.builtin').find_files({hidden=true, no_ignore=true})<cr>",                            desc = "Find files",              nowait = true, remap = false },
     { "<leader>g",  group = "Git",                                                                                                    nowait = true,                    remap = false },
+    { "<leader>gB", "<cmd>BlameToggle<cr>",                                                                              desc = "Blame toggle",            nowait = true, remap = false },
     { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",                                                                 desc = "Reset Buffer",            nowait = true, remap = false },
     { "<leader>gb", "<cmd>Telescope git_branches<cr>",                                                                                desc = "Checkout branch",         nowait = true, remap = false },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>",                                                                                 desc = "Checkout commit",         nowait = true, remap = false },

@@ -38,6 +38,22 @@ then
     # kolourpaint ~/Pictures/screenshots/$filename 
     # play ~/.local/bin/sounds/screenshot_effect.mp3
     exit 0
+
+elif [[ $1 == "-w" || $1 == "--window" ]];
+then
+    # Take date as the file name 
+    filename=$(date +%d-%m-%Y_%H-%M-%S.png)
+
+    # Take a screenshot and copy it to the clipboard
+    # grim -g "$(slurp -d)" ~/Pictures/screenshots/$filename 
+    my_hyprshot -m window -f $filename 
+
+    if [ "$?" -eq 0 ]; then
+        play ~/.local/bin/sounds/screenshot_effect.mp3
+        xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$filename
+    fi
+
+    exit 0
 elif [[ $1 == "-s" || $1 == "--select" ]];
 then
     # Take date as the file name 

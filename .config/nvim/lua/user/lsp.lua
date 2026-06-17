@@ -104,27 +104,27 @@ lsp.use('clangd', {
     }
 })
 
-lsp.use('basedpyright', {
-    -- lsp.use('pyright', {
-    -- lsp.use('pylsp', {
-    settings = {
-        python = {
-            analysis = {
-                extraPaths = { '/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/include' },
-            },
-            format = {
-                enable = false
-            }
-        },
-        basedpyright = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-                useLibraryCodeForTypes = true
-            }
-        }
-    }
-})
+-- lsp.use('basedpyright', {
+--     -- lsp.use('pyright', {
+--     -- lsp.use('pylsp', {
+--     settings = {
+--         python = {
+--             analysis = {
+--                 extraPaths = { '/home/patu/dev/simple_wyvern/Tools/DependencySetup/venv/include' },
+--             },
+--             format = {
+--                 enable = false
+--             }
+--         },
+--         basedpyright = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 diagnosticMode = "openFilesOnly",
+--                 useLibraryCodeForTypes = true
+--             }
+--         }
+--     }
+-- })
 
 -- lsp.configure(
 --     'glsls', {

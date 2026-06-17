@@ -1,3 +1,18 @@
+vim.filetype.add({
+  extension = {
+    frag = "glsl",
+    vert = "glsl",
+    comp = "glsl",
+    geom = "glsl",
+    tesc = "glsl",
+    tese = "glsl",
+    glsl = "glsl",
+    glslh = "glsl",
+    hlsl = "hlsl",
+    shader = "glsl",
+  },
+})
+
 local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
 	return

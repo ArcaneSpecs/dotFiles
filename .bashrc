@@ -6,6 +6,11 @@ export BAKE_HOME=~/workspace/ns-allinone-3.29/bake
 export PATH=$PATH:$BAKE_HOME:$BAKE_HOME/build/bin
 export PYTHONPATH=$PYTHONPATH:$BAKE_HOME:$BAKE_HOME/build/lib
 
+# Custom llvm to fix odin build for now
+# NOTE: 22 not supported yet
+# export PATH="$HOME/dev/llvm_22/bin":$PATH
+# export PATH="$HOME/dev/llvm_21/bin":$PATH
+
 # FIXME: Remove after debugging wyvern editor runtime
 # export MALLOC_CHECK_=1 
 
@@ -31,6 +36,7 @@ alias rmgitcache="rm -r ~/.cache/git"
 alias gm="git commit"
 alias gs="git status"
 alias gp="git push"
+alias gpl="git pull"
 alias lg="lazygit"
 # alias grh="git reset --hard"
 
@@ -191,7 +197,7 @@ cloc_wyvern()
 cloc_odin_wyvern()
 {
     pushd ~/dev/WyvernEngineOdin > /dev/null
-    cloc *.sh *.bat engine/source/* source/* tools/project_generator/project_generator.odin scripts projects
+    cloc *.sh *.bat engine/source/* source/* tools/project_generator/project_generator.odin tools/code_generator scripts projects
     # Tools/Blender 
     popd > /dev/null
 }
@@ -303,6 +309,7 @@ export MANGOHUD=0
 # export VK_INSTANCE_LAYERS=VK_LAYER_live_introspection
 
 export PAGER=less
+# export PAGER=bat
 
 export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
@@ -310,12 +317,16 @@ export XCURSOR_SIZE=24
 export HIP_VISIBLE_DEVICES=0
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 
+export FBX_DIR=~/github/ozz-animation/fbx
+
 export EDITOR=nvim 
 alias nvimm='nvim -m'
 # export VULKAN_SDK=~/VulkanSDK/1.3.275.0
 # export VULKAN_SDK=~/VulkanSDK/1.4.321.1
 export VULKAN_SDK=~/VulkanSDK/1.4.335.0
-export PATH=$HOME/.local/bin:/opt/rocm/bin:${VULKAN_SDK}/x86_64/bin:$PATH
+# export PATH=$HOME/.local/bin:/opt/rocm/bin:${VULKAN_SDK}/x86_64/bin:/usr/lib/odin_nightly:$PATH
+export PATH=$HOME/.local/bin:/opt/rocm/bin:${VULKAN_SDK}/x86_64/bin:/usr/lib/odin:$PATH
+export PATH=/github_dir/emsdk:/github_dir/emsdk/upstream/emscripten:$PATH
 export PATH=$PATH:~/AppImages
 export ROCM_HOME=/opt/rocm
 

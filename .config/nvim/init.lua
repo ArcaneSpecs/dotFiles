@@ -39,7 +39,7 @@ require("user.harpoon")
 require("user.undotree")
 require("user.todo_comments")
 require("user.dap-lldb")
-
+require("user.wyvern_engine")
 
 --[[ require "user.glslview" ]]
 
@@ -50,6 +50,13 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animation_length = 0
     vim.o.guifont = "Jetbrains Mono"
 end
+
+-- Auto read file script
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
 
 -- Extra settings
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -78,39 +85,38 @@ vim.cmd("highlight CurSearch guifg=#223355 guibg=#80aaec")
     -- once = true
 -- })
 
-local rainbow_group = vim.api.nvim_create_augroup("rainbow_csv", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { '*.csv', '*.tsv', "*.csv_semicolon" },
-    group = rainbow_group,
-    callback = function(event)
-        -- vim.notify("Rainbow CSV loaded", vim.log.levels.WARN)
-        local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func,
-                { buffer = event.buf, desc = "LSP: " .. desc })
-        end
-        map('<A-l>', ':RainbowCellGoRight<CR>', "Go right")
-        map('<A-h>', ':RainbowCellGoLeft<CR>', "Go left")
-        map('<A-j>', ':RainbowCellGoDown<CR>', "Go down")
-        map('<A-k>', ':RainbowCellGoUp<CR>', "Go up")
-        map('<A-g>', ':RainbowAlign<CR>', "Align") -- NOTE: This can be used to formats the fields
-        map('<A-t>', ':RainbowDelim<CR>', "Align") -- NOTE: This can be used to formats the fields
-        map('<A-y>', ':RainbowDelimSimple<CR>', "Set delimiter")
-        vim.fn.search(',', 'c')
-        vim.cmd('RainbowDelimSimple')
-        vim.cmd('RainbowAlign')
-
-        -- vim.cmd("setfiletype csv")
-    end
-})
-
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-    pattern = '*.dat',
-    group = rainbow_group,
-    callback = function()
-        vim.cmd("set filetype=csv_pipe")
-    end
-})
+-- NOTE: Rainbow csv plugin
+-- local rainbow_group = vim.api.nvim_create_augroup("rainbow_csv", { clear = true })
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--     pattern = { '*.csv', '*.tsv', "*.csv_semicolon" },
+--     group = rainbow_group,
+--     callback = function(event)
+--         -- vim.notify("Rainbow CSV loaded", vim.log.levels.WARN)
+--         local map = function(keys, func, desc)
+--             vim.keymap.set("n", keys, func,
+--                 { buffer = event.buf, desc = "LSP: " .. desc })
+--         end
+--         map('<A-l>', ':RainbowCellGoRight<CR>', "Go right")
+--         map('<A-h>', ':RainbowCellGoLeft<CR>', "Go left")
+--         map('<A-j>', ':RainbowCellGoDown<CR>', "Go down")
+--         map('<A-k>', ':RainbowCellGoUp<CR>', "Go up")
+--         map('<A-g>', ':RainbowAlign<CR>', "Align") -- NOTE: This can be used to formats the fields
+--         map('<A-t>', ':RainbowDelim<CR>', "Align") -- NOTE: This can be used to formats the fields
+--         map('<A-y>', ':RainbowDelimSimple<CR>', "Set delimiter")
+--         vim.fn.search(',', 'c')
+--         vim.cmd('RainbowDelimSimple')
+--         vim.cmd('RainbowAlign')
+--         -- vim.cmd("setfiletype csv")
+--     end
+-- })
+--
+-- vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+--     pattern = '*.dat',
+--     group = rainbow_group,
+--     callback = function()
+--         vim.cmd("set filetype=csv_pipe")
+--     end
+-- })
 
 -- vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
 --     pattern = '*.csv',

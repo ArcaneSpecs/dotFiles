@@ -1,6 +1,7 @@
 #!/bin/bash
 
 stopwatch &
+stopwatch &
 kitty &
 kitty -e nvim ~/MyDoc/MyDocumentation -S &
 # obsidian &
